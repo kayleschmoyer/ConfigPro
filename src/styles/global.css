@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+:root[data-mode='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  @apply min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)] antialiased;
+}
+
+a {
+  @apply text-[var(--color-primary)] underline-offset-4 transition-colors hover:text-[var(--color-accent)];
+}
+
+.button-shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+.card-shadow {
+  box-shadow: var(--shadow-md);
+}
