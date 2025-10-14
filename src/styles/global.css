@@ -9,12 +9,12 @@
   color: var(--color-foreground);
 }
 
-:root[data-mode='dark'] {
+:root.dark {
   color-scheme: dark;
 }
 
 body {
-  @apply min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)] antialiased;
+  @apply min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)] antialiased transition-colors duration-500;
 }
 
 a {
