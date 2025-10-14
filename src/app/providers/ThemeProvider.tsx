@@ -34,9 +34,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [theme]);
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      document.documentElement.dataset.mode = mode;
-    }
+    if (typeof document === 'undefined') return;
+    const root = document.documentElement;
+    root.dataset.mode = mode;
+    root.classList.toggle('dark', mode === 'dark');
   }, [mode]);
 
   const value = useMemo(
