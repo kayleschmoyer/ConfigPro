@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { ThemeToggle } from '../components/elements/ThemeToggle';
 import { LoginForm } from '../features/login/components/LoginForm';
 import { useTheme } from '../hooks/useTheme';
 import { baseTheme, resolveTheme } from '../app/config/theme';
@@ -16,11 +15,11 @@ type IndustryOption = {
 
 const industryOptions: IndustryOption[] = [
   {
-    id: 'salon',
-    label: 'Salon',
+    id: 'configpro',
+    label: 'ConfigPro',
     themeName: 'default',
     accent: baseTheme.accent,
-    headline: 'Tailor stylists, services, and chair management in seconds.'
+    headline: 'Orchestrate every location, team, and workflow from a single source of truth.'
   },
   {
     id: 'daycare',
@@ -101,40 +100,34 @@ const IndustryPill = ({
   </motion.button>
 );
 
-const Logo = ({ src }: { src: string }) => (
-  <motion.a
-    href="/"
-    className="inline-flex items-center gap-3 text-lg font-semibold text-foreground"
-    whileHover={{ scale: 1.04 }}
-    transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-  >
-    <motion.span
-      className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/15 text-2xl"
-      layoutId="configpro-logo-mark"
-      whileHover={{ rotate: -6 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-    >
-      ✨
-    </motion.span>
-    <motion.img
-      key={src}
-      src={src}
-      alt="ConfigPro logo"
-      className="h-6 w-auto"
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-    />
-  </motion.a>
-);
-
 export const LoginPage = () => {
-  const { theme, themeName, setTheme } = useTheme();
+  const { themeName, setTheme } = useTheme();
   const [activeIndustry, setActiveIndustry] = useState<IndustryOption>(() => {
     return (
       industryOptions.find((option) => option.themeName === themeName) ?? industryOptions[0]
     );
   });
+  const testimonials = useMemo(
+    () => [
+      {
+        quote: 'ConfigPro let our ops team launch new workflows in an afternoon. It felt like flipping a switch for the entire organization.',
+        author: 'Jordan M.',
+        role: 'Director of Operations'
+      },
+      {
+        quote: 'We customized dashboards, permissions, and automations without engineering sprints. ConfigPro keeps every store perfectly in sync.',
+        author: 'Priya K.',
+        role: 'Multi-Unit Retail Lead'
+      },
+      {
+        quote: 'The visibility we now have across inventory and staffing is unreal. ConfigPro is the nerve center for our business.',
+        author: 'Luis F.',
+        role: 'VP, Platform Experience'
+      }
+    ],
+    []
+  );
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
     const next = industryOptions.find((option) => option.themeName === themeName);
@@ -142,6 +135,13 @@ export const LoginPage = () => {
       setActiveIndustry(next);
     }
   }, [themeName]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((index) => (index + 1) % testimonials.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
 
   const gradientStyle = useMemo(
     () => ({
@@ -159,7 +159,7 @@ export const LoginPage = () => {
     <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 opacity-90" style={gradientStyle} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.06),transparent_60%)] dark:bg-[radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.55),transparent_65%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_60%)]" />
         <motion.div
           className="absolute left-1/2 top-[15%] h-[36rem] w-[36rem] -translate-x-1/2 rounded-full blur-3xl"
           style={{ background: hexToRgba(activeIndustry.accent, 0.24) }}
@@ -167,13 +167,9 @@ export const LoginPage = () => {
           transition={{ duration: 0.8, ease: 'easeOut' }}
         />
       </div>
-      <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-10 sm:px-10 lg:px-16">
-        <header className="flex items-center justify-between">
-          <Logo src={theme.logo} />
-          <ThemeToggle />
-        </header>
-        <main className="mt-12 flex flex-1 flex-col">
-          <div className="grid flex-1 gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 sm:px-10 lg:px-14">
+        <main className="mt-4 flex flex-1 flex-col sm:mt-6">
+          <div className="grid flex-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <motion.section
               variants={heroVariants}
               initial="hidden"
@@ -183,14 +179,14 @@ export const LoginPage = () => {
             >
               <div className="space-y-6">
                 <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-                  Tailored POS experiences
+                  Tailored ConfigPro experiences
                 </span>
                 <div className="space-y-5">
                   <h1 className="max-w-xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-                    ✨ Build the POS system of your dreams
+                    ✨ Configure ConfigPro for your business
                   </h1>
                   <p className="max-w-xl text-base text-muted sm:text-lg">
-                    ConfigPro empowers businesses to configure, theme, and launch POS systems tailored to their workflow — in minutes.
+                    ConfigPro empowers teams to design, theme, and deploy unified operations hubs that mirror the way they already work.
                   </p>
                 </div>
               </div>
@@ -230,16 +226,41 @@ export const LoginPage = () => {
             <LoginForm />
           </div>
         </main>
-        <footer className="mt-16 flex flex-col gap-6 border-t border-foreground/10 pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2025 ConfigPro. All rights reserved.</p>
-          <div className="flex flex-col gap-3 text-left sm:items-end sm:text-right">
-            <p className="max-w-md text-base text-foreground">
-              “I built a custom POS in under an hour. Brilliant.” — Jane D., Salon Owner
+        <footer className="mt-12 flex flex-col gap-6 rounded-2xl border border-foreground/10 bg-background/70 p-6 shadow-lg shadow-primary/10 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3 text-primary">
+            <span aria-hidden className="text-2xl">★★★★★</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.3em]">Teams trust ConfigPro</span>
+          </div>
+          <motion.div
+            key={activeTestimonial}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="flex-1 text-left sm:text-right"
+          >
+            <p className="text-base font-medium text-foreground sm:text-lg">
+              “{testimonials[activeTestimonial].quote}”
             </p>
-            <div className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-background/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-muted">
-              <span aria-hidden>🔒</span>
-              <span>PCI & SSL Secure</span>
-            </div>
+            <p className="mt-2 text-sm font-semibold text-primary">
+              {testimonials[activeTestimonial].author}
+              <span className="ml-2 text-xs font-medium uppercase tracking-[0.25em] text-muted">
+                {testimonials[activeTestimonial].role}
+              </span>
+            </p>
+          </motion.div>
+          <div className="flex items-center justify-end gap-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setActiveTestimonial(index)}
+                className={cn(
+                  'h-2.5 w-2.5 rounded-full transition',
+                  index === activeTestimonial ? 'bg-primary' : 'bg-muted/60 hover:bg-muted'
+                )}
+                aria-label={`Show testimonial ${index + 1}`}
+              />
+            ))}
           </div>
         </footer>
       </div>
