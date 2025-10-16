@@ -201,7 +201,7 @@ export const PointOfSalePage = () => {
             </div>
           </div>
 
-          <section className="grid gap-6 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.5fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.8fr)]">
+          <section className="grid gap-6 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.35fr)]">
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
                 Customer
@@ -240,7 +240,7 @@ export const PointOfSalePage = () => {
             </div>
           </section>
 
-          <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,2.4fr)_minmax(0,1fr)] xl:grid-cols-[minmax(0,2.8fr)_minmax(0,1fr)]">
+          <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)]">
             <section className="flex flex-col gap-6 rounded-3xl border border-foreground/10 bg-background/85 p-7 shadow-xl shadow-primary/10 backdrop-blur-xl">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="space-y-1">
