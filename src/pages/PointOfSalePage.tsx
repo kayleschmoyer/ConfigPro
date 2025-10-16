@@ -55,6 +55,7 @@ export const PointOfSalePage = () => {
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
+  const [customerAddress, setCustomerAddress] = useState('');
   const [notes, setNotes] = useState('');
 
   const totals = useMemo(() => {
@@ -184,12 +185,7 @@ export const PointOfSalePage = () => {
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
                 Point of Sale
               </div>
-              <div className="space-y-2">
-                <h1 className="text-3xl font-semibold sm:text-4xl">Counter order in progress</h1>
-                <p className="max-w-xl text-sm text-muted">
-                  Add line items in a rhythm-first grid, get instant totals, and stay focused on the customer in front of you.
-                </p>
-              </div>
+              <h1 className="text-3xl font-semibold sm:text-4xl">Counter order in progress</h1>
             </div>
             <div className="flex flex-col items-end gap-3 text-right">
               <div className="rounded-full border border-foreground/10 bg-surface/70 px-6 py-2 text-sm text-muted shadow-sm">
@@ -201,28 +197,20 @@ export const PointOfSalePage = () => {
             </div>
           </div>
 
-          <section className="grid gap-6 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.35fr)]">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
-                Customer
-              </div>
-              <div className="space-y-2">
-                <h2 className="text-xl font-semibold">Quick customer info</h2>
-                <p className="text-sm text-muted">
-                  Capture the essentials right away so the team can greet, follow up, and invoice without slowing down the checkout rhythm.
-                </p>
-              </div>
+          <section className="space-y-6 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Customer</h2>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Input
-                label="Customer name"
+                label="Name"
                 placeholder="Customer or company name"
                 value={customerName}
                 onChange={(event) => setCustomerName(event.target.value)}
                 className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
               />
               <Input
-                label="Phone number"
+                label="Phone"
                 type="tel"
                 placeholder="(555) 000-0000"
                 value={customerPhone}
@@ -230,12 +218,19 @@ export const PointOfSalePage = () => {
                 className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
               />
               <Input
-                label="Email address"
+                label="Email"
                 type="email"
                 placeholder="name@email.com"
                 value={customerEmail}
                 onChange={(event) => setCustomerEmail(event.target.value)}
-                className="sm:col-span-2 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+              />
+              <Input
+                label="Address"
+                placeholder="Street, city, state"
+                value={customerAddress}
+                onChange={(event) => setCustomerAddress(event.target.value)}
+                className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
               />
             </div>
           </section>
@@ -243,120 +238,116 @@ export const PointOfSalePage = () => {
           <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)]">
             <section className="flex flex-col gap-6 rounded-3xl border border-foreground/10 bg-background/85 p-7 shadow-xl shadow-primary/10 backdrop-blur-xl">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="space-y-1">
-                  <h2 className="text-xl font-semibold">Line items</h2>
-                  <p className="text-sm text-muted">
-                    Complete a row and ConfigPro opens the next one automatically.
-                  </p>
-                </div>
+                <h2 className="text-xl font-semibold">Line items</h2>
                 <Button variant="outline" size="sm" onClick={handleAddLineItem}>
                   Add line
                 </Button>
               </div>
 
               <div className="overflow-hidden rounded-2xl border border-foreground/5">
-                <div className="grid grid-cols-1 gap-4 border-b border-foreground/5 bg-surface/60 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted sm:grid-cols-[minmax(0,1.1fr)_minmax(0,2.4fr)_minmax(0,0.65fr)_minmax(0,0.85fr)_minmax(0,0.75fr)]">
-                  <span>Part</span>
-                  <span>Description</span>
-                  <span>Qty</span>
-                  <span>Unit price</span>
-                  <span>Tax</span>
-                </div>
-                <div className="divide-y divide-foreground/5 bg-background/70">
-                  {lineItems.map((item, index) => {
-                    const isComplete =
-                      item.partNumber.trim() !== '' &&
-                      item.description.trim() !== '' &&
-                      item.unitPrice.trim() !== '';
+                <table className="min-w-full border-collapse text-sm">
+                  <thead className="bg-surface/60 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">
+                    <tr>
+                      <th className="px-4 py-4 text-left">Line</th>
+                      <th className="px-4 py-4 text-left">Part</th>
+                      <th className="px-4 py-4 text-left">Description</th>
+                      <th className="px-4 py-4 text-left">Qty</th>
+                      <th className="px-4 py-4 text-left">Unit price</th>
+                      <th className="px-4 py-4 text-left">Tax</th>
+                      <th className="px-4 py-4 text-right">Line total</th>
+                      <th className="px-4 py-4 text-right" aria-label="Actions" />
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-foreground/5 bg-background/70">
+                    {lineItems.map((item, index) => {
+                      const quantity = parseFloat(item.quantity) || 0;
+                      const unitPrice = parseFloat(item.unitPrice) || 0;
+                      const lineSubtotal = quantity * unitPrice;
+                      const lineTax = lineSubtotal * item.taxRate;
+                      const lineTotal = lineSubtotal + lineTax;
 
-                    return (
-                      <div
-                        key={item.id}
-                        className="group grid grid-cols-1 items-start gap-6 px-6 py-6 transition hover:bg-surface/80 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,2.4fr)_minmax(0,0.65fr)_minmax(0,0.85fr)_minmax(0,0.75fr)]"
-                      >
-                        <div className="space-y-2">
-                          <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Line {index + 1}</span>
-                          <Input
-                            label="Part number"
-                            value={item.partNumber}
-                            onChange={(event) =>
-                              handleItemChange(item.id, 'partNumber', event.target.value)
-                            }
-                            placeholder="e.g. ABC-1234"
-                            className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Details</span>
-                          <Input
-                            label="Description"
-                            value={item.description}
-                            onChange={(event) =>
-                              handleItemChange(item.id, 'description', event.target.value)
-                            }
-                            placeholder="Item description"
-                            className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Quantity</span>
-                          <Input
-                            label="Quantity"
-                            type="number"
-                            min="0"
-                            step="1"
-                            value={item.quantity}
-                            onChange={(event) =>
-                              handleItemChange(item.id, 'quantity', event.target.value)
-                            }
-                            className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Unit price</span>
-                          <Input
-                            label="Unit price"
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            value={item.unitPrice}
-                            onChange={(event) =>
-                              handleItemChange(item.id, 'unitPrice', event.target.value)
-                            }
-                            className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                            placeholder="0.00"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-3">
-                          <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Tax rate</span>
-                          <label className="flex flex-col gap-2 text-sm font-medium text-muted">
-                            <select
-                              value={item.taxRate}
+                      return (
+                        <tr
+                          key={item.id}
+                          className="align-top transition hover:bg-surface/80"
+                        >
+                          <td className="px-4 py-5 align-top text-xs font-semibold uppercase tracking-[0.25em] text-muted">
+                            #{index + 1}
+                          </td>
+                          <td className="px-4 py-5 align-top">
+                            <Input
+                              value={item.partNumber}
                               onChange={(event) =>
-                                handleTaxChange(item.id, parseFloat(event.target.value))
+                                handleItemChange(item.id, 'partNumber', event.target.value)
                               }
-                              className={cn(
-                                'h-11 w-full rounded-2xl border border-transparent bg-surface/80 px-4 text-sm text-foreground shadow-sm transition',
-                                'focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50'
-                              )}
-                            >
-                              {TAX_OPTIONS.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </label>
-                          <div className="flex items-center justify-between text-[11px] text-muted">
-                            <span className="inline-flex items-center gap-2">
-                              <span
+                              placeholder="e.g. ABC-1234"
+                              aria-label="Part number"
+                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                            />
+                          </td>
+                          <td className="px-4 py-5 align-top">
+                            <Input
+                              value={item.description}
+                              onChange={(event) =>
+                                handleItemChange(item.id, 'description', event.target.value)
+                              }
+                              placeholder="Item description"
+                              aria-label="Description"
+                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                            />
+                          </td>
+                          <td className="px-4 py-5 align-top">
+                            <Input
+                              type="number"
+                              min="0"
+                              step="1"
+                              value={item.quantity}
+                              onChange={(event) =>
+                                handleItemChange(item.id, 'quantity', event.target.value)
+                              }
+                              aria-label="Quantity"
+                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                            />
+                          </td>
+                          <td className="px-4 py-5 align-top">
+                            <Input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={item.unitPrice}
+                              onChange={(event) =>
+                                handleItemChange(item.id, 'unitPrice', event.target.value)
+                              }
+                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                              placeholder="0.00"
+                              aria-label="Unit price"
+                            />
+                          </td>
+                          <td className="px-4 py-5 align-top">
+                            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
+                              Tax rate
+                              <select
+                                value={item.taxRate}
+                                onChange={(event) =>
+                                  handleTaxChange(item.id, parseFloat(event.target.value))
+                                }
                                 className={cn(
-                                  'h-1.5 w-1.5 rounded-full transition',
-                                  isComplete ? 'bg-primary' : 'bg-muted/50'
+                                  'h-11 w-full rounded-2xl border border-transparent bg-surface/80 px-4 text-sm text-foreground shadow-sm transition',
+                                  'focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50'
                                 )}
-                              />
-                              {isComplete ? 'Ready' : 'In progress'}
-                            </span>
+                              >
+                                {TAX_OPTIONS.map((option) => (
+                                  <option key={option.value} value={option.value}>
+                                    {option.label}
+                                  </option>
+                                ))}
+                              </select>
+                            </label>
+                          </td>
+                          <td className="px-4 py-5 align-top text-right text-sm font-semibold text-foreground">
+                            {formatCurrency(lineTotal)}
+                          </td>
+                          <td className="px-4 py-5 align-top text-right">
                             {lineItems.length > 1 && (
                               <Button
                                 type="button"
@@ -368,46 +359,27 @@ export const PointOfSalePage = () => {
                                 Remove
                               </Button>
                             )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-[1.4fr_1fr]">
-                <label className="flex flex-col gap-2 text-sm font-medium text-muted">
-                  Internal notes
-                  <textarea
-                    value={notes}
-                    onChange={(event) => setNotes(event.target.value)}
-                    placeholder="Delivery preferences or register reminders"
-                    rows={3}
-                    className={cn(
-                      'w-full rounded-2xl border border-transparent bg-surface/80 px-4 py-3 text-sm text-foreground shadow-sm transition',
-                      'focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50'
-                    )}
-                  />
-                </label>
-                <div className="flex flex-col gap-3 rounded-2xl border border-foreground/5 bg-surface/70 px-4 py-4 text-xs uppercase tracking-[0.2em] text-muted">
-                  <span className="font-semibold text-foreground/80">Contact recap</span>
-                  <div className="space-y-2 normal-case text-[13px] font-medium text-foreground">
-                    <div className="flex flex-col">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Name</span>
-                      <span>{customerName || 'Walk-up customer'}</span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Phone</span>
-                      <span>{customerPhone || 'Add a phone number'}</span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Email</span>
-                      <span>{customerEmail || 'Add an email address'}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <label className="flex flex-col gap-2 text-sm font-medium text-muted">
+                Internal notes
+                <textarea
+                  value={notes}
+                  onChange={(event) => setNotes(event.target.value)}
+                  placeholder="Delivery preferences or register reminders"
+                  rows={3}
+                  className={cn(
+                    'w-full rounded-2xl border border-transparent bg-surface/80 px-4 py-3 text-sm text-foreground shadow-sm transition',
+                    'focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50'
+                  )}
+                />
+              </label>
             </section>
 
             <aside className="flex flex-col gap-6">
