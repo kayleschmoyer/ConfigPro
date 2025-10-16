@@ -53,6 +53,8 @@ export const PointOfSalePage = () => {
   ]);
   const [referenceId] = useState(() => `INV-${Date.now().toString().slice(-6)}`);
   const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
   const [notes, setNotes] = useState('');
 
   const totals = useMemo(() => {
@@ -198,6 +200,45 @@ export const PointOfSalePage = () => {
               </div>
             </div>
           </div>
+
+          <section className="grid gap-6 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.35fr)]">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+                Customer
+              </div>
+              <div className="space-y-2">
+                <h2 className="text-xl font-semibold">Quick customer info</h2>
+                <p className="text-sm text-muted">
+                  Capture the essentials right away so the team can greet, follow up, and invoice without slowing down the checkout rhythm.
+                </p>
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Input
+                label="Customer name"
+                placeholder="Customer or company name"
+                value={customerName}
+                onChange={(event) => setCustomerName(event.target.value)}
+                className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+              />
+              <Input
+                label="Phone number"
+                type="tel"
+                placeholder="(555) 000-0000"
+                value={customerPhone}
+                onChange={(event) => setCustomerPhone(event.target.value)}
+                className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+              />
+              <Input
+                label="Email address"
+                type="email"
+                placeholder="name@email.com"
+                value={customerEmail}
+                onChange={(event) => setCustomerEmail(event.target.value)}
+                className="sm:col-span-2 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+              />
+            </div>
+          </section>
 
           <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)]">
             <section className="flex flex-col gap-6 rounded-3xl border border-foreground/10 bg-background/85 p-7 shadow-xl shadow-primary/10 backdrop-blur-xl">
@@ -353,13 +394,6 @@ export const PointOfSalePage = () => {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-[1.4fr_1fr]">
-                <Input
-                  label="Bill to"
-                  placeholder="Customer or company name"
-                  value={customerName}
-                  onChange={(event) => setCustomerName(event.target.value)}
-                  className="h-12 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                />
                 <label className="flex flex-col gap-2 text-sm font-medium text-muted">
                   Internal notes
                   <textarea
@@ -373,6 +407,23 @@ export const PointOfSalePage = () => {
                     )}
                   />
                 </label>
+                <div className="flex flex-col gap-3 rounded-2xl border border-foreground/5 bg-surface/70 px-4 py-4 text-xs uppercase tracking-[0.2em] text-muted">
+                  <span className="font-semibold text-foreground/80">Contact recap</span>
+                  <div className="space-y-2 normal-case text-[13px] font-medium text-foreground">
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Name</span>
+                      <span>{customerName || 'Walk-up customer'}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Phone</span>
+                      <span>{customerPhone || 'Add a phone number'}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Email</span>
+                      <span>{customerEmail || 'Add an email address'}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
