@@ -10,15 +10,9 @@ interface LineItem {
   description: string;
   quantity: string;
   unitPrice: string;
-  taxRate: number;
 }
 
-const TAX_OPTIONS = [
-  { label: 'No tax', value: 0 },
-  { label: 'State tax · 6%', value: 0.06 },
-  { label: 'Local tax · 2.5%', value: 0.025 },
-  { label: 'Combined rate · 8.5%', value: 0.085 }
-];
+const CONFIGURED_TAX_RATE = 0.085;
 
 const pageVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -37,8 +31,7 @@ const createLineItem = (index: number): LineItem => ({
   partNumber: '',
   description: '',
   quantity: '1',
-  unitPrice: '',
-  taxRate: 0.085
+  unitPrice: ''
 });
 
 const formatCurrency = (amount: number) =>
@@ -46,6 +39,13 @@ const formatCurrency = (amount: number) =>
     style: 'currency',
     currency: 'USD'
   }).format(amount || 0);
+
+const formatPercentage = (rate: number) =>
+  new Intl.NumberFormat('en-US', {
+    style: 'percent',
+    maximumFractionDigits: 2,
+    minimumFractionDigits: rate === 0 ? 0 : 1
+  }).format(rate);
 
 export const PointOfSalePage = () => {
   const [lineItems, setLineItems] = useState<LineItem[]>([
@@ -56,25 +56,19 @@ export const PointOfSalePage = () => {
   const [customerPhone, setCustomerPhone] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerAddress, setCustomerAddress] = useState('');
-  const [notes, setNotes] = useState('');
 
-  const totals = useMemo(() => {
-    return lineItems.reduce(
-      (acc, item) => {
+  const subtotal = useMemo(
+    () =>
+      lineItems.reduce((acc, item) => {
         const quantity = parseFloat(item.quantity) || 0;
         const unitPrice = parseFloat(item.unitPrice) || 0;
-        const lineSubtotal = quantity * unitPrice;
-        const lineTax = lineSubtotal * item.taxRate;
-        return {
-          subtotal: acc.subtotal + lineSubtotal,
-          tax: acc.tax + lineTax
-        };
-      },
-      { subtotal: 0, tax: 0 }
-    );
-  }, [lineItems]);
+        return acc + quantity * unitPrice;
+      }, 0),
+    [lineItems]
+  );
 
-  const grandTotal = totals.subtotal + totals.tax;
+  const taxAmount = subtotal * CONFIGURED_TAX_RATE;
+  const grandTotal = subtotal + taxAmount;
 
   const handleItemChange = (
     id: string,
@@ -90,12 +84,6 @@ export const PointOfSalePage = () => {
             }
           : item
       )
-    );
-  };
-
-  const handleTaxChange = (id: string, taxRate: number) => {
-    setLineItems((items) =>
-      items.map((item) => (item.id === id ? { ...item, taxRate } : item))
     );
   };
 
@@ -253,8 +241,7 @@ export const PointOfSalePage = () => {
                       <th className="px-4 py-4 text-left">Description</th>
                       <th className="px-4 py-4 text-left">Qty</th>
                       <th className="px-4 py-4 text-left">Unit price</th>
-                      <th className="px-4 py-4 text-left">Tax</th>
-                      <th className="px-4 py-4 text-right">Line total</th>
+                      <th className="px-4 py-4 text-right">Line subtotal</th>
                       <th className="px-4 py-4 text-right" aria-label="Actions" />
                     </tr>
                   </thead>
@@ -263,8 +250,6 @@ export const PointOfSalePage = () => {
                       const quantity = parseFloat(item.quantity) || 0;
                       const unitPrice = parseFloat(item.unitPrice) || 0;
                       const lineSubtotal = quantity * unitPrice;
-                      const lineTax = lineSubtotal * item.taxRate;
-                      const lineTotal = lineSubtotal + lineTax;
 
                       return (
                         <tr
@@ -323,29 +308,8 @@ export const PointOfSalePage = () => {
                               aria-label="Unit price"
                             />
                           </td>
-                          <td className="px-4 py-5 align-top">
-                            <label className="flex flex-col gap-2 text-sm font-medium text-muted">
-                              Tax rate
-                              <select
-                                value={item.taxRate}
-                                onChange={(event) =>
-                                  handleTaxChange(item.id, parseFloat(event.target.value))
-                                }
-                                className={cn(
-                                  'h-11 w-full rounded-2xl border border-transparent bg-surface/80 px-4 text-sm text-foreground shadow-sm transition',
-                                  'focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50'
-                                )}
-                              >
-                                {TAX_OPTIONS.map((option) => (
-                                  <option key={option.value} value={option.value}>
-                                    {option.label}
-                                  </option>
-                                ))}
-                              </select>
-                            </label>
-                          </td>
                           <td className="px-4 py-5 align-top text-right text-sm font-semibold text-foreground">
-                            {formatCurrency(lineTotal)}
+                            {formatCurrency(lineSubtotal)}
                           </td>
                           <td className="px-4 py-5 align-top text-right">
                             {lineItems.length > 1 && (
@@ -367,19 +331,6 @@ export const PointOfSalePage = () => {
                 </table>
               </div>
 
-              <label className="flex flex-col gap-2 text-sm font-medium text-muted">
-                Internal notes
-                <textarea
-                  value={notes}
-                  onChange={(event) => setNotes(event.target.value)}
-                  placeholder="Delivery preferences or register reminders"
-                  rows={3}
-                  className={cn(
-                    'w-full rounded-2xl border border-transparent bg-surface/80 px-4 py-3 text-sm text-foreground shadow-sm transition',
-                    'focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50'
-                  )}
-                />
-              </label>
             </section>
             <footer className="sticky bottom-6 z-10 mt-auto">
               <div className="rounded-3xl border border-primary/40 bg-primary/15 p-6 shadow-2xl shadow-primary/20 backdrop-blur-xl">
@@ -394,11 +345,11 @@ export const PointOfSalePage = () => {
                     <dl className="grid gap-3 text-sm text-primary/90 sm:grid-cols-3 sm:items-center">
                       <div className="flex items-center justify-between gap-4 rounded-2xl bg-background/40 px-4 py-3 text-foreground/90">
                         <dt className="text-muted">Subtotal</dt>
-                        <dd className="font-semibold">{formatCurrency(totals.subtotal)}</dd>
+                        <dd className="font-semibold">{formatCurrency(subtotal)}</dd>
                       </div>
                       <div className="flex items-center justify-between gap-4 rounded-2xl bg-background/40 px-4 py-3 text-foreground/90">
-                        <dt className="text-muted">Taxes</dt>
-                        <dd className="font-semibold">{formatCurrency(totals.tax)}</dd>
+                        <dt className="text-muted">Tax ({formatPercentage(CONFIGURED_TAX_RATE)})</dt>
+                        <dd className="font-semibold">{formatCurrency(taxAmount)}</dd>
                       </div>
                       <div className="flex items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-primary/20 px-4 py-3 text-foreground">
                         <dt className="text-sm font-semibold uppercase tracking-[0.25em] text-primary/80">Total due</dt>
