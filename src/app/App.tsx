@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
-import { Topbar } from '../components/layout/Topbar';
 import { AppRouter } from '../router';
-import { useTheme } from '../hooks/useTheme';
 
 const fadeVariants = {
   initial: { opacity: 0, y: 12 },
@@ -10,14 +8,11 @@ const fadeVariants = {
 };
 
 const App = () => {
-  const { theme } = useTheme();
-
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Topbar logo={theme.logo} />
-      <main className="mx-auto flex w-full max-w-5xl flex-1 px-4 py-8">
+      <main className="flex min-h-screen w-full flex-1 flex-col px-4 py-6 sm:px-6 lg:px-10">
         <motion.div
-          className="w-full"
+          className="w-full flex-1"
           initial="initial"
           animate="animate"
           exit="exit"
