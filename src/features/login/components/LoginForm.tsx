@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { useState, type FormEvent } from 'react';
 import { Button } from '../../../components/ui/Button';
 import { Input } from '../../../components/ui/Input';
@@ -12,6 +13,7 @@ const cardVariants = {
 
 export const LoginForm = () => {
   const { login, loginWithGoogle, isLoading } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState<string | null>(null);
@@ -20,11 +22,13 @@ export const LoginForm = () => {
     event.preventDefault();
     const result = await login({ email, password });
     setMessage(`Authenticated as ${result.email}`);
+    navigate('/dashboard');
   };
 
   const handleGoogle = async () => {
     const result = await loginWithGoogle();
     setMessage(`Connected via ${result.provider}`);
+    navigate('/dashboard');
   };
 
   return (
