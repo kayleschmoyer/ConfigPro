@@ -53,6 +53,8 @@ export const PointOfSalePage = () => {
   ]);
   const [referenceId] = useState(() => `INV-${Date.now().toString().slice(-6)}`);
   const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
   const [notes, setNotes] = useState('');
 
   const totals = useMemo(() => {
@@ -132,7 +134,7 @@ export const PointOfSalePage = () => {
       </div>
       <div className="relative flex min-h-screen flex-col">
         <header className="sticky top-0 z-20 border-b border-white/5 bg-background/90 backdrop-blur-xl">
-          <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
+          <div className="mx-auto flex w-full max-w-[90rem] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
             <div className="flex items-center gap-4">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-base font-semibold text-primary shadow-inner shadow-primary/20">
                 CP
@@ -171,7 +173,7 @@ export const PointOfSalePage = () => {
         </header>
 
         <motion.main
-          className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-6 py-10 sm:px-10 lg:px-12"
+          className="relative mx-auto flex w-full max-w-[90rem] flex-1 flex-col gap-8 px-6 py-10 sm:px-10 lg:px-12"
           variants={pageVariants}
           initial="hidden"
           animate="visible"
@@ -199,7 +201,46 @@ export const PointOfSalePage = () => {
             </div>
           </div>
 
-          <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)]">
+          <section className="grid gap-6 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.5fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.8fr)]">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+                Customer
+              </div>
+              <div className="space-y-2">
+                <h2 className="text-xl font-semibold">Quick customer info</h2>
+                <p className="text-sm text-muted">
+                  Capture the essentials right away so the team can greet, follow up, and invoice without slowing down the checkout rhythm.
+                </p>
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Input
+                label="Customer name"
+                placeholder="Customer or company name"
+                value={customerName}
+                onChange={(event) => setCustomerName(event.target.value)}
+                className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+              />
+              <Input
+                label="Phone number"
+                type="tel"
+                placeholder="(555) 000-0000"
+                value={customerPhone}
+                onChange={(event) => setCustomerPhone(event.target.value)}
+                className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+              />
+              <Input
+                label="Email address"
+                type="email"
+                placeholder="name@email.com"
+                value={customerEmail}
+                onChange={(event) => setCustomerEmail(event.target.value)}
+                className="sm:col-span-2 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+              />
+            </div>
+          </section>
+
+          <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,2.4fr)_minmax(0,1fr)] xl:grid-cols-[minmax(0,2.8fr)_minmax(0,1fr)]">
             <section className="flex flex-col gap-6 rounded-3xl border border-foreground/10 bg-background/85 p-7 shadow-xl shadow-primary/10 backdrop-blur-xl">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="space-y-1">
@@ -214,7 +255,7 @@ export const PointOfSalePage = () => {
               </div>
 
               <div className="overflow-hidden rounded-2xl border border-foreground/5">
-                <div className="grid grid-cols-[1.3fr_1.8fr_0.8fr_0.9fr_0.9fr] items-center gap-4 border-b border-foreground/5 bg-surface/60 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">
+                <div className="grid grid-cols-1 gap-4 border-b border-foreground/5 bg-surface/60 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted sm:grid-cols-[minmax(0,1.1fr)_minmax(0,2.4fr)_minmax(0,0.65fr)_minmax(0,0.85fr)_minmax(0,0.75fr)]">
                   <span>Part</span>
                   <span>Description</span>
                   <span>Qty</span>
@@ -223,19 +264,16 @@ export const PointOfSalePage = () => {
                 </div>
                 <div className="divide-y divide-foreground/5 bg-background/70">
                   {lineItems.map((item, index) => {
-                    const quantity = parseFloat(item.quantity) || 0;
-                    const unitPrice = parseFloat(item.unitPrice) || 0;
-                    const lineSubtotal = quantity * unitPrice;
-                    const lineTax = lineSubtotal * item.taxRate;
-                    const lineTotal = lineSubtotal + lineTax;
-
                     const isComplete =
                       item.partNumber.trim() !== '' &&
                       item.description.trim() !== '' &&
                       item.unitPrice.trim() !== '';
 
                     return (
-                      <div key={item.id} className="group grid grid-cols-[1.3fr_1.8fr_0.8fr_0.9fr_0.9fr] items-start gap-4 px-6 py-6 transition hover:bg-surface/80">
+                      <div
+                        key={item.id}
+                        className="group grid grid-cols-1 items-start gap-6 px-6 py-6 transition hover:bg-surface/80 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,2.4fr)_minmax(0,0.65fr)_minmax(0,0.85fr)_minmax(0,0.75fr)]"
+                      >
                         <div className="space-y-2">
                           <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Line {index + 1}</span>
                           <Input
@@ -259,20 +297,6 @@ export const PointOfSalePage = () => {
                             placeholder="Item description"
                             className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
                           />
-                          <dl className="grid grid-cols-3 gap-3 rounded-2xl border border-foreground/5 bg-background/70 p-3 text-[11px] text-muted">
-                            <div>
-                              <dt className="font-semibold text-foreground">Subtotal</dt>
-                              <dd>{formatCurrency(lineSubtotal)}</dd>
-                            </div>
-                            <div>
-                              <dt className="font-semibold text-foreground">Tax</dt>
-                              <dd>{formatCurrency(lineTax)}</dd>
-                            </div>
-                            <div>
-                              <dt className="font-semibold text-foreground">Line total</dt>
-                              <dd className="text-foreground">{formatCurrency(lineTotal)}</dd>
-                            </div>
-                          </dl>
                         </div>
                         <div className="flex flex-col gap-2">
                           <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Quantity</span>
@@ -353,13 +377,6 @@ export const PointOfSalePage = () => {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-[1.4fr_1fr]">
-                <Input
-                  label="Bill to"
-                  placeholder="Customer or company name"
-                  value={customerName}
-                  onChange={(event) => setCustomerName(event.target.value)}
-                  className="h-12 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                />
                 <label className="flex flex-col gap-2 text-sm font-medium text-muted">
                   Internal notes
                   <textarea
@@ -373,6 +390,23 @@ export const PointOfSalePage = () => {
                     )}
                   />
                 </label>
+                <div className="flex flex-col gap-3 rounded-2xl border border-foreground/5 bg-surface/70 px-4 py-4 text-xs uppercase tracking-[0.2em] text-muted">
+                  <span className="font-semibold text-foreground/80">Contact recap</span>
+                  <div className="space-y-2 normal-case text-[13px] font-medium text-foreground">
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Name</span>
+                      <span>{customerName || 'Walk-up customer'}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Phone</span>
+                      <span>{customerPhone || 'Add a phone number'}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted">Email</span>
+                      <span>{customerEmail || 'Add an email address'}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
