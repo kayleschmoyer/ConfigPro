@@ -235,7 +235,7 @@ export const PointOfSalePage = () => {
             </div>
           </section>
 
-          <div className="grid flex-1 gap-8 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)]">
+          <div className="flex flex-1 flex-col gap-8">
             <section className="flex flex-col gap-6 rounded-3xl border border-foreground/10 bg-background/85 p-7 shadow-xl shadow-primary/10 backdrop-blur-xl">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-xl font-semibold">Line items</h2>
@@ -381,64 +381,42 @@ export const PointOfSalePage = () => {
                 />
               </label>
             </section>
-
-            <aside className="flex flex-col gap-6">
-              <div className="rounded-3xl border border-primary/30 bg-primary/10 p-6 shadow-xl shadow-primary/20">
-                <div className="flex items-center justify-between gap-3">
-                  <h2 className="text-lg font-semibold text-primary">Totals</h2>
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">
-                    Synced live
-                  </span>
-                </div>
-                <dl className="mt-4 space-y-3 text-sm text-primary/90">
-                  <div className="flex items-center justify-between">
-                    <dt>Subtotal</dt>
-                    <dd className="text-foreground">{formatCurrency(totals.subtotal)}</dd>
+            <footer className="sticky bottom-6 z-10 mt-auto">
+              <div className="rounded-3xl border border-primary/40 bg-primary/15 p-6 shadow-2xl shadow-primary/20 backdrop-blur-xl">
+                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-primary">
+                      <h2 className="text-lg font-semibold">Totals</h2>
+                      <span className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em]">
+                        Synced live
+                      </span>
+                    </div>
+                    <dl className="grid gap-3 text-sm text-primary/90 sm:grid-cols-3 sm:items-center">
+                      <div className="flex items-center justify-between gap-4 rounded-2xl bg-background/40 px-4 py-3 text-foreground/90">
+                        <dt className="text-muted">Subtotal</dt>
+                        <dd className="font-semibold">{formatCurrency(totals.subtotal)}</dd>
+                      </div>
+                      <div className="flex items-center justify-between gap-4 rounded-2xl bg-background/40 px-4 py-3 text-foreground/90">
+                        <dt className="text-muted">Taxes</dt>
+                        <dd className="font-semibold">{formatCurrency(totals.tax)}</dd>
+                      </div>
+                      <div className="flex items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-primary/20 px-4 py-3 text-foreground">
+                        <dt className="text-sm font-semibold uppercase tracking-[0.25em] text-primary/80">Total due</dt>
+                        <dd className="text-base font-semibold text-foreground">{formatCurrency(grandTotal)}</dd>
+                      </div>
+                    </dl>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <dt>Taxes</dt>
-                    <dd className="text-foreground">{formatCurrency(totals.tax)}</dd>
+                  <div className="flex w-full flex-col gap-3 md:w-auto md:min-w-[16rem]">
+                    <Button type="button" className="w-full" size="lg">
+                      Collect payment
+                    </Button>
+                    <Button type="button" variant="outline" className="w-full">
+                      Send invoice
+                    </Button>
                   </div>
-                  <div className="flex items-center justify-between border-t border-primary/25 pt-3 text-base font-semibold text-primary">
-                    <dt>Total due</dt>
-                    <dd className="text-foreground">{formatCurrency(grandTotal)}</dd>
-                  </div>
-                </dl>
-                <div className="mt-6 space-y-3">
-                  <Button type="button" className="w-full" size="lg">
-                    Collect payment
-                  </Button>
-                  <Button type="button" variant="outline" className="w-full">
-                    Send invoice
-                  </Button>
                 </div>
               </div>
-
-              <div className="space-y-4 rounded-3xl border border-foreground/10 bg-background/70 p-6 text-sm text-muted shadow-lg shadow-primary/10 backdrop-blur">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-muted">
-                    Checkout rhythm
-                  </h3>
-                  <span className="rounded-full bg-primary/15 px-3 py-1 text-[11px] font-semibold text-primary">
-                    Average · 02:14
-                  </span>
-                </div>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                    <p>Drop in a part, description, and price — the next line appears automatically.</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                    <p>Totals sync instantly to every register and the back office.</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                    <p>Switch to Reports or Accounting from the guide bar without losing your draft.</p>
-                  </li>
-                </ul>
-              </div>
-            </aside>
+            </footer>
           </div>
         </motion.main>
       </div>
