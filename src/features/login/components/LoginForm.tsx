@@ -22,13 +22,13 @@ export const LoginForm = () => {
     event.preventDefault();
     const result = await login({ email, password });
     setMessage(`Authenticated as ${result.email}`);
-    navigate('/dashboard');
+    navigate('/pos');
   };
 
   const handleGoogle = async () => {
     const result = await loginWithGoogle();
     setMessage(`Connected via ${result.provider}`);
-    navigate('/dashboard');
+    navigate('/pos');
   };
 
   return (
