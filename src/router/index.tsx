@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { LoginPage } from '../pages/LoginPage';
-import { PointOfSalePage } from '../pages/PointOfSalePage';
+import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
+import { PointOfSalePage } from '../pages/additional-paid-features/configpro/PointOfSalePage';
 
 export const AppRouter = () => (
   <Routes>
