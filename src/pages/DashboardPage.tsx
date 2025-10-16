@@ -55,10 +55,14 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
-    label: 'Overview',
-    description: 'Today\'s pulse',
-    notifications: 4,
+    label: 'Point of sale',
+    description: 'Start a new order',
     isActive: true
+  },
+  {
+    label: 'Dashboard overview',
+    description: 'Today\'s pulse',
+    notifications: 4
   },
   {
     label: 'Orders',
@@ -324,17 +328,17 @@ export const DashboardPage = () => {
         <div className="flex flex-col gap-6">
           <header className="flex flex-col gap-4 rounded-[32px] border border-foreground/5 bg-gradient-to-r from-primary/10 via-surface/80 to-surface/60 p-6 shadow-lg shadow-primary/10 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">Today · Thursday, Apr 18</p>
-              <h1 className="mt-2 text-3xl font-semibold text-foreground">Flagship cafe dashboard</h1>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">Point of sale · Flagship cafe</p>
+              <h1 className="mt-2 text-3xl font-semibold text-foreground">Ready to ring up the next guest</h1>
               <p className="text-sm text-muted">
-                Monitor performance, staffing, and engagement at a glance across all points of sale.
+                Jump straight into orders, manage active tickets, and keep every station synced in real time.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button variant="outline" size="sm">
-                View live floor
+                Hold current sale
               </Button>
-              <Button size="sm">New sale</Button>
+              <Button size="sm">Start new ticket</Button>
             </div>
           </header>
 
