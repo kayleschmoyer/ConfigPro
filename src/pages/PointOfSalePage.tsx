@@ -134,7 +134,7 @@ export const PointOfSalePage = () => {
       </div>
       <div className="relative flex min-h-screen flex-col">
         <header className="sticky top-0 z-20 border-b border-white/5 bg-background/90 backdrop-blur-xl">
-          <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
+          <div className="mx-auto flex w-full max-w-[90rem] items-center justify-between gap-6 px-6 py-4 sm:px-10 lg:px-12">
             <div className="flex items-center gap-4">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 text-base font-semibold text-primary shadow-inner shadow-primary/20">
                 CP
@@ -173,7 +173,7 @@ export const PointOfSalePage = () => {
         </header>
 
         <motion.main
-          className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-6 py-10 sm:px-10 lg:px-12"
+          className="relative mx-auto flex w-full max-w-[90rem] flex-1 flex-col gap-8 px-6 py-10 sm:px-10 lg:px-12"
           variants={pageVariants}
           initial="hidden"
           animate="visible"
@@ -255,7 +255,7 @@ export const PointOfSalePage = () => {
               </div>
 
               <div className="overflow-hidden rounded-2xl border border-foreground/5">
-                <div className="grid grid-cols-[1.3fr_1.8fr_0.8fr_0.9fr_0.9fr] items-center gap-4 border-b border-foreground/5 bg-surface/60 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">
+                <div className="grid grid-cols-1 gap-4 border-b border-foreground/5 bg-surface/60 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted sm:grid-cols-[minmax(0,1.1fr)_minmax(0,2.4fr)_minmax(0,0.65fr)_minmax(0,0.85fr)_minmax(0,0.75fr)]">
                   <span>Part</span>
                   <span>Description</span>
                   <span>Qty</span>
@@ -264,19 +264,16 @@ export const PointOfSalePage = () => {
                 </div>
                 <div className="divide-y divide-foreground/5 bg-background/70">
                   {lineItems.map((item, index) => {
-                    const quantity = parseFloat(item.quantity) || 0;
-                    const unitPrice = parseFloat(item.unitPrice) || 0;
-                    const lineSubtotal = quantity * unitPrice;
-                    const lineTax = lineSubtotal * item.taxRate;
-                    const lineTotal = lineSubtotal + lineTax;
-
                     const isComplete =
                       item.partNumber.trim() !== '' &&
                       item.description.trim() !== '' &&
                       item.unitPrice.trim() !== '';
 
                     return (
-                      <div key={item.id} className="group grid grid-cols-[1.3fr_1.8fr_0.8fr_0.9fr_0.9fr] items-start gap-4 px-6 py-6 transition hover:bg-surface/80">
+                      <div
+                        key={item.id}
+                        className="group grid grid-cols-1 items-start gap-6 px-6 py-6 transition hover:bg-surface/80 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,2.4fr)_minmax(0,0.65fr)_minmax(0,0.85fr)_minmax(0,0.75fr)]"
+                      >
                         <div className="space-y-2">
                           <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Line {index + 1}</span>
                           <Input
@@ -300,20 +297,6 @@ export const PointOfSalePage = () => {
                             placeholder="Item description"
                             className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
                           />
-                          <dl className="grid grid-cols-3 gap-3 rounded-2xl border border-foreground/5 bg-background/70 p-3 text-[11px] text-muted">
-                            <div>
-                              <dt className="font-semibold text-foreground">Subtotal</dt>
-                              <dd>{formatCurrency(lineSubtotal)}</dd>
-                            </div>
-                            <div>
-                              <dt className="font-semibold text-foreground">Tax</dt>
-                              <dd>{formatCurrency(lineTax)}</dd>
-                            </div>
-                            <div>
-                              <dt className="font-semibold text-foreground">Line total</dt>
-                              <dd className="text-foreground">{formatCurrency(lineTotal)}</dd>
-                            </div>
-                          </dl>
                         </div>
                         <div className="flex flex-col gap-2">
                           <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">Quantity</span>
