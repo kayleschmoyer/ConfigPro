@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { LoginForm } from '../features/login/components/LoginForm';
-import { useTheme } from '../hooks/useTheme';
-import { baseTheme, resolveTheme } from '../app/config/theme';
-import { cn } from '../lib/cn';
+import { LoginForm } from '../../../features/login/components/LoginForm';
+import { useTheme } from '../../../hooks/useTheme';
+import { baseTheme, resolveTheme } from '../../../app/config/theme';
+import { cn } from '../../../lib/cn';
 
 type IndustryOption = {
   id: string;

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
-import { cn } from '../lib/cn';
+import { Button } from '../../../components/ui/Button';
+import { Input } from '../../../components/ui/Input';
+import { cn } from '../../../lib/cn';
 
 interface LineItem {
   id: string;
