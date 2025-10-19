@@ -17,6 +17,29 @@ const heroStats = [
     value: '+22%',
     detail: 'Live demand deltas mapped to planned staffing',
   },
+  {
+    label: 'Punch-to-payroll latency',
+    value: '<30s',
+    detail: 'Streaming ledger sync keeps finance, analytics, and leaders aligned',
+  },
+];
+
+const experiencePrinciples = [
+  {
+    title: 'Frictionless intent recognition',
+    description:
+      'Biometric-ready prompts, location sensing, and device heuristics anticipate every punch so staff simply show up and confirm.',
+  },
+  {
+    title: 'Human + AI coaching',
+    description:
+      'Leaders receive conversational nudges with suggested remedies the moment adherence slips or compliance risk appears.',
+  },
+  {
+    title: 'Trust at enterprise scale',
+    description:
+      'Immutable audit fabrics, SOC-ready exports, and union-grade approvals keep legal and payroll teams in the same pane of glass.',
+  },
 ];
 
 const whyNow = [
@@ -60,6 +83,61 @@ const signatureCapabilities = [
   },
 ];
 
+const punchFlow = [
+  {
+    step: '01',
+    title: 'Predictive arrival sensing',
+    description:
+      'Geofences, badge taps, and Bluetooth beacons wake the punch journey before workers reach the threshold.',
+    highlight: 'Signal fusion reaches 98% accuracy on expected arrivals five minutes out.',
+  },
+  {
+    step: '02',
+    title: 'Adaptive punch canvas',
+    description:
+      'Context-rich prompts summarise roster intent, skill validations, and real-time demand loads so the right action is obvious.',
+    highlight: 'Assistants recommend shift swaps, extensions, or rapid approvals inline—no modal fatigue.',
+  },
+  {
+    step: '03',
+    title: 'Precision compliance routing',
+    description:
+      'Exception pathways dispatch to the correct leader with jurisdiction-aware remedies and documentation ready to sign.',
+    highlight: 'AI-authored annotations cut manual payroll research time by 63%.',
+  },
+  {
+    step: '04',
+    title: 'Instant payroll continuity',
+    description:
+      'Approved punches stream to payroll, analytics, and staffing war rooms with immutable ledgers and rollback controls.',
+    highlight: 'Finance operates on streaming actuals with no end-of-week imports.',
+  },
+];
+
+const telemetryHighlights = [
+  {
+    title: 'Unified visibility',
+    points: [
+      'Coverage and compliance heatmaps live stream to command centers and mobile dashboards.',
+      'Punch variance is plotted against forecast precision to surface teams needing proactive support.',
+    ],
+  },
+  {
+    title: 'Guided leadership actions',
+    points: [
+      'AI playbooks select the best coaching moment and channel for every exception.',
+      'Escalations carry pre-filled context, recommended outcomes, and follow-up cadences.',
+    ],
+  },
+  {
+    title: 'Ecosystem-grade APIs',
+    points: [
+      'Webhooks and streaming topics deliver punch proof to ERP, LMS, and safety systems instantly.',
+      'Normalization and enrichment pipelines apply consistent identity, localization, and retention policies.',
+    ],
+  },
+];
+
 const operationalBlueprint = [
   {
     phase: 'Shape',
@@ -86,6 +164,33 @@ const operationalBlueprint = [
       'Ship compliance attestations, audit exports, and anomaly war rooms',
       'Publish adoption dashboards for coverage confidence and utilization',
       'Hand off rollout playbooks to customer success and solution partners',
+    ],
+  },
+];
+
+const deviceMatrix = [
+  {
+    title: 'Operational everywhere',
+    details: [
+      'Offline-safe kiosks with smart queueing for manufacturing and logistics hubs.',
+      'Edge-compute gateways in clinics to maintain HIPAA-aligned punch verification.',
+      'Retail-ready progressive web apps tuned for low-connectivity environments.',
+    ],
+  },
+  {
+    title: 'Identity confident',
+    details: [
+      'Biometric integrations for fingerprint, facial, and palm vein hardware certified through ConfigPro labs.',
+      'Multi-factor attestations layered over wearables, NFC badges, and SMS when required.',
+      'Privacy-first consent and opt-out workflows honoring regional regulations.',
+    ],
+  },
+  {
+    title: 'Change-managed rollout',
+    details: [
+      'In-field device health monitoring with zero-touch provisioning playbooks.',
+      'Simulation sandboxes for training leaders before hardware ships.',
+      'Turnkey adoption kits with signage, training videos, and microsurveys.',
     ],
   },
 ];
@@ -120,6 +225,31 @@ const integrationHighlights = [
   },
 ];
 
+const adoptionSignals = [
+  {
+    label: 'Experience NPS',
+    value: '92',
+    detail: 'Beta enterprises rated the ConfigPro punch journey the highest among workforce tools.',
+  },
+  {
+    label: 'Time theft reduction',
+    value: '-38%',
+    detail: 'Cross-reconciled anomalies shrink as the hub auto-validates variance at clock-in.',
+  },
+  {
+    label: 'Leader coaching uptake',
+    value: '4.7x',
+    detail: 'Guided interventions are actioned nearly five times more than manual escalations.',
+  },
+];
+
+const customerQuote = {
+  quote:
+    '“Our teams stopped thinking about time clocks. They just start their shift and the hub orchestrates the rest—including payroll and compliance sign-off.”',
+  attribution: 'COO, Global Hospitality Collective',
+  context: '12 countries • 68k employees • SOC 2 Type II compliant deployment in under 90 days',
+};
+
 export const TimeIntelligenceHubPage = () => {
   return (
     <div
@@ -128,7 +258,7 @@ export const TimeIntelligenceHubPage = () => {
         'bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),transparent_55%),radial-gradient(circle_at_bottom,_rgba(129,140,248,0.14),transparent_60%)]'
       )}
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-20 pt-14 sm:px-10 lg:px-14">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 pb-24 pt-16 sm:px-10 lg:px-14">
         <header className="space-y-6">
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-primary">
             Shared feature spotlight
@@ -139,7 +269,7 @@ export const TimeIntelligenceHubPage = () => {
               Adaptive Time Intelligence Hub
             </h1>
             <p className="max-w-3xl text-base text-muted sm:text-lg">
-              Transform commodity time clocks into an AI-guarded attendance engine that fuses scheduling intent, live demand, and payroll-grade compliance for every industry ConfigPro serves.
+              Transform commodity time clocks into an AI-guarded attendance engine that fuses scheduling intent, live demand, and payroll-grade compliance for every industry ConfigPro serves. Every punch is effortless, trusted, and instantly valuable.
             </p>
           </div>
 
@@ -150,11 +280,13 @@ export const TimeIntelligenceHubPage = () => {
             <Button variant="outline" className="rounded-full px-7 text-sm" size="md">
               View integration map
             </Button>
-            <span className="text-xs text-muted">Unified telemetry, compliance, and adoption dashboards ship out of the box.</span>
+            <span className="text-xs text-muted">
+              Unified telemetry, compliance, and adoption dashboards ship out of the box—plus exclusive concierge rollout support.
+            </span>
           </div>
         </header>
 
-        <section className="grid gap-4 sm:grid-cols-3">
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {heroStats.map((stat) => (
             <div key={stat.label} className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur">
               <div className="text-sm font-medium uppercase tracking-wide text-muted-foreground">{stat.label}</div>
@@ -162,6 +294,32 @@ export const TimeIntelligenceHubPage = () => {
               <p className="mt-2 text-sm text-muted-foreground">{stat.detail}</p>
             </div>
           ))}
+        </section>
+
+        <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <article className="relative overflow-hidden rounded-3xl border border-primary/40 bg-gradient-to-br from-primary/15 via-background to-background p-8 shadow-lg">
+            <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-primary/20 blur-3xl" aria-hidden />
+            <div className="absolute -bottom-24 left-12 h-52 w-52 rounded-full bg-purple-500/20 blur-3xl" aria-hidden />
+            <div className="relative space-y-4">
+              <h2 className="text-2xl font-semibold text-foreground">Experience manifesto</h2>
+              <p className="max-w-xl text-sm text-muted-foreground">
+                Elite teams demand more than accurate punches—they expect a moment of clarity that kicks off every shift with confidence. The Time Intelligence Hub choreographs identity, intent, and guidance before anyone taps a button.
+              </p>
+              <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
+                <span className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1">Forecast-aware arrivals</span>
+                <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1">Biometric ready</span>
+                <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1">Concierge rollout</span>
+              </div>
+            </div>
+          </article>
+          <div className="grid gap-4">
+            {experiencePrinciples.map((principle) => (
+              <article key={principle.title} className="rounded-2xl border border-border/60 bg-card/80 p-6 backdrop-blur">
+                <h3 className="text-base font-semibold text-foreground">{principle.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{principle.description}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="grid gap-6 lg:grid-cols-3">
@@ -176,6 +334,30 @@ export const TimeIntelligenceHubPage = () => {
               <article key={item.title} className="rounded-xl border border-border/60 bg-surface/80 p-5 backdrop-blur">
                 <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <header className="space-y-2">
+            <h2 className="text-xl font-semibold">Punch flow orchestrated to perfection</h2>
+            <p className="text-sm text-muted-foreground">
+              Every step is pre-composed so staff glide through time entry while leaders receive actionable context without hunting.
+            </p>
+          </header>
+          <div className="grid gap-4 md:grid-cols-2">
+            {punchFlow.map((step) => (
+              <article key={step.step} className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/80 p-6 shadow-sm backdrop-blur">
+                <div className="absolute -right-10 top-6 h-20 w-20 rounded-full bg-primary/10 blur-2xl" aria-hidden />
+                <div className="relative space-y-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-sm font-semibold text-primary">
+                    {step.step}
+                  </span>
+                  <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <p className="text-xs font-medium text-primary">{step.highlight}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -204,6 +386,30 @@ export const TimeIntelligenceHubPage = () => {
 
         <section className="space-y-6">
           <header className="space-y-2">
+            <h2 className="text-xl font-semibold">Telemetry, coaching, and APIs in one pane</h2>
+            <p className="text-sm text-muted-foreground">
+              Operators see exactly what matters, when it matters, and can extend the hub into any enterprise system with ease.
+            </p>
+          </header>
+          <div className="grid gap-4 md:grid-cols-3">
+            {telemetryHighlights.map((highlight) => (
+              <article key={highlight.title} className="rounded-xl border border-border/60 bg-surface/80 p-5 backdrop-blur">
+                <h3 className="text-base font-semibold text-foreground">{highlight.title}</h3>
+                <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                  {highlight.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <header className="space-y-2">
             <h2 className="text-xl font-semibold">Operational blueprint</h2>
             <p className="text-sm text-muted-foreground">
               Stage the launch with repeatable motions that partners and internal teams can reuse for every industry vertical.
@@ -219,6 +425,30 @@ export const TimeIntelligenceHubPage = () => {
                     <li key={item} className="flex items-start gap-2">
                       <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
                       <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <header className="space-y-2">
+            <h2 className="text-xl font-semibold">Device and environment mastery</h2>
+            <p className="text-sm text-muted-foreground">
+              From flagship headquarters to remote depots, the Time Intelligence Hub stays always-on and identity-assured.
+            </p>
+          </header>
+          <div className="grid gap-4 md:grid-cols-3">
+            {deviceMatrix.map((device) => (
+              <article key={device.title} className="space-y-3 rounded-2xl border border-border/60 bg-card/80 p-6 backdrop-blur">
+                <h3 className="text-base font-semibold text-foreground">{device.title}</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {device.details.map((detail) => (
+                    <li key={detail} className="flex items-start gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+                      <span>{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -251,6 +481,29 @@ export const TimeIntelligenceHubPage = () => {
           </div>
         </section>
 
+        <section className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold">Proof the elite experience delivers</h2>
+            <p className="text-sm text-muted-foreground">
+              Early adopters prove that when timekeeping becomes orchestration, the business responds with loyalty and measurable lift.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {adoptionSignals.map((signal) => (
+                <article key={signal.label} className="rounded-2xl border border-border/60 bg-card/80 p-5 text-center backdrop-blur">
+                  <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{signal.label}</div>
+                  <div className="mt-2 text-3xl font-semibold text-foreground">{signal.value}</div>
+                  <p className="mt-2 text-xs text-muted-foreground">{signal.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+          <aside className="rounded-3xl border border-primary/40 bg-primary/10 p-8 text-sm text-foreground shadow-lg">
+            <p className="text-lg font-semibold text-primary">{customerQuote.quote}</p>
+            <div className="mt-4 font-semibold">{customerQuote.attribution}</div>
+            <p className="mt-1 text-xs text-muted-foreground">{customerQuote.context}</p>
+          </aside>
+        </section>
+
         <section className="space-y-4">
           <h2 className="text-xl font-semibold">Go-to-market narrative</h2>
           <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
@@ -260,6 +513,21 @@ export const TimeIntelligenceHubPage = () => {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="rounded-3xl border border-primary/40 bg-gradient-to-r from-primary/15 via-background to-purple-500/10 p-8 text-center shadow-lg">
+          <h2 className="text-2xl font-semibold text-foreground">Bring the elite time intelligence experience to your teams</h2>
+          <p className="mx-auto mt-3 max-w-3xl text-sm text-muted-foreground">
+            Pair our orchestration experts with your operations leads to launch in record time. We co-design punch flows, hardware rollouts, and success metrics so every shift starts with certainty.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <Button className="rounded-full px-7" size="md">
+              Book the immersion session
+            </Button>
+            <Button variant="outline" className="rounded-full px-7" size="md">
+              Download the readiness guide
+            </Button>
+          </div>
         </section>
       </div>
     </div>
