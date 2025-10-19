@@ -4,6 +4,7 @@ import { LoginForm } from '../../../features/login/components/LoginForm';
 import { useTheme } from '../../../hooks/useTheme';
 import { baseTheme, resolveTheme } from '../../../app/config/theme';
 import { cn } from '../../../lib/cn';
+import { Button } from '../../../components/ui/Button';
 
 type IndustryOption = {
   id: string;
@@ -188,6 +189,18 @@ export const LoginPage = () => {
                   <p className="max-w-xl text-base text-muted sm:text-lg">
                     ConfigPro empowers teams to design, theme, and deploy unified operations hubs that mirror the way they already work.
                   </p>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button asChild className="h-11 rounded-full px-6 text-sm font-semibold">
+                      <a href="/dashboard">Explore feature dashboard</a>
+                    </Button>
+                    <Button
+                      asChild
+                      variant="ghost"
+                      className="h-11 rounded-full border border-border/50 px-6 text-sm font-semibold text-muted hover:border-primary/40 hover:text-foreground"
+                    >
+                      <a href="/theme-lab">Open Theme Lab</a>
+                    </Button>
+                  </div>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-3 text-sm">
