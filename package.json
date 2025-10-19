@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --check .",
-    "create:component": "node scripts/create-component.mjs"
+    "create:component": "node scripts/create-component.mjs",
+    "test": "vitest"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
@@ -22,6 +23,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "^24.6.2",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
@@ -32,11 +36,13 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.23",
     "globals": "^16.4.0",
+    "jsdom": "^27.0.1",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "tailwindcss": "3.4.17",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
-    "vite": "^7.1.9"
+    "vite": "^7.1.9",
+    "vitest": "^2.1.8"
   }
 }
