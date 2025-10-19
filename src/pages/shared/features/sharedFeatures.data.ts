@@ -20,7 +20,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     id: 'core-workflows',
     title: 'Core Workflows',
     description: 'Reusable flows shared across ConfigPro experiences.',
-    features: []
+    features: [
+      {
+        id: 'forecast-to-schedule-orchestration',
+        title: 'Forecast-to-Schedule Orchestration',
+        summary: 'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
+        systems: ['Forecasting', 'Scheduling'],
+        status: 'in-progress',
+      },
+    ]
   },
   {
     id: 'integrations',
