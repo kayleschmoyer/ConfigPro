@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { sharedFeatureGroups } from './sharedFeatures.data';
 
 export const SharedFeaturesPage = () => {
@@ -32,7 +34,7 @@ export const SharedFeaturesPage = () => {
                     <div className="space-y-3">
                       <div className="flex items-start justify-between gap-4">
                         <h3 className="text-lg font-medium text-foreground">{feature.title}</h3>
-                        <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                        <span className="rounded-full bg-muted px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                           {feature.status}
                         </span>
                       </div>
@@ -46,6 +48,16 @@ export const SharedFeaturesPage = () => {
                           <span className="font-medium text-foreground">Systems:</span>{' '}
                           {feature.systems.join(', ')}
                         </div>
+                      ) : null}
+
+                      {feature.href ? (
+                        <Link
+                          to={feature.href}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-primary transition hover:text-primary/80"
+                        >
+                          Explore feature overview
+                          <span aria-hidden className="text-base">→</span>
+                        </Link>
                       ) : null}
                     </div>
                   </li>

@@ -6,6 +6,7 @@ export interface SharedFeature {
   summary?: string;
   systems: string[];
   status: SharedFeatureStatus;
+  href?: string;
 }
 
 export interface SharedFeatureGroup {
@@ -27,6 +28,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         summary: 'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
         systems: ['Forecasting', 'Scheduling'],
         status: 'in-progress',
+      },
+      {
+        id: 'adaptive-time-intelligence-hub',
+        title: 'Adaptive Time Intelligence Hub',
+        summary:
+          'Unified time and attendance journeys that fuse scheduling intent, demand signals, and compliance automation into a premium-grade experience.',
+        systems: ['Scheduling', 'Forecasting', 'Time Intelligence'],
+        status: 'in-progress',
+        href: '/shared/time-intelligence-hub',
       },
     ]
   },
