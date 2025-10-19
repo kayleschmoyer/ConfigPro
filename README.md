@@ -30,6 +30,10 @@ git clone https://github.com/kayleschmoyer/ConfigPro.git .
 
 📌 Note the . at the end — that clones into the current folder (C:\ConfigPro) without nesting it in another subfolder.
 
+After the clone finishes, make sure you have the latest updates from the main branch:
+
+git pull origin main
+
 🧰 STEP 4: Install Node.js and PNPM
 ✅ A. Install Node.js
 
@@ -50,12 +54,16 @@ pnpm -v
 
 📦 STEP 5: Install Project Dependencies
 
-In C:\ConfigPro, run:
+In C:\ConfigPro, install the Node dependencies with your preferred package manager:
 
 pnpm install
 
+or, if you prefer npm:
 
-This reads package.json and installs all frontend libraries like React, Tailwind, Radix, etc.
+npm install
+
+
+These commands read package.json and install all frontend libraries like React, Tailwind, Radix, etc.
 
 🚀 STEP 6: Launch the Dev Server
 
@@ -79,6 +87,20 @@ http://localhost:5173
 
 
 ✅ You should see the animated ConfigPro Login Screen, styled using your theme config.
+
+🧭 Explore All Available Pages
+
+Use these routes in your browser to jump directly to the different demo pages included in the project:
+
+- http://localhost:5173/ — ConfigPro Login
+- http://localhost:5173/daycare — Daycare Dashboard
+- http://localhost:5173/pos — Point of Sale (POS)
+- http://localhost:5173/theme-lab — Theme Playground
+- http://localhost:5173/dashboard — Feature Construction Dashboard
+- http://localhost:5173/shared/features — Shared Features Showcase
+- http://localhost:5173/shared/time-intelligence-hub — Time Intelligence Hub
+- http://localhost:5173/scheduling — Scheduling Manager Console (with nested routes for /manager and /employee)
+- http://localhost:5173/forecasting — Forecasting Demand Studio (with nested routes for /studio and /workbench)
 
 🎨 Customize the Theme (Brand Colors, Logo, Fonts)
 
