@@ -5,6 +5,7 @@ import { FeatureConstructionDashboardPage } from '../pages/free-starter-template
 import { PointOfSalePage } from '../pages/additional-paid-features/configpro/PointOfSalePage';
 import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro/ThemePlaygroundPage';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
+import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 
 export const AppRouter = () => (
   <Routes>
@@ -17,6 +18,11 @@ export const AppRouter = () => (
       <Route index element={<ManagerConsole />} />
       <Route path="manager" element={<ManagerConsole />} />
       <Route path="employee" element={<EmployeePortal />} />
+    </Route>
+    <Route path="/forecasting" element={<ForecastingLayout />}>
+      <Route index element={<DemandStudio />} />
+      <Route path="studio" element={<DemandStudio />} />
+      <Route path="workbench" element={<ScenarioWorkbench />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
