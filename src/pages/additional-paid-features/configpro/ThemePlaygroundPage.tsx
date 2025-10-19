@@ -7,7 +7,6 @@ import { Input } from '../../../components/ui/Input';
 import { cn } from '../../../lib/cn';
 
 type PaletteKey = 'primary' | 'accent' | 'background' | 'foreground' | 'surface' | 'muted';
-type HarmonyMode = 'custom' | 'complementary' | 'analogous' | 'triadic';
 
 type CuratedTheme = {
   name: string;
@@ -107,20 +106,6 @@ const hslToRgb = (h: number, s: number, l: number) => {
 
   return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
 };
-
-const hslToHex = (h: number, s: number, l: number) => {
-  const { r, g, b } = hslToRgb(h, s, l);
-  return rgbToHex(r, g, b).toUpperCase();
-};
-
-const wrapHue = (h: number) => {
-  let hue = h;
-  while (hue < 0) hue += 1;
-  while (hue > 1) hue -= 1;
-  return hue;
-};
-
-const shiftHue = (h: number, delta: number) => wrapHue(h + delta);
 
 const adjustLuminance = (hex: string, delta: number) => {
   const { r, g, b } = hexToRgb(hex);
@@ -233,28 +218,6 @@ const curatedThemes: CuratedTheme[] = [
   }
 ];
 
-const generateHarmony = (hex: string, mode: HarmonyMode) => {
-  const { r, g, b } = hexToRgb(hex);
-  const { h, s, l } = rgbToHsl(r, g, b);
-  const palette: { label: string; value: string }[] = [];
-
-  if (mode === 'complementary') {
-    palette.push({ label: 'Complement', value: hslToHex(shiftHue(h, 0.5), s, l) });
-    palette.push({ label: 'Split 1', value: hslToHex(shiftHue(h, 0.45), s, l) });
-    palette.push({ label: 'Split 2', value: hslToHex(shiftHue(h, 0.55), s, l) });
-  } else if (mode === 'analogous') {
-    palette.push({ label: 'Analog -30°', value: hslToHex(shiftHue(h, -0.08), s, l) });
-    palette.push({ label: 'Anchor', value: formatHex(hex, hex) });
-    palette.push({ label: 'Analog +30°', value: hslToHex(shiftHue(h, 0.08), s, l) });
-  } else if (mode === 'triadic') {
-    palette.push({ label: 'Triad 1', value: hslToHex(shiftHue(h, 1 / 3), s, l) });
-    palette.push({ label: 'Anchor', value: formatHex(hex, hex) });
-    palette.push({ label: 'Triad 2', value: hslToHex(shiftHue(h, -1 / 3), s, l) });
-  }
-
-  return palette;
-};
-
 const fontOptions = [
   { label: 'Inter', value: baseTheme.font },
   {
@@ -354,16 +317,11 @@ export const ThemePlaygroundPage = () => {
   const [radiusCard, setRadiusCard] = useState<number>(() => parseRem(baseTheme.radii.card, 1));
   const [elevation, setElevation] = useState<number>(0.75);
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'failed'>('idle');
-  const [themeName, setThemeName] = useState('theme-lab');
-  const [density, setDensity] = useState<number>(0.65);
-  const [harmonyMode, setHarmonyMode] = useState<HarmonyMode>('custom');
-  const [importValue, setImportValue] = useState('');
-  const [importError, setImportError] = useState<string | null>(null);
 
   const normalizedTheme = useMemo<ThemeConfig>(() => {
     const sanitized = (key: PaletteKey) => formatHex(palette[key], baseTheme[key]);
     const theme: ThemeConfig = {
-      name: themeName || 'theme-lab',
+      name: 'theme-lab',
       primary: sanitized('primary'),
       accent: sanitized('accent'),
       background: sanitized('background'),
@@ -379,22 +337,11 @@ export const ThemePlaygroundPage = () => {
       logo: logo || baseTheme.logo
     };
     return theme;
-  }, [font, logo, palette, radiusBase, radiusCard, elevation, themeName]);
-
-  const exportPayload = useMemo(
-    () => ({
-      ...normalizedTheme,
-      meta: {
-        elevation: Number(elevation.toFixed(2)),
-        density: Number(density.toFixed(2))
-      }
-    }),
-    [density, elevation, normalizedTheme]
-  );
+  }, [font, logo, palette, radiusBase, radiusCard, elevation]);
 
   const themeJson = useMemo(
-    () => JSON.stringify(exportPayload, null, 2),
-    [exportPayload]
+    () => JSON.stringify(normalizedTheme, null, 2),
+    [normalizedTheme]
   );
 
   const accentGlow = useMemo(
@@ -414,79 +361,11 @@ export const ThemePlaygroundPage = () => {
     [normalizedTheme.primary]
   );
 
-  const densityScale = useMemo(() => 0.7 + density * 0.6, [density]);
-  const densityLabel = useMemo(() => {
-    if (density < 0.45) return 'Feather-light spacing';
-    if (density < 0.75) return 'Balanced rhythm';
-    return 'Deliberate focus';
-  }, [density]);
-
-  const harmonySwatches = useMemo(() => {
-    if (harmonyMode === 'custom') return [];
-    return generateHarmony(normalizedTheme.primary, harmonyMode);
-  }, [harmonyMode, normalizedTheme.primary]);
-
   const ratio = useMemo(
     () => contrastRatio(normalizedTheme.primary, normalizedTheme.background),
     [normalizedTheme.primary, normalizedTheme.background]
   );
   const ratioLabel = ratio >= 7 ? 'AAA' : ratio >= 4.5 ? 'AA' : ratio >= 3 ? 'AA Large' : 'Needs attention';
-
-  const contrastMatrix = useMemo(
-    () =>
-      [
-        {
-          name: 'Primary on background',
-          foreground: normalizedTheme.primary,
-          background: normalizedTheme.background
-        },
-        {
-          name: 'Accent on surface',
-          foreground: normalizedTheme.accent,
-          background: normalizedTheme.surface
-        },
-        {
-          name: 'Foreground on background',
-          foreground: normalizedTheme.foreground,
-          background: normalizedTheme.background
-        },
-        {
-          name: 'Foreground on surface',
-          foreground: normalizedTheme.foreground,
-          background: normalizedTheme.surface
-        },
-        {
-          name: 'Muted on background',
-          foreground: normalizedTheme.muted,
-          background: normalizedTheme.background
-        }
-      ].map((entry) => {
-        const value = contrastRatio(entry.foreground, entry.background);
-        return {
-          ...entry,
-          value,
-          score: value >= 7 ? 'AAA' : value >= 4.5 ? 'AA' : value >= 3 ? 'AA Large' : 'Needs work'
-        };
-      }),
-    [normalizedTheme]
-  );
-
-  const tokenEntries = useMemo(
-    () =>
-      [
-        ['--color-primary', normalizedTheme.primary],
-        ['--color-accent', normalizedTheme.accent],
-        ['--color-background', normalizedTheme.background],
-        ['--color-foreground', normalizedTheme.foreground],
-        ['--color-surface', normalizedTheme.surface],
-        ['--color-muted', normalizedTheme.muted],
-        ['--font-family-base', normalizedTheme.font],
-        ['--radius-base', normalizedTheme.radii.base],
-        ['--radius-card', normalizedTheme.radii.card],
-        ['--shadow-lg', normalizedTheme.shadows.lg]
-      ],
-    [normalizedTheme]
-  );
 
   const handleCopy = useCallback(async () => {
     try {
@@ -521,8 +400,6 @@ export const ThemePlaygroundPage = () => {
     setRadiusBase(parseRem(curated.values.radii.base, radiusBase));
     setRadiusCard(parseRem(curated.values.radii.card, radiusCard));
     setElevation(curated.values.elevation);
-    setHarmonyMode('custom');
-    setThemeName(curated.name.toLowerCase().replace(/[^a-z0-9]+/gi, '-'));
   };
 
   const handleColorBlur = (key: PaletteKey) => {
@@ -531,97 +408,6 @@ export const ThemePlaygroundPage = () => {
       [key]: formatHex(previous[key], baseTheme[key])
     }));
   };
-
-  const handleRandomize = useCallback(() => {
-    const randomizeChannel = (hex: string, spread: number) => {
-      const { r, g, b } = hexToRgb(hex);
-      const { h, s, l } = rgbToHsl(r, g, b);
-      const offset = (Math.random() - 0.5) * spread;
-      return hslToHex(shiftHue(h, offset), clamp(s + offset * 0.4, 0, 1), clamp(l + offset * 0.6, 0, 1));
-    };
-
-    setPalette((previous) => ({
-      primary: randomizeChannel(previous.primary, 0.18),
-      accent: randomizeChannel(previous.accent, 0.22),
-      background: randomizeChannel(previous.background, 0.08),
-      foreground: randomizeChannel(previous.foreground, 0.08),
-      surface: randomizeChannel(previous.surface, 0.1),
-      muted: randomizeChannel(previous.muted, 0.1)
-    }));
-    setHarmonyMode('custom');
-    setThemeName(`explore-${Math.random().toString(36).slice(2, 7)}`);
-  }, []);
-
-  const handleReset = useCallback(() => {
-    setPalette({
-      primary: baseTheme.primary.toUpperCase(),
-      accent: baseTheme.accent.toUpperCase(),
-      background: baseTheme.background.toUpperCase(),
-      foreground: baseTheme.foreground.toUpperCase(),
-      surface: baseTheme.surface.toUpperCase(),
-      muted: baseTheme.muted.toUpperCase()
-    });
-    setFont(baseTheme.font);
-    setLogo(baseTheme.logo);
-    setRadiusBase(parseRem(baseTheme.radii.base, 0.75));
-    setRadiusCard(parseRem(baseTheme.radii.card, 1));
-    setElevation(0.75);
-    setHarmonyMode('custom');
-    setThemeName('theme-lab');
-  }, []);
-
-  const handleDownload = useCallback(() => {
-    try {
-      if (typeof document === 'undefined') return;
-      const blob = new Blob([themeJson], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const anchor = document.createElement('a');
-      anchor.href = url;
-      anchor.download = `${normalizedTheme.name || 'configpro-theme'}.json`;
-      anchor.click();
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.warn('ConfigPro Theme Lab: unable to download theme', error);
-    }
-  }, [normalizedTheme.name, themeJson]);
-
-  const handleImport = useCallback(() => {
-    try {
-      setImportError(null);
-      const parsed = JSON.parse(importValue) as Partial<ThemeConfig>;
-      if (!parsed) throw new Error('Empty payload');
-      const nextPalette = { ...palette };
-      (Object.keys(nextPalette) as PaletteKey[]).forEach((key) => {
-        if (parsed[key]) {
-          nextPalette[key] = formatHex(parsed[key] as string, nextPalette[key]);
-        }
-      });
-      setPalette(nextPalette);
-      if (parsed.font) setFont(parsed.font);
-      if (parsed.logo) setLogo(parsed.logo);
-      if (parsed.radii?.base) setRadiusBase(parseRem(parsed.radii.base, radiusBase));
-      if (parsed.radii?.card) setRadiusCard(parseRem(parsed.radii.card, radiusCard));
-      if (parsed.name) setThemeName(String(parsed.name));
-      const importedElevation =
-        typeof (parsed as { elevation?: number }).elevation === 'number'
-          ? (parsed as { elevation?: number }).elevation
-          : typeof (parsed as { meta?: { elevation?: number } }).meta?.elevation === 'number'
-          ? (parsed as { meta?: { elevation?: number } }).meta?.elevation
-          : undefined;
-      const importedDensity =
-        typeof (parsed as { density?: number }).density === 'number'
-          ? (parsed as { density?: number }).density
-          : typeof (parsed as { meta?: { density?: number } }).meta?.density === 'number'
-          ? (parsed as { meta?: { density?: number } }).meta?.density
-          : undefined;
-      if (typeof importedElevation === 'number') setElevation(clamp(importedElevation, 0, 1));
-      if (typeof importedDensity === 'number') setDensity(clamp(importedDensity, 0.2, 1));
-      setImportValue('');
-      setHarmonyMode('custom');
-    } catch {
-      setImportError('We could not parse that JSON. Ensure it matches the ConfigPro Theme schema.');
-    }
-  }, [importValue, palette, radiusBase, radiusCard]);
 
   const previewStyles = useMemo(
     () => ({
@@ -694,58 +480,6 @@ export const ThemePlaygroundPage = () => {
             transition={{ duration: 0.45, ease: 'easeOut' }}
             className="flex flex-col gap-8 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur"
           >
-            <div className="space-y-3">
-              <h2 className="text-xl font-semibold">Pro quick actions</h2>
-              <p className="text-sm text-muted">
-                Snapshot-ready controls to explore ideas and keep your explorations reversible.
-              </p>
-              <label className="flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-muted">
-                Theme codename
-                <Input
-                  value={themeName}
-                  onChange={(event) => setThemeName(event.target.value)}
-                  placeholder="theme-lab"
-                  className="h-10 rounded-2xl border border-foreground/10 bg-surface/60 text-sm"
-                />
-              </label>
-              <div className="flex flex-wrap gap-2">
-                <Button variant="outline" onClick={handleReset} className="rounded-full text-xs">
-                  Reset to ConfigPro base
-                </Button>
-                <Button variant="ghost" onClick={handleRandomize} className="rounded-full text-xs">
-                  Intelligent shuffle
-                </Button>
-                <Button variant="outline" onClick={handleDownload} className="rounded-full text-xs">
-                  Download JSON
-                </Button>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-[0.28em] text-muted" htmlFor="theme-import">
-                  Import theme JSON
-                </label>
-                <textarea
-                  id="theme-import"
-                  value={importValue}
-                  onChange={(event) => {
-                    setImportValue(event.target.value);
-                    if (importError) setImportError(null);
-                  }}
-                  placeholder='{"primary":"#2563EB",...}'
-                  className="min-h-[80px] w-full rounded-2xl border border-foreground/10 bg-surface/60 p-3 text-xs font-mono text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
-                />
-                <div className="flex items-center gap-2">
-                  <Button onClick={handleImport} className="rounded-full px-4 py-1 text-xs">
-                    Apply import
-                  </Button>
-                  {importError ? (
-                    <span className="text-xs text-red-400">{importError}</span>
-                  ) : importValue ? (
-                    <span className="text-xs text-muted">Paste JSON and apply to update everything instantly.</span>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-
             <div className="space-y-4">
               <h2 className="text-xl font-semibold">Brand palette</h2>
               <p className="text-sm text-muted">
@@ -794,101 +528,6 @@ export const ThemePlaygroundPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold">Color intelligence</h2>
-              <p className="text-sm text-muted">
-                Explore harmony structures from your primary hue. Apply them instantly as accent or
-                supporting colors for high-trust visual systems.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {(
-                  [
-                    { label: 'Custom', value: 'custom' },
-                    { label: 'Complementary', value: 'complementary' },
-                    { label: 'Analogous', value: 'analogous' },
-                    { label: 'Triadic', value: 'triadic' }
-                  ] as { label: string; value: HarmonyMode }[]
-                ).map((option) => (
-                  <button
-                    key={option.value}
-                    type="button"
-                    onClick={() => setHarmonyMode(option.value)}
-                    className={cn(
-                      'rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] transition',
-                      harmonyMode === option.value
-                        ? 'border-primary bg-primary/10 text-primary'
-                        : 'border-foreground/10 text-muted hover:text-foreground'
-                    )}
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
-              {harmonyMode !== 'custom' ? (
-                <div className="space-y-3">
-                  <div className="grid gap-3 rounded-2xl border border-foreground/10 bg-surface/60 p-3 text-xs shadow-sm">
-                    <p className="font-semibold uppercase tracking-[0.28em] text-muted">
-                      Harmony swatches
-                    </p>
-                    <div className="grid gap-3 sm:grid-cols-3">
-                      {harmonySwatches.map((swatch) => (
-                        <div key={swatch.label} className="space-y-2 rounded-xl border border-white/5 bg-background/70 p-3">
-                          <span
-                            className="block h-12 rounded-lg border border-white/10 shadow-inner"
-                            style={{ backgroundColor: swatch.value }}
-                          />
-                          <p className="font-semibold uppercase tracking-[0.28em] text-muted">{swatch.label}</p>
-                          <p className="font-mono text-[11px] text-foreground">{swatch.value}</p>
-                          <div className="flex flex-wrap gap-2 text-[10px]">
-                            <button
-                              type="button"
-                              onClick={() =>
-                                setPalette((previous) => ({
-                                  ...previous,
-                                  accent: swatch.value
-                                }))
-                              }
-                              className="rounded-full border border-primary/30 px-2 py-1 font-semibold uppercase tracking-[0.32em] text-primary transition hover:border-primary hover:bg-primary/10"
-                            >
-                              Accent
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() =>
-                                setPalette((previous) => ({
-                                  ...previous,
-                                  background: swatch.value
-                                }))
-                              }
-                              className="rounded-full border border-accent/30 px-2 py-1 font-semibold uppercase tracking-[0.32em] text-accent transition hover:border-accent hover:bg-accent/10"
-                            >
-                              Background
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() =>
-                                setPalette((previous) => ({
-                                  ...previous,
-                                  muted: swatch.value
-                                }))
-                              }
-                              className="rounded-full border border-foreground/20 px-2 py-1 font-semibold uppercase tracking-[0.32em] text-muted transition hover:border-foreground/40 hover:bg-foreground/10"
-                            >
-                              Muted
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-xs text-muted">
-                    Each harmony respects the luminance of your primary color while offering varied hue
-                    relationships to create layered depth.
-                  </p>
-                </div>
-              ) : null}
             </div>
 
             <div className="space-y-4">
@@ -949,19 +588,6 @@ export const ThemePlaygroundPage = () => {
                   <span className="text-sm text-foreground">{radiusCard.toFixed(2)} rem</span>
                 </label>
               </div>
-              <label className="flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-muted">
-                Density profile
-                <input
-                  type="range"
-                  min={0.2}
-                  max={1}
-                  step={0.05}
-                  value={density}
-                  onChange={(event) => setDensity(parseFloat(event.target.value))}
-                  className="accent-primary"
-                />
-                <span className="text-sm text-foreground">{densityLabel}</span>
-              </label>
               <label className="flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-muted">
                 Elevation feel
                 <input
@@ -1047,36 +673,6 @@ export const ThemePlaygroundPage = () => {
                   </div>
                 ))}
               </div>
-              <div className="space-y-3 rounded-2xl border border-foreground/10 bg-surface/70 p-4 text-xs shadow-inner">
-                <p className="font-semibold uppercase tracking-[0.3em] text-muted">Contrast matrix</p>
-                <div className="space-y-2">
-                  {contrastMatrix.map((entry) => (
-                    <div
-                      key={entry.name}
-                      className="flex items-center justify-between rounded-xl border border-foreground/10 bg-background/70 px-3 py-2"
-                    >
-                      <div>
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted">{entry.name}</p>
-                        <p className="font-mono text-xs text-foreground">{entry.value.toFixed(2)}:1</p>
-                      </div>
-                      <span
-                        className={cn(
-                          'rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em]',
-                          entry.value >= 4.5
-                            ? 'border-emerald-400/40 bg-emerald-500/10 text-emerald-300'
-                            : 'border-amber-400/40 bg-amber-500/10 text-amber-200'
-                        )}
-                      >
-                        {entry.score}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-[11px] text-muted">
-                  Track ratios across primary, accent, and typography tokens to guarantee compliance even
-                  as palettes evolve.
-                </p>
-              </div>
             </div>
 
             <div className="space-y-4">
@@ -1110,9 +706,7 @@ export const ThemePlaygroundPage = () => {
           <motion.section
             style={{
               ...previewStyles,
-              borderRadius: `calc(1.35 * ${normalizedTheme.radii.card})`,
-              gap: `${2.6 * densityScale}rem`,
-              padding: `${3 * densityScale}rem`
+              borderRadius: `calc(1.35 * ${normalizedTheme.radii.card})`
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1124,16 +718,12 @@ export const ThemePlaygroundPage = () => {
               style={{
                 borderRadius: `calc(1.2 * ${normalizedTheme.radii.card})`,
                 background: `radial-gradient(circle at top left, ${primaryTint} 0%, transparent 65%), radial-gradient(circle at bottom right, ${accentGlow} 0%, transparent 70%), ${normalizedTheme.background}`,
-                fontFamily: normalizedTheme.font,
-                padding: `${2.4 * densityScale}rem`
+                fontFamily: normalizedTheme.font
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/6 via-transparent to-black/30" />
-              <div
-                className="relative z-10 flex flex-col text-left"
-                style={{ color: normalizedTheme.foreground, gap: `${1.9 * densityScale}rem` }}
-              >
-                <div className="flex flex-wrap items-start justify-between" style={{ gap: `${1.2 * densityScale}rem` }}>
+              <div className="relative z-10 flex flex-col gap-6 text-left" style={{ color: normalizedTheme.foreground }}>
+                <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-center gap-4">
                     <div
                       className="flex h-12 w-12 items-center justify-center border border-white/10 bg-white/10 p-2 shadow-inner"
@@ -1146,7 +736,7 @@ export const ThemePlaygroundPage = () => {
                       <h2 className="text-2xl font-semibold">Ops control center</h2>
                     </div>
                   </div>
-                  <div className="flex flex-wrap" style={{ gap: `${0.9 * densityScale}rem` }}>
+                  <div className="flex flex-wrap gap-3">
                     <PreviewButton theme={normalizedTheme}>Launch workspace</PreviewButton>
                     <PreviewButton theme={normalizedTheme} variant="secondary">
                       Share rollout kit
@@ -1156,7 +746,7 @@ export const ThemePlaygroundPage = () => {
                     </PreviewButton>
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-3" style={{ gap: `${1.3 * densityScale}rem` }}>
+                <div className="grid gap-4 sm:grid-cols-3">
                   {[
                     {
                       title: 'Blueprint coverage',
@@ -1204,23 +794,23 @@ export const ThemePlaygroundPage = () => {
                 borderRadius: `calc(1.15 * ${normalizedTheme.radii.card})`
               }}
             >
-              <div className="flex flex-wrap items-center justify-between" style={{ gap: `${1.2 * densityScale}rem` }}>
+              <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted">Experience guide</p>
                   <h3 className="text-2xl font-semibold text-foreground">Live preview modules</h3>
                 </div>
-                <div className="flex items-center text-xs" style={{ gap: `${0.8 * densityScale}rem` }}>
+                <div className="flex items-center gap-3 text-xs">
                   <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-semibold uppercase tracking-[0.28em] text-primary">
                     {ratioLabel}
                   </span>
                   <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-semibold uppercase tracking-[0.28em] text-accent">
-                      {normalizedTheme.radii.card} cards
+                    {normalizedTheme.radii.card} cards
                   </span>
                 </div>
               </div>
 
               <div className="grid gap-5 md:grid-cols-[1.1fr_0.9fr]">
-                <div className="flex flex-col" style={{ gap: `${1.6 * densityScale}rem` }}>
+                <div className="flex flex-col gap-4">
                   {[0, 1, 2].map((index) => (
                     <div
                       key={index}
@@ -1248,10 +838,7 @@ export const ThemePlaygroundPage = () => {
                     </div>
                   ))}
                 </div>
-                <div
-                  className="flex flex-col gap-4 rounded-2xl border border-foreground/10 bg-background/90 p-4 shadow-[var(--preview-shadow-lg)]"
-                  style={{ gap: `${1.3 * densityScale}rem` }}
-                >
+                <div className="flex flex-col gap-4 rounded-2xl border border-foreground/10 bg-background/90 p-4 shadow-[var(--preview-shadow-lg)]">
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-muted">
                     Color harmonics
                   </p>
@@ -1279,37 +866,14 @@ export const ThemePlaygroundPage = () => {
                     </p>
                   </div>
                 </div>
-                </div>
               </div>
-
-              <div
-                className="rounded-2xl border border-foreground/10 bg-background/85 p-6 shadow-[var(--preview-shadow-lg)]"
-                style={{ fontFamily: normalizedTheme.font, borderRadius: `calc(1.08 * ${normalizedTheme.radii.card})` }}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-muted">Token library</p>
-                <p className="mt-2 text-sm text-muted">
-                  Drop these CSS custom properties into any ConfigPro surface for instant parity with your
-                  curated theme.
-                </p>
-                <div className="mt-4 grid gap-2 text-xs sm:grid-cols-2">
-                  {tokenEntries.map(([token, value]) => (
-                    <div
-                      key={token}
-                      className="flex items-center justify-between rounded-xl border border-foreground/10 bg-surface/70 px-3 py-2 font-mono text-[11px] text-foreground"
-                    >
-                      <span className="text-muted">{token}</span>
-                      <span className="text-right text-foreground/90">{value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            </div>
 
             <div
               className="border border-foreground/8 bg-background/80 p-6 shadow-[var(--preview-shadow-lg)]"
               style={{
                 fontFamily: normalizedTheme.font,
-                borderRadius: `calc(1.1 * ${normalizedTheme.radii.card})`,
-                padding: `${2.4 * densityScale}rem`
+                borderRadius: `calc(1.1 * ${normalizedTheme.radii.card})`
               }}
             >
               <div className="flex flex-wrap items-center justify-between gap-4">
