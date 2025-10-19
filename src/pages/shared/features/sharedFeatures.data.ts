@@ -33,7 +33,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         id: 'adaptive-time-intelligence-hub',
         title: 'Adaptive Time Intelligence Hub',
         summary:
-          'Unified time and attendance journeys that fuse scheduling intent, demand signals, and compliance automation into a premium-grade experience.',
+          'Elite time intelligence flows that choreograph scheduling intent, live demand, and compliance automation into a concierge punch experience.',
         systems: ['Scheduling', 'Forecasting', 'Time Intelligence'],
         status: 'in-progress',
         href: '/shared/time-intelligence-hub',
