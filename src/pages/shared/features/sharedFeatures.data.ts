@@ -88,6 +88,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     description: 'Utilities and enablement shared between teams.',
     features: [
       {
+        id: 'feature-flags-control-service',
+        title: 'Feature Flags Control Service',
+        summary:
+          'Org and location aware gating with ownership metadata so releases coordinate across every ConfigPro surface.',
+        systems: ['Shared Platform', 'Product', 'Operations'],
+        status: 'in-progress',
+        href: '/shared/feature-flags',
+      },
+      {
         id: 'pricing-rules-control-center',
         title: 'Pricing Rules Control Center',
         summary:
@@ -95,6 +104,22 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Revenue Ops', 'Product', 'Partner'],
         status: 'planned',
         href: '/shared/pricing-rules',
+      },
+      {
+        id: 'data-import-export-studio',
+        title: 'Data import & export studio',
+        summary:
+          'CSV and Excel mapping kits plus validator coverage to bootstrap operational and revenue data loads.',
+        systems: ['Shared Platform', 'Revenue Ops', 'Data Services'],
+        status: 'planned',
+        href: '/shared/data-import-export',
+        id: 'reporting-intelligence',
+        title: 'Reporting intelligence',
+        summary:
+          'Governed saved reports, curated exports, and indexable datasets that standardise how teams analyse ConfigPro performance.',
+        systems: ['Shared Platform', 'Revenue Ops', 'Operations'],
+        status: 'in-progress',
+        href: '/shared/reporting',
       },
       {
         id: 'users-and-roles-foundation',
@@ -136,6 +161,21 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Shared Platform', 'Security', 'Privacy'],
         status: 'planned',
         href: '/shared/audit-log',
+      {
+        id: 'customer-fields-consent-registry',
+        title: 'Customer Fields & Consent Registry',
+        summary:
+          'Canonical documentation for profile attributes, consent primitives, and stewardship guardrails across ConfigPro teams.',
+        systems: ['Customer Data Platform', 'Marketing', 'Service'],
+        status: 'available',
+        href: '/shared/customer-fields',
+        id: 'notification-orchestration-hub',
+        title: 'Notification orchestration hub',
+        summary:
+          'Shared template library, trigger automation, and provider guardrails for omni-channel communications.',
+        systems: ['Shared Platform', 'Communications', 'Operations'],
+        status: 'planned',
+        href: '/shared/notifications',
       },
     ],
   },
