@@ -41,6 +41,22 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     ]
   },
   {
+    id: 'enterprise-foundation',
+    title: 'Enterprise Foundation',
+    description: 'Shared master data and operating narratives that underpin every module.',
+    features: [
+      {
+        id: 'organization-and-locations',
+        title: 'Organization & Location Fabric',
+        summary:
+          'Single source of truth for company identity, location network archetypes, and operating rhythms reused across ConfigPro experiences.',
+        systems: ['Org Management', 'Scheduling', 'Facilities'],
+        status: 'available',
+        href: '/shared/org-and-locations',
+      },
+    ],
+  },
+  {
     id: 'integrations',
     title: 'Integrations',
     description: 'Connections and services accessible from any system.',
@@ -62,6 +78,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     description: 'Utilities and enablement shared between teams.',
     features: [
       {
+        id: 'pricing-rules-control-center',
+        title: 'Pricing Rules Control Center',
+        summary:
+          'Unified price lists, tier logic, and promotion orchestration accessible by every go-to-market surface.',
+        systems: ['Revenue Ops', 'Product', 'Partner'],
+        status: 'planned',
+        href: '/shared/pricing-rules',
+      },
+    ],
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary:
@@ -69,6 +94,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Scheduling', 'Forecasting', 'Shared Platform'],
         status: 'in-progress',
         href: '/shared/users-and-roles',
+      },
+      {
+        id: 'global-tax-rules-foundation',
+        title: 'Global Tax Rules Foundation',
+        summary:
+          'Regional VAT, sales tax, and nexus guardrails with pluggable calculation services for every channel.',
+        systems: ['Shared Platform', 'Billing', 'Commerce'],
+        status: 'in-progress',
+        href: '/shared/tax-rules',
       },
     ]
   }
