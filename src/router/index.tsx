@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { PointOfSalePage } from '../pages/additional-paid-features/configpro/PointOfSalePage';
 import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro/ThemePlaygroundPage';
+import { FeatureManagementPage } from '../pages/admin/FeatureManagementPage';
 import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
 import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
 import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
@@ -18,6 +19,7 @@ export const AppRouter = () => (
     <Route path="/theme-lab" element={<ThemePlaygroundPage />} />
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
+    <Route path="/admin/features" element={<FeatureManagementPage />} />
     <Route path="/shared/error-boundary" element={<ErrorBoundaryPage />} />
     <Route element={<Suspense fallback={<div className="p-6 text-muted-foreground">Loading…</div>} />}>
       {sharedRoutes.map((route) => (
