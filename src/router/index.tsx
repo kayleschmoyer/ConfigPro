@@ -15,6 +15,7 @@ import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/fo
 import {
   BrandingPage,
   DocumentsAndBrandingPage,
+  ErrorBoundaryPage,
   AuditLogPage,
   DocumentsAndBrandingPage,
   DataImportExportPage,
@@ -59,6 +60,7 @@ export const AppRouter = () => (
     <Route path="/shared/order-workflows" element={<OrderWorkflowPage />} />
     <Route path="/shared/documents-and-branding" element={<DocumentsAndBrandingPage />} />
     <Route path="/shared/branding" element={<BrandingPage />} />
+    <Route path="/shared/error-boundary" element={<ErrorBoundaryPage />} />
     <Route path="/shared/tax-rules" element={<TaxRulesPage />} />
     <Route path="/shared/audit-log" element={<AuditLogPage />} />
     <Route path="/shared/customer-fields" element={<CustomerFieldsPage />} />

@@ -113,6 +113,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Shared Platform', 'Revenue Ops', 'Data Services'],
         status: 'planned',
         href: '/shared/data-import-export',
+      },
+      {
         id: 'reporting-intelligence',
         title: 'Reporting intelligence',
         summary:
@@ -120,6 +122,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Shared Platform', 'Revenue Ops', 'Operations'],
         status: 'in-progress',
         href: '/shared/reporting',
+      },
+      {
+        id: 'runtime-error-boundary',
+        title: 'Runtime error boundary',
+        summary:
+          'Shared error experience that keeps users informed, routes telemetry, and accelerates recovery across every module.',
+        systems: ['Shared Platform', 'Support Engineering', 'Product'],
+        status: 'in-progress',
+        href: '/shared/error-boundary',
       },
       {
         id: 'users-and-roles-foundation',
@@ -169,6 +180,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Shared Platform', 'Security', 'Privacy'],
         status: 'planned',
         href: '/shared/audit-log',
+      },
       {
         id: 'customer-fields-consent-registry',
         title: 'Customer Fields & Consent Registry',
@@ -177,6 +189,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Customer Data Platform', 'Marketing', 'Service'],
         status: 'available',
         href: '/shared/customer-fields',
+      },
+      {
         id: 'notification-orchestration-hub',
         title: 'Notification orchestration hub',
         summary:
