@@ -1,3 +1,4 @@
+import { RequirePermission } from '../../../shared/components/RequirePermission';
 import { evaluateDiscounts, DiscountRule, PricingEvaluationContext } from './discounts.engine';
 
 const priceLists = [
@@ -228,7 +229,7 @@ const formatPercent = (value: number) => `${value}%`;
 
 const evaluateSample = () => evaluateDiscounts(evaluationContext, discountRules);
 
-export const PricingRulesPage = () => {
+const PricingRulesPageContent = () => {
   const evaluation = evaluateSample();
 
   return (
@@ -449,3 +450,14 @@ export const PricingRulesPage = () => {
     </div>
   );
 };
+
+const GuardedPricingRulesPage = () => (
+  <RequirePermission perm="pricing.manage">
+    <PricingRulesPageContent />
+  </RequirePermission>
+);
+
+export const PricingRulesPage = GuardedPricingRulesPage;
+export default GuardedPricingRulesPage;
+
+export { PricingRulesPageContent };
