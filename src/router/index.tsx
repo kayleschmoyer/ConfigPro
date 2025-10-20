@@ -11,6 +11,7 @@ import { SharedFeaturesPage, TimeIntelligenceHubPage, PricingRulesPage } from '.
 import {
   SharedFeaturesPage,
   TimeIntelligenceHubPage,
+  PaymentProvidersPage,
   UsersAndRolesPage,
   TaxRulesPage,
 } from '../pages/shared/features';
@@ -25,6 +26,7 @@ export const AppRouter = () => (
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
     <Route path="/shared/org-and-locations" element={<OrgAndLocationsPage />} />
     <Route path="/shared/time-intelligence-hub" element={<TimeIntelligenceHubPage />} />
+    <Route path="/shared/payment-providers" element={<PaymentProvidersPage />} />
     <Route path="/shared/pricing-rules" element={<PricingRulesPage />} />
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
     <Route path="/shared/tax-rules" element={<TaxRulesPage />} />

@@ -60,7 +60,17 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     id: 'integrations',
     title: 'Integrations',
     description: 'Connections and services accessible from any system.',
-    features: []
+    features: [
+      {
+        id: 'payment-provider-control-plane',
+        title: 'Payment providers control plane',
+        summary:
+          'Central hub for gateway credentials, webhooks, and finance guardrails across Stripe, Adyen, Checkout.com, and more.',
+        systems: ['Shared Platform', 'Billing', 'Commerce'],
+        status: 'planned',
+        href: '/shared/payment-providers',
+      },
+    ]
   },
   {
     id: 'supporting-tools',
