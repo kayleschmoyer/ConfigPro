@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { SharedFeatureRegistry, FeatureKey } from './feature.registry';
 import { sharedFeatureGroups } from './sharedFeatures.data';
+import { SharedNav } from '../../../layout/SharedNav';
 
 const registryDefaults: Record<FeatureKey, boolean> = SharedFeatureRegistry.reduce(
   (accumulator, feature) => {
@@ -47,6 +48,8 @@ export const SharedFeaturesPage = () => {
           become available.
         </p>
       </header>
+
+      <SharedNav />
 
       <section aria-labelledby="base-package" className="space-y-6">
         <header className="space-y-2">
