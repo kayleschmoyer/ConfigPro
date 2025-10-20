@@ -52,6 +52,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     description: 'Utilities and enablement shared between teams.',
     features: [
       {
+        id: 'pricing-rules-control-center',
+        title: 'Pricing Rules Control Center',
+        summary:
+          'Unified price lists, tier logic, and promotion orchestration accessible by every go-to-market surface.',
+        systems: ['Revenue Ops', 'Product', 'Partner'],
+        status: 'planned',
+        href: '/shared/pricing-rules',
+      },
+    ],
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary:
