@@ -14,6 +14,7 @@ import {
   TimeIntelligenceHubPage,
   PaymentProvidersPage,
   UsersAndRolesPage,
+  OrderWorkflowPage,
   TaxRulesPage,
 } from '../pages/shared/features';
 
@@ -30,6 +31,7 @@ export const AppRouter = () => (
     <Route path="/shared/payment-providers" element={<PaymentProvidersPage />} />
     <Route path="/shared/pricing-rules" element={<PricingRulesPage />} />
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
+    <Route path="/shared/order-workflows" element={<OrderWorkflowPage />} />
     <Route path="/shared/documents-and-branding" element={<DocumentsAndBrandingPage />} />
     <Route path="/shared/tax-rules" element={<TaxRulesPage />} />
     <Route path="/scheduling" element={<SchedulingLayout />}>
