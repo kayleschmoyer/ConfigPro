@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import type { FeatureKey } from '../shared/features/feature.registry';
 import { SharedFeatureRegistry } from '../shared/features/feature.registry';
-import { Input } from '../../components/ui/Input';
-import { Button } from '../../components/ui/Button';
+import { Input } from '../../shared/ui/Input';
+import { Button } from '../../shared/ui/Button';
 import {
   demoOrgs,
   listOrgLocations,
