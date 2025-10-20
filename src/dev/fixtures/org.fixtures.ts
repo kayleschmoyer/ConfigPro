@@ -1,4 +1,4 @@
-import { Location, Org, User } from '../../shared/types/core';
+import type { Location, Org, User } from '../../shared/types/core';
 
 type OrgFixture = Org & { industry: string; supportEmail: string };
 

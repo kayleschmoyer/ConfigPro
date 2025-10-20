@@ -4,8 +4,10 @@ import {
   ApiClient,
   ApiHttpError,
   createTypedApiClient,
+  defineEndpoint,
   normalizeApiError,
   type ApiResponse,
+  type EndpointDefinition,
 } from '../api.client';
 
 describe('ApiClient', () => {
@@ -46,6 +48,7 @@ describe('ApiClient', () => {
     expect(response).toMatchObject<ApiResponse<{ id: string }>>({
       data: { id: 'schedule-1' },
       status: 200,
+      headers: expect.any(Headers),
       requestId: 'req-123',
     });
   });
@@ -101,18 +104,26 @@ describe('createTypedApiClient', () => {
         }),
       );
 
-    const typedClient = createTypedApiClient(
+    const typedClient = createTypedApiClient<{
+      getSchedule: EndpointDefinition<
+        { id: string; status: string },
+        undefined,
+        { expand?: string[] },
+        { id: string }
+      >;
+      createSchedule: EndpointDefinition<{ id: string; status: string }, { name: string }>;
+    }>(
       { baseUrl: 'https://api.example.com', fetch: fetchMock },
       {
-        getSchedule: {
+        getSchedule: defineEndpoint({
           method: 'GET',
           path: ({ id }: { id: string }) => `/schedules/${id}`,
-        },
-        createSchedule: {
+        }),
+        createSchedule: defineEndpoint({
           method: 'POST',
           path: '/schedules',
           defaultHeaders: { 'x-client': 'configpro' },
-        },
+        }),
       },
     );
 

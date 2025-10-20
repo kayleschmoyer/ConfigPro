@@ -1,4 +1,4 @@
-import { FeatureKey } from "../../pages/shared/features";
+import type { FeatureKey } from '../../pages/shared/features';
 
 export type IndustryKey = "retail" | "construction" | "daycare" | "automotive" | "generic";
 

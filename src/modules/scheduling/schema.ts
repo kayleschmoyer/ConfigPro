@@ -48,6 +48,8 @@ export interface SchedulingConstraint {
   lawRuleId?: string;
   customRule?: (context: SchedulingContext) => boolean;
   severity: 'info' | 'warning' | 'critical';
+  appliesToRoles?: string[];
+  requiresQualificationIds?: string[];
 }
 
 export interface ShiftAssignment {
@@ -58,6 +60,10 @@ export interface ShiftAssignment {
   endTime: string;
   location: string;
   notes?: string;
+  metadata?: {
+    tags?: string[];
+    [key: string]: unknown;
+  };
 }
 
 export interface ScheduleDraft {

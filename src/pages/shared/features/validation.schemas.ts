@@ -37,9 +37,9 @@ export interface ValidationSchemaBundle<TZod extends AnyZodSchema = AnyZodSchema
   tags: string[];
   lifecycle: SchemaLifecycleNotes;
   zod: TZod;
-  yup: yup.ObjectSchema<Record<string, unknown>>;
+  yup: yup.Schema<TZod['_output']>;
   fields: SchemaFieldDescriptor[];
-  example: Record<string, unknown>;
+  example: TZod['_output'];
 }
 
 export const validationSchemaLibrary: ValidationSchemaBundle[] = [
@@ -56,7 +56,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       activation: 'Publishes derived status flags to feature toggles for onboarding, billing, and telemetry workloads.',
     },
     zod: sharedFormValidators.workspace.schema,
-    yup: sharedFormValidators.workspace.yup as yup.ObjectSchema<Record<string, unknown>>,
+    yup: sharedFormValidators.workspace.yup,
     fields: [
       {
         name: 'id',
@@ -130,7 +130,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       activation: 'Raises change events for status flips to notify pickup, delivery, and kiosk orchestration services.',
     },
     zod: sharedFormValidators.location.schema,
-    yup: sharedFormValidators.location.yup as yup.ObjectSchema<Record<string, unknown>>,
+    yup: sharedFormValidators.location.yup,
     fields: [
       {
         name: 'id',
@@ -218,7 +218,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       activation: 'Triggers price broadcast events and allergen notifications on activation toggles.',
     },
     zod: sharedFormValidators.menuItem.schema,
-    yup: sharedFormValidators.menuItem.yup as yup.ObjectSchema<Record<string, unknown>>,
+    yup: sharedFormValidators.menuItem.yup,
     fields: [
       {
         name: 'sku',
@@ -307,7 +307,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       activation: 'Versioned events broadcast to ordering and invoicing services for seamless rate transitions.',
     },
     zod: sharedFormValidators.taxProfile.schema,
-    yup: sharedFormValidators.taxProfile.yup as yup.ObjectSchema<Record<string, unknown>>,
+    yup: sharedFormValidators.taxProfile.yup,
     fields: [
       {
         name: 'id',
@@ -375,7 +375,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       activation: 'Emits alerts if coverage windows violate labour, tax, or safety policies.',
     },
     zod: sharedFormValidators.schedulingRule.schema,
-    yup: sharedFormValidators.schedulingRule.yup as yup.ObjectSchema<Record<string, unknown>>,
+    yup: sharedFormValidators.schedulingRule.yup,
     fields: [
       {
         name: 'id',

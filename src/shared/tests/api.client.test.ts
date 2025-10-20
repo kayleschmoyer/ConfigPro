@@ -4,7 +4,9 @@ import {
   ApiClient,
   ApiHttpError,
   createTypedApiClient,
+  defineEndpoint,
   normalizeApiError,
+  type EndpointDefinition,
 } from '../../pages/shared/features/api.client';
 
 describe('ApiClient', () => {
@@ -145,18 +147,31 @@ describe('createTypedApiClient', () => {
       );
     });
 
-    const client = createTypedApiClient(
+    const client = createTypedApiClient<{
+      getFeature: EndpointDefinition<
+        { url: string; method: string; headers: Record<string, string> },
+        undefined,
+        { include?: string[] },
+        { id: string }
+      >;
+      createFeature: EndpointDefinition<
+        { url: string; method: string; headers: Record<string, string> },
+        { name: string },
+        undefined,
+        undefined
+      >;
+    }>(
       { baseUrl: 'https://api.configpro.dev', fetch: fetchMock },
       {
-        getFeature: {
+        getFeature: defineEndpoint({
           method: 'GET',
           path: ({ id }: { id: string }) => `/features/${id}`,
-        },
-        createFeature: {
+        }),
+        createFeature: defineEndpoint({
           method: 'POST',
           path: '/features',
           defaultHeaders: { 'X-Client': 'configpro-tests' },
-        },
+        }),
       },
     );
 

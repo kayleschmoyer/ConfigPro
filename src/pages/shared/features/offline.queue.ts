@@ -7,7 +7,7 @@
 
 export type OfflineActionStatus = 'pending' | 'retrying';
 
-export interface OfflineAction<TPayload = unknown, TMetadata = Record<string, unknown>> {
+export interface OfflineAction<TPayload = unknown, TMetadata extends Record<string, unknown> = Record<string, unknown>> {
   /** Unique identifier for the action. */
   id: string;
   /** Discriminator so handlers can be registered per action type. */
@@ -32,7 +32,10 @@ export interface OfflineAction<TPayload = unknown, TMetadata = Record<string, un
   status: OfflineActionStatus;
 }
 
-export type OfflineActionHandler<TPayload = unknown, TMetadata = Record<string, unknown>> = (
+export type OfflineActionHandler<
+  TPayload = unknown,
+  TMetadata extends Record<string, unknown> = Record<string, unknown>,
+> = (
   payload: TPayload,
   action: OfflineAction<TPayload, TMetadata>,
 ) => Promise<void>;
@@ -81,9 +84,9 @@ const DEFAULT_OPTIONS: Required<Pick<OfflineQueueOptions, 'storageKey' | 'maxRet
   jitterMs: 250,
 };
 
-const enum QueueEvent {
-  Online = 'online',
-}
+const QueueEvent = {
+  Online: 'online' as const,
+};
 
 type Timer = ReturnType<typeof setTimeout> | undefined;
 
@@ -130,7 +133,11 @@ function isLocalStorageAvailable(): boolean {
 }
 
 class LocalStoragePersistence implements OfflineQueuePersistence {
-  constructor(private readonly key: string) {}
+  private readonly key: string;
+
+  constructor(key: string) {
+    this.key = key;
+  }
 
   async load(): Promise<OfflineAction[]> {
     if (!isLocalStorageAvailable()) {
@@ -223,7 +230,10 @@ export class OfflineQueue {
   }
 
   /** Registers a handler for a specific action type. */
-  registerHandler<TPayload = unknown, TMetadata = Record<string, unknown>>(
+  registerHandler<
+    TPayload = unknown,
+    TMetadata extends Record<string, unknown> = Record<string, unknown>,
+  >(
     type: string,
     handler: OfflineActionHandler<TPayload, TMetadata>,
   ): void {
@@ -241,7 +251,10 @@ export class OfflineQueue {
   }
 
   /** Enqueues an action and kicks off processing if possible. */
-  async enqueue<TPayload = unknown, TMetadata = Record<string, unknown>>(
+  async enqueue<
+    TPayload = unknown,
+    TMetadata extends Record<string, unknown> = Record<string, unknown>,
+  >(
     action: Pick<OfflineAction<TPayload, TMetadata>, 'type' | 'payload'> &
       Partial<Pick<OfflineAction<TPayload, TMetadata>, 'metadata' | 'maxAttempts'>> & { id?: string },
   ): Promise<OfflineAction<TPayload, TMetadata>> {

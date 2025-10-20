@@ -1,5 +1,6 @@
-import { ComponentType, lazy, LazyExoticComponent } from 'react';
-import { RouteObject } from 'react-router-dom';
+import { lazy } from 'react';
+import type { ComponentType, LazyExoticComponent } from 'react';
+import type { RouteObject } from 'react-router-dom';
 import { SharedFeatureRegistry } from '../../pages/shared/features';
 
 type FeatureComponent = LazyExoticComponent<ComponentType<unknown>>;

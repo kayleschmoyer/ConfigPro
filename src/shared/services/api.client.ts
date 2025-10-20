@@ -46,7 +46,6 @@ export interface ApiResponse<TData = unknown> {
 export type ApiRequestInterceptor = <
   TBody = unknown,
   TQuery extends QueryParams | undefined = QueryParams | undefined,
-  TResponse = unknown,
 >(
   request: ApiRequestOptions<TBody, TQuery>,
 ) => Promise<ApiRequestOptions<TBody, TQuery>> | ApiRequestOptions<TBody, TQuery>;
