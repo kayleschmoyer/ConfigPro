@@ -6,6 +6,7 @@ import { FeatureConstructionDashboardPage } from '../pages/free-starter-template
 import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
 import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
 import { ErrorBoundaryPage, SharedFeaturesPage } from '../pages/shared/features';
+import { FeaturePlaygroundPage } from '../pages/dev/FeaturePlaygroundPage';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 import { sharedRoutes } from '../app/routes/sharedRoutes';
@@ -17,6 +18,7 @@ export const AppRouter = () => (
     <Route path="/pos" element={<PointOfSalePage />} />
     <Route path="/theme-lab" element={<ThemePlaygroundPage />} />
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
+    <Route path="/dev/features" element={<FeaturePlaygroundPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
     <Route path="/shared/error-boundary" element={<ErrorBoundaryPage />} />
     <Route element={<Suspense fallback={<div className="p-6 text-muted-foreground">Loading…</div>} />}>
