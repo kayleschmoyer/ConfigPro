@@ -52,6 +52,7 @@ export * from './NotificationsPage';
 export * from './LocalizationPage';
 export * from './InventorySettingsPage';
 export * from './suppliers.data';
+export * from './error.boundary';
 export * from './api.client';
 export * from './offline.queue';
 export * from './validation.schemas';

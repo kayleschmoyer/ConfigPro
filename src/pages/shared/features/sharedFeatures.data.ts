@@ -124,6 +124,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         href: '/shared/reporting',
       },
       {
+        id: 'runtime-error-boundary',
+        title: 'Runtime error boundary',
+        summary:
+          'Shared error experience that keeps users informed, routes telemetry, and accelerates recovery across every module.',
+        systems: ['Shared Platform', 'Support Engineering', 'Product'],
+        status: 'in-progress',
+        href: '/shared/error-boundary',
+      },
+      {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary: 'Unified RBAC and ABAC modeling with invitation orchestration for every ConfigPro org.',
