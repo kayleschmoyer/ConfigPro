@@ -61,5 +61,14 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         href: '/shared/pricing-rules',
       },
     ],
+        id: 'users-and-roles-foundation',
+        title: 'Users & Roles Foundation',
+        summary:
+          'Unified RBAC and ABAC modeling with invitation orchestration for every ConfigPro org.',
+        systems: ['Scheduling', 'Forecasting', 'Shared Platform'],
+        status: 'in-progress',
+        href: '/shared/users-and-roles',
+      },
+    ]
   }
 ];
