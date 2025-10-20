@@ -95,7 +95,16 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/pricing-rules',
       },
-    ],
+      {
+        id: 'data-import-export-studio',
+        title: 'Data import & export studio',
+        summary:
+          'CSV and Excel mapping kits plus validator coverage to bootstrap operational and revenue data loads.',
+        systems: ['Shared Platform', 'Revenue Ops', 'Data Services'],
+        status: 'planned',
+        href: '/shared/data-import-export',
+      },
+      {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary:
@@ -111,6 +120,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Billing', 'Shared Platform'],
         status: 'available',
         href: '/shared/documents-and-branding',
+      },
+      {
         id: 'global-tax-rules-foundation',
         title: 'Global Tax Rules Foundation',
         summary:
@@ -119,6 +130,6 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
-    ]
-  }
+    ],
+  },
 ];
