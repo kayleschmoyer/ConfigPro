@@ -25,7 +25,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
       {
         id: 'forecast-to-schedule-orchestration',
         title: 'Forecast-to-Schedule Orchestration',
-        summary: 'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
+        summary:
+          'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
         systems: ['Forecasting', 'Scheduling'],
         status: 'in-progress',
       },
@@ -47,7 +48,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/time-intelligence-hub',
       },
-    ]
+    ],
   },
   {
     id: 'enterprise-foundation',
@@ -79,7 +80,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/payment-providers',
       },
-    ]
+    ],
   },
   {
     id: 'supporting-tools',
@@ -95,11 +96,10 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/pricing-rules',
       },
-    ],
+      {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
-        summary:
-          'Unified RBAC and ABAC modeling with invitation orchestration for every ConfigPro org.',
+        summary: 'Unified RBAC and ABAC modeling with invitation orchestration for every ConfigPro org.',
         systems: ['Scheduling', 'Forecasting', 'Shared Platform'],
         status: 'in-progress',
         href: '/shared/users-and-roles',
@@ -111,6 +111,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Billing', 'Shared Platform'],
         status: 'available',
         href: '/shared/documents-and-branding',
+      },
+      {
         id: 'global-tax-rules-foundation',
         title: 'Global Tax Rules Foundation',
         summary:
@@ -119,6 +121,22 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
-    ]
-  }
+    ],
+  },
+  {
+    id: 'trust-and-compliance',
+    title: 'Trust & Compliance',
+    description: 'Evidence services and privacy primitives shared across ConfigPro.',
+    features: [
+      {
+        id: 'audit-log-evidence-fabric',
+        title: 'Audit Log & Evidence Fabric',
+        summary:
+          'Immutable who/what/when/where ledger with GDPR and CCPA consent stitching plus retention automation.',
+        systems: ['Shared Platform', 'Security', 'Privacy'],
+        status: 'planned',
+        href: '/shared/audit-log',
+      },
+    ],
+  },
 ];
