@@ -17,3 +17,7 @@ export * from './PaymentProvidersPage';
 export * from './TaxRulesPage';
 export * from './CustomerFieldsPage';
 export * from './loyalty.rules';
+export * from './NotificationsPage';
+export * from './LocalizationPage';
+export * from './InventorySettingsPage';
+export * from './suppliers.data';

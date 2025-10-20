@@ -9,6 +9,7 @@ import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/fo
 import {
   CustomerFieldsPage,
   DocumentsAndBrandingPage,
+  NotificationsPage,
   OrderWorkflowPage,
   OrgAndLocationsPage,
   PaymentProvidersPage,
@@ -36,6 +37,7 @@ export const AppRouter = () => (
     <Route path="/shared/documents-and-branding" element={<DocumentsAndBrandingPage />} />
     <Route path="/shared/tax-rules" element={<TaxRulesPage />} />
     <Route path="/shared/customer-fields" element={<CustomerFieldsPage />} />
+    <Route path="/shared/notifications" element={<NotificationsPage />} />
     <Route path="/scheduling" element={<SchedulingLayout />}>
       <Route index element={<ManagerConsole />} />
       <Route path="manager" element={<ManagerConsole />} />
