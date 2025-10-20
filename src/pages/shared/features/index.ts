@@ -1,5 +1,9 @@
+export * from './OrgAndLocationsPage';
 export * from './SharedFeaturesPage';
 export * from './TimeIntelligenceHubPage';
+export * from './businessHours.data';
+export * from './PricingRulesPage';
+export * from './discounts.engine';
 export * from './CatalogAttributesPage';
 export * from './UsersAndRolesPage';
 export * from './sharedFeatures.data';
@@ -7,3 +11,7 @@ export * from './permissions.model';
 export * from './uom.data';
 export * from './OrderWorkflowPage';
 export * from './workflow.engine';
+export * from './DocumentsAndBrandingPage';
+export * from './documentTemplates.data';
+export * from './PaymentProvidersPage';
+export * from './TaxRulesPage';
