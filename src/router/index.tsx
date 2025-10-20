@@ -8,6 +8,12 @@ import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/Da
 import { ErrorBoundaryPage, SharedFeaturesPage } from '../pages/shared/features';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
+import {
+  BaseAutomotivePage,
+  BaseConstructionPage,
+  BaseDaycarePage,
+  BaseRetailPage,
+} from '../pages/industries';
 import { sharedRoutes } from '../app/routes/sharedRoutes';
 
 export const AppRouter = () => (
@@ -19,6 +25,10 @@ export const AppRouter = () => (
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
     <Route path="/shared/error-boundary" element={<ErrorBoundaryPage />} />
+    <Route path="/industries/retail" element={<BaseRetailPage />} />
+    <Route path="/industries/daycare" element={<BaseDaycarePage />} />
+    <Route path="/industries/construction" element={<BaseConstructionPage />} />
+    <Route path="/industries/automotive" element={<BaseAutomotivePage />} />
     <Route element={<Suspense fallback={<div className="p-6 text-muted-foreground">Loading…</div>} />}>
       {sharedRoutes.map((route) => (
         <Route key={route.path} path={route.path} element={route.element} />
