@@ -1,3 +1,4 @@
+export * from './feature.registry';
 export * from './CatalogAttributesPage';
 export * from './DocumentsAndBrandingPage';
 export * from './FeatureFlagsPage';
