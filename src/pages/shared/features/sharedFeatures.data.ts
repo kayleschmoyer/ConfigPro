@@ -95,7 +95,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/pricing-rules',
       },
-    ],
+      {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary:
@@ -111,6 +111,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Billing', 'Shared Platform'],
         status: 'available',
         href: '/shared/documents-and-branding',
+      },
+      {
         id: 'global-tax-rules-foundation',
         title: 'Global Tax Rules Foundation',
         summary:
@@ -119,6 +121,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
-    ]
-  }
+      {
+        id: 'customer-fields-consent-registry',
+        title: 'Customer Fields & Consent Registry',
+        summary:
+          'Canonical documentation for profile attributes, consent primitives, and stewardship guardrails across ConfigPro teams.',
+        systems: ['Customer Data Platform', 'Marketing', 'Service'],
+        status: 'available',
+        href: '/shared/customer-fields',
+      },
+    ],
+  },
 ];
