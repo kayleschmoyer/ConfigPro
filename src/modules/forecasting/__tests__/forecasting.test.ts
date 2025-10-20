@@ -5,7 +5,7 @@ import {
   evaluateBackcast,
   generateForecastInsights,
   type ForecastScenario,
-} from '../..';
+} from '..';
 import {
   demoBaselineSignals,
   demoForecastingScenario,

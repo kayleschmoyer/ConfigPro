@@ -9,6 +9,7 @@ import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/fo
 import {
   SharedFeaturesPage,
   TimeIntelligenceHubPage,
+  PaymentProvidersPage,
   UsersAndRolesPage,
 } from '../pages/shared/features';
 
@@ -21,6 +22,7 @@ export const AppRouter = () => (
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
     <Route path="/shared/time-intelligence-hub" element={<TimeIntelligenceHubPage />} />
+    <Route path="/shared/payment-providers" element={<PaymentProvidersPage />} />
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
     <Route path="/scheduling" element={<SchedulingLayout />}>
       <Route index element={<ManagerConsole />} />
