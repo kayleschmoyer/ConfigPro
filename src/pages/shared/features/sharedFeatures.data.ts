@@ -30,6 +30,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
       },
       {
+        id: 'orders-and-work-orders-foundation',
+        title: 'Orders & Work Orders Foundation',
+        summary:
+          'Neutral workflow patterns that support intake through closeout with compliance-aware branching and SLA intelligence.',
+        systems: ['Operations', 'Field Service', 'Shared Platform'],
+        status: 'in-progress',
+        href: '/shared/order-workflows',
+      },
+      {
         id: 'adaptive-time-intelligence-hub',
         title: 'Adaptive Time Intelligence Hub',
         summary:
