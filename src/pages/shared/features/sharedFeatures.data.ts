@@ -157,6 +157,12 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         href: '/shared/tax-rules',
       },
       {
+        id: 'typed-api-client',
+        title: 'Typed API client & error normalization',
+        summary:
+          'Shared HTTP client utilities with consistent error normalization for ConfigPro developer experiences.',
+        systems: ['Shared Platform', 'Developer Experience'],
+        status: 'available',
         id: 'offline-action-queue',
         title: 'Offline action retry queue',
         summary:
