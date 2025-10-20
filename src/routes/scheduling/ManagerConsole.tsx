@@ -563,7 +563,7 @@ export const ManagerConsole = () => {
 
             {nextCoverageGap && (
               <div className="rounded-lg border border-slate-200 bg-white p-4">
-                <h3 className="text-sm font-semibold text-slate-900">Coverage radar</h3>
+                <h3 className="text-sm font-semibold text-slate-900">Coverage heatmap</h3>
                 <div className="mt-2 space-y-2 text-xs text-slate-600">
                   <p>
                     Largest opportunity at{' '}
