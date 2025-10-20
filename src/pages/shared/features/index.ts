@@ -39,6 +39,8 @@ export * from './sharedFeatures.data';
 export * from './uom.data';
 export * from './workflow.engine';
 export * from './documentTemplates.data';
+export * from './BrandingPage';
+export * from './branding.data';
 export * from './privacy.consents';
 export * from './PaymentProvidersPage';
 export * from './TaxRulesPage';

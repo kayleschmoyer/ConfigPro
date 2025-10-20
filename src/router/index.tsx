@@ -13,6 +13,8 @@ import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 import {
+  BrandingPage,
+  DocumentsAndBrandingPage,
   AuditLogPage,
   DocumentsAndBrandingPage,
   DataImportExportPage,
@@ -56,6 +58,7 @@ export const AppRouter = () => (
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
     <Route path="/shared/order-workflows" element={<OrderWorkflowPage />} />
     <Route path="/shared/documents-and-branding" element={<DocumentsAndBrandingPage />} />
+    <Route path="/shared/branding" element={<BrandingPage />} />
     <Route path="/shared/tax-rules" element={<TaxRulesPage />} />
     <Route path="/shared/audit-log" element={<AuditLogPage />} />
     <Route path="/shared/customer-fields" element={<CustomerFieldsPage />} />

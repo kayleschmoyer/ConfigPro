@@ -138,6 +138,14 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         href: '/shared/documents-and-branding',
       },
       {
+        id: 'brand-identity-kit',
+        title: 'Brand Identity Kit',
+        summary: 'Logos, color tokens, and receipt scaffolds for consistent ConfigPro presence.',
+        systems: ['Shared Platform', 'Billing', 'Marketing'],
+        status: 'available',
+        href: '/shared/branding',
+      },
+      {
         id: 'global-tax-rules-foundation',
         title: 'Global Tax Rules Foundation',
         summary:
