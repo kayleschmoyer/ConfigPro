@@ -10,5 +10,7 @@ export * from './uom.data';
 export * from './UsersAndRolesPage';
 export * from './sharedFeatures.data';
 export * from './permissions.model';
+export * from './DocumentsAndBrandingPage';
+export * from './documentTemplates.data';
 export * from './PaymentProvidersPage';
 export * from './TaxRulesPage';
