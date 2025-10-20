@@ -53,3 +53,4 @@ export * from './LocalizationPage';
 export * from './InventorySettingsPage';
 export * from './suppliers.data';
 export * from './offline.queue';
+export * from './validation.schemas';
