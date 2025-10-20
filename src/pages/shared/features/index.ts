@@ -13,5 +13,7 @@ export * from './OrderWorkflowPage';
 export * from './workflow.engine';
 export * from './DocumentsAndBrandingPage';
 export * from './documentTemplates.data';
+export * from './BrandingPage';
+export * from './branding.data';
 export * from './PaymentProvidersPage';
 export * from './TaxRulesPage';

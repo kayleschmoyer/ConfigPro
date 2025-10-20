@@ -6,16 +6,17 @@ import { PointOfSalePage } from '../pages/additional-paid-features/configpro/Poi
 import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro/ThemePlaygroundPage';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
-import { OrgAndLocationsPage, SharedFeaturesPage, TimeIntelligenceHubPage } from '../pages/shared/features';
-import { SharedFeaturesPage, TimeIntelligenceHubPage, PricingRulesPage } from '../pages/shared/features';
 import {
+  BrandingPage,
   DocumentsAndBrandingPage,
-  SharedFeaturesPage,
-  TimeIntelligenceHubPage,
-  PaymentProvidersPage,
-  UsersAndRolesPage,
+  OrgAndLocationsPage,
   OrderWorkflowPage,
+  PaymentProvidersPage,
+  PricingRulesPage,
+  SharedFeaturesPage,
   TaxRulesPage,
+  TimeIntelligenceHubPage,
+  UsersAndRolesPage,
 } from '../pages/shared/features';
 
 export const AppRouter = () => (
@@ -33,6 +34,7 @@ export const AppRouter = () => (
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
     <Route path="/shared/order-workflows" element={<OrderWorkflowPage />} />
     <Route path="/shared/documents-and-branding" element={<DocumentsAndBrandingPage />} />
+    <Route path="/shared/branding" element={<BrandingPage />} />
     <Route path="/shared/tax-rules" element={<TaxRulesPage />} />
     <Route path="/scheduling" element={<SchedulingLayout />}>
       <Route index element={<ManagerConsole />} />

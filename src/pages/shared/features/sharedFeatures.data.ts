@@ -25,7 +25,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
       {
         id: 'forecast-to-schedule-orchestration',
         title: 'Forecast-to-Schedule Orchestration',
-        summary: 'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
+        summary:
+          'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
         systems: ['Forecasting', 'Scheduling'],
         status: 'in-progress',
       },
@@ -47,7 +48,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/time-intelligence-hub',
       },
-    ]
+    ],
   },
   {
     id: 'enterprise-foundation',
@@ -79,7 +80,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/payment-providers',
       },
-    ]
+    ],
   },
   {
     id: 'supporting-tools',
@@ -95,7 +96,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/pricing-rules',
       },
-    ],
+      {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary:
@@ -111,6 +112,16 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Billing', 'Shared Platform'],
         status: 'available',
         href: '/shared/documents-and-branding',
+      },
+      {
+        id: 'brand-identity-kit',
+        title: 'Brand Identity Kit',
+        summary: 'Logos, color tokens, and receipt scaffolds for consistent ConfigPro presence.',
+        systems: ['Shared Platform', 'Billing', 'Marketing'],
+        status: 'available',
+        href: '/shared/branding',
+      },
+      {
         id: 'global-tax-rules-foundation',
         title: 'Global Tax Rules Foundation',
         summary:
@@ -119,6 +130,6 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
-    ]
-  }
+    ],
+  },
 ];
