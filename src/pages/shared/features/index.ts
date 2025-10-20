@@ -52,3 +52,4 @@ export * from './NotificationsPage';
 export * from './LocalizationPage';
 export * from './InventorySettingsPage';
 export * from './suppliers.data';
+export * from './validation.schemas';
