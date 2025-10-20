@@ -15,3 +15,5 @@ export * from './DocumentsAndBrandingPage';
 export * from './documentTemplates.data';
 export * from './PaymentProvidersPage';
 export * from './TaxRulesPage';
+export * from './InventorySettingsPage';
+export * from './suppliers.data';
