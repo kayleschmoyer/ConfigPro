@@ -88,6 +88,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     description: 'Utilities and enablement shared between teams.',
     features: [
       {
+        id: 'feature-flags-control-service',
+        title: 'Feature Flags Control Service',
+        summary:
+          'Org and location aware gating with ownership metadata so releases coordinate across every ConfigPro surface.',
+        systems: ['Shared Platform', 'Product', 'Operations'],
+        status: 'in-progress',
+        href: '/shared/feature-flags',
+      },
+      {
         id: 'pricing-rules-control-center',
         title: 'Pricing Rules Control Center',
         summary:

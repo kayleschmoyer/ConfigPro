@@ -1,4 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { PointOfSalePage } from '../pages/additional-paid-features/configpro/PointOfSalePage';
+import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro/ThemePlaygroundPage';
+import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
+import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
+import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
 
 import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
 import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
@@ -10,6 +15,7 @@ import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/fo
 import {
   DataImportExportPage,
   DocumentsAndBrandingPage,
+  FeatureFlagsPage,
   CustomerFieldsPage,
   DocumentsAndBrandingPage,
   OrgAndLocationsPage,
@@ -42,6 +48,7 @@ export const AppRouter = () => (
     <Route path="/shared/time-intelligence-hub" element={<TimeIntelligenceHubPage />} />
     <Route path="/shared/reporting" element={<ReportingPage />} />
     <Route path="/shared/payment-providers" element={<PaymentProvidersPage />} />
+    <Route path="/shared/feature-flags" element={<FeatureFlagsPage />} />
     <Route path="/shared/pricing-rules" element={<PricingRulesPage />} />
     <Route path="/shared/data-import-export" element={<DataImportExportPage />} />
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
