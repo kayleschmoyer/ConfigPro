@@ -41,6 +41,22 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     ]
   },
   {
+    id: 'enterprise-foundation',
+    title: 'Enterprise Foundation',
+    description: 'Shared master data and operating narratives that underpin every module.',
+    features: [
+      {
+        id: 'organization-and-locations',
+        title: 'Organization & Location Fabric',
+        summary:
+          'Single source of truth for company identity, location network archetypes, and operating rhythms reused across ConfigPro experiences.',
+        systems: ['Org Management', 'Scheduling', 'Facilities'],
+        status: 'available',
+        href: '/shared/org-and-locations',
+      },
+    ],
+  },
+  {
     id: 'integrations',
     title: 'Integrations',
     description: 'Connections and services accessible from any system.',

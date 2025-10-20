@@ -1,5 +1,7 @@
+export * from './OrgAndLocationsPage';
 export * from './SharedFeaturesPage';
 export * from './TimeIntelligenceHubPage';
+export * from './businessHours.data';
 export * from './PricingRulesPage';
 export * from './discounts.engine';
 export * from './CatalogAttributesPage';
