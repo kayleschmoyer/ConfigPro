@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 
-import { IndustryKey } from '../config/industry.presets';
+import type { IndustryKey } from '../config/industry.presets';
 
 const STORAGE_KEY = 'configpro:industry';
 const DEFAULT_INDUSTRY: IndustryKey = 'generic';

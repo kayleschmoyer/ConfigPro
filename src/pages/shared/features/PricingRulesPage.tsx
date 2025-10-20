@@ -9,7 +9,8 @@ import {
   TableHeader,
   TableRow
 } from '../../../shared/ui/Table';
-import { evaluateDiscounts, DiscountRule, PricingEvaluationContext } from './discounts.engine';
+import { evaluateDiscounts } from './discounts.engine';
+import type { DiscountRule, PricingEvaluationContext } from './discounts.engine';
 
 const priceLists = [
   {

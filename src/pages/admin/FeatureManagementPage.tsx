@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Switch } from '../../components/ui/Switch';
-import { FeatureKey, SharedFeatureRegistry } from '../shared/features';
+import { SharedFeatureRegistry } from '../shared/features';
+import type { FeatureKey } from '../shared/features';
 
 type RolloutStatus = 'Active' | 'Monitoring' | 'Planned';
 

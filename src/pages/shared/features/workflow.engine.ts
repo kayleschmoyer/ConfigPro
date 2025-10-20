@@ -13,9 +13,11 @@ export interface WorkflowDefinition<State extends WorkflowState, Context = unkno
 }
 
 export class WorkflowEngine<State extends WorkflowState, Context = unknown> {
+  private readonly definition: WorkflowDefinition<State, Context>;
   private current: State;
 
-  constructor(private readonly definition: WorkflowDefinition<State, Context>) {
+  constructor(definition: WorkflowDefinition<State, Context>) {
+    this.definition = definition;
     this.current = definition.initial;
   }
 

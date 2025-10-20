@@ -24,7 +24,7 @@ type AnyZodSchema = z.ZodType<unknown, z.ZodTypeDef, unknown>;
 
 export interface FormValidator<TSchema extends AnyZodSchema> {
   schema: TSchema;
-  yup: yup.ObjectSchema<z.infer<TSchema>>;
+  yup: yup.Schema<z.infer<TSchema>>;
   validate: (data: unknown) => z.infer<TSchema>;
   validateWithYup: (data: unknown) => Promise<z.infer<TSchema>>;
   safeValidate: (data: unknown) => FormValidationResult<z.infer<TSchema>>;
@@ -212,7 +212,7 @@ function normaliseFieldErrors(fieldErrors: Record<string, string[] | undefined>)
 
 function createFormValidator<TSchema extends AnyZodSchema>(
   schema: TSchema,
-  yupSchema: yup.ObjectSchema<z.infer<TSchema>>,
+  yupSchema: yup.Schema<z.infer<TSchema>>,
 ): FormValidator<TSchema> {
   return {
     schema,

@@ -1,6 +1,4 @@
 import {
-  FeatureFlagKey,
-  FlagResolution,
   listFlagDefinitions,
   listOrgFlagProfiles,
   listOrgFlagStates,
@@ -9,6 +7,7 @@ import {
   resolveFlagState,
   isFeatureEnabled,
 } from './flags.client';
+import type { FeatureFlagKey, FlagResolution } from './flags.client';
 import { Card, CardDescription, CardTitle } from '../../../shared/ui/Card';
 import {
   Table,

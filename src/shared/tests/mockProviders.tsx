@@ -27,7 +27,7 @@ export const createMockProviders = ({ route = '/', routerProps }: MockProviderCo
 export interface RenderWithProvidersOptions extends Omit<RenderOptions, 'wrapper'> {
   route?: string;
   routerProps?: MockProviderConfig['routerProps'];
-  wrapper?: (props: { children: ReactNode }) => JSX.Element;
+  wrapper?: (props: { children: ReactNode }) => ReactElement;
 }
 
 export const renderWithProviders = (
