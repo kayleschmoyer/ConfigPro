@@ -273,20 +273,31 @@ type EndpointDefinitionBase<TResponse, TBody, TQuery, TPathParams> = {
   path: string | ((params: TPathParams) => string);
   defaultHeaders?: Record<string, string>;
   parseResponse?: (response: Response) => Promise<TResponse>;
+  readonly __types?: {
+    body: TBody;
+    query: TQuery;
+    params: TPathParams;
+  };
 };
 
 export type EndpointDefinition<TResponse, TBody = undefined, TQuery = QueryParams | undefined, TPathParams = undefined> =
   EndpointDefinitionBase<TResponse, TBody, TQuery, TPathParams>;
 
-type InferResponse<TDefinition> = TDefinition extends EndpointDefinition<infer TResponse, any, any, any>
+type AnyEndpointDefinition = EndpointDefinition<unknown, unknown, unknown, unknown>;
+
+type InferResponse<TDefinition> = TDefinition extends EndpointDefinition<infer TResponse, unknown, unknown, unknown>
   ? TResponse
   : never;
 
-type InferBody<TDefinition> = TDefinition extends EndpointDefinition<any, infer TBody, any, any> ? TBody : undefined;
+type InferBody<TDefinition> = TDefinition extends EndpointDefinition<unknown, infer TBody, unknown, unknown>
+  ? TBody
+  : undefined;
 
-type InferQuery<TDefinition> = TDefinition extends EndpointDefinition<any, any, infer TQuery, any> ? TQuery : undefined;
+type InferQuery<TDefinition> = TDefinition extends EndpointDefinition<unknown, unknown, infer TQuery, unknown>
+  ? TQuery
+  : undefined;
 
-type InferParams<TDefinition> = TDefinition extends EndpointDefinition<any, any, any, infer TParams>
+type InferParams<TDefinition> = TDefinition extends EndpointDefinition<unknown, unknown, unknown, infer TParams>
   ? TParams
   : undefined;
 
@@ -294,7 +305,7 @@ type BodyOption<TBody> = [TBody] extends [undefined] ? { body?: undefined } : { 
 
 type QueryOption<TQuery> = [TQuery] extends [undefined] ? { query?: undefined } : { query?: TQuery };
 
-type ParamsOption<TParams> = [TParams] extends [undefined] ? {} : { params: TParams };
+type ParamsOption<TParams> = [TParams] extends [undefined] ? Record<string, never> : { params: TParams };
 
 type EndpointCallOptions<TDefinition> = ParamsOption<InferParams<TDefinition>> &
   BodyOption<InferBody<TDefinition>> &
@@ -303,7 +314,7 @@ type EndpointCallOptions<TDefinition> = ParamsOption<InferParams<TDefinition>> &
     signal?: AbortSignal;
   };
 
-export type TypedApiClient<TEndpoints extends Record<string, EndpointDefinition<any, any, any, any>>> = {
+export type TypedApiClient<TEndpoints extends Record<string, AnyEndpointDefinition>> = {
   [TKey in keyof TEndpoints]: (
     ...args: EndpointArguments<TEndpoints[TKey]>
   ) => Promise<ApiResponse<InferResponse<TEndpoints[TKey]>>>;
@@ -317,7 +328,7 @@ type EndpointArguments<TDefinition> = RequiredKeys<EndpointCallOptions<TDefiniti
   ? [options?: EndpointCallOptions<TDefinition>]
   : [options: EndpointCallOptions<TDefinition>];
 
-export const createTypedApiClient = <TEndpoints extends Record<string, EndpointDefinition<any, any, any, any>>>(
+export const createTypedApiClient = <TEndpoints extends Record<string, AnyEndpointDefinition>>(
   config: ApiClientConfig,
   endpoints: TEndpoints,
 ): TypedApiClient<TEndpoints> => {
