@@ -172,6 +172,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
           'Shared HTTP client utilities with consistent error normalization for ConfigPro developer experiences.',
         systems: ['Shared Platform', 'Developer Experience'],
         status: 'available',
+      },
+      {
         id: 'offline-action-queue',
         title: 'Offline action retry queue',
         summary:
