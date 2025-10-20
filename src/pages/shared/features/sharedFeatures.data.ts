@@ -124,8 +124,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
       {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
-        summary:
-          'Unified RBAC and ABAC modeling with invitation orchestration for every ConfigPro org.',
+        summary: 'Unified RBAC and ABAC modeling with invitation orchestration for every ConfigPro org.',
         systems: ['Scheduling', 'Forecasting', 'Shared Platform'],
         status: 'in-progress',
         href: '/shared/users-and-roles',
@@ -147,6 +146,21 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
+    ],
+  },
+  {
+    id: 'trust-and-compliance',
+    title: 'Trust & Compliance',
+    description: 'Evidence services and privacy primitives shared across ConfigPro.',
+    features: [
+      {
+        id: 'audit-log-evidence-fabric',
+        title: 'Audit Log & Evidence Fabric',
+        summary:
+          'Immutable who/what/when/where ledger with GDPR and CCPA consent stitching plus retention automation.',
+        systems: ['Shared Platform', 'Security', 'Privacy'],
+        status: 'planned',
+        href: '/shared/audit-log',
       {
         id: 'customer-fields-consent-registry',
         title: 'Customer Fields & Consent Registry',
