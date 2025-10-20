@@ -6,7 +6,7 @@ import { PointOfSalePage } from '../pages/additional-paid-features/configpro/Poi
 import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro/ThemePlaygroundPage';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
-import { SharedFeaturesPage, TimeIntelligenceHubPage } from '../pages/shared/features';
+import { OrgAndLocationsPage, SharedFeaturesPage, TimeIntelligenceHubPage } from '../pages/shared/features';
 
 export const AppRouter = () => (
   <Routes>
@@ -16,6 +16,7 @@ export const AppRouter = () => (
     <Route path="/theme-lab" element={<ThemePlaygroundPage />} />
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
+    <Route path="/shared/org-and-locations" element={<OrgAndLocationsPage />} />
     <Route path="/shared/time-intelligence-hub" element={<TimeIntelligenceHubPage />} />
     <Route path="/scheduling" element={<SchedulingLayout />}>
       <Route index element={<ManagerConsole />} />
