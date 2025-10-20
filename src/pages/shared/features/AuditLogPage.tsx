@@ -416,3 +416,5 @@ export const AuditLogPage = () => {
     </div>
   );
 };
+
+export default AuditLogPage;

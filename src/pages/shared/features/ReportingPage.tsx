@@ -338,3 +338,5 @@ export const ReportingPage = () => {
     </div>
   );
 };
+
+export default ReportingPage;

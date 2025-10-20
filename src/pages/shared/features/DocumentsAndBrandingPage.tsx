@@ -207,3 +207,5 @@ export const DocumentsAndBrandingPage = () => {
     </div>
   );
 };
+
+export default DocumentsAndBrandingPage;

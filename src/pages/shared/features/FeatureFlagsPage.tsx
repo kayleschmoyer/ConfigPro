@@ -308,3 +308,5 @@ export const FeatureFlagsPage = () => {
     </div>
   );
 };
+
+export default FeatureFlagsPage;

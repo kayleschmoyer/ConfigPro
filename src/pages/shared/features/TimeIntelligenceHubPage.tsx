@@ -574,3 +574,5 @@ export const TimeIntelligenceHubPage = () => {
     </div>
   );
 };
+
+export default TimeIntelligenceHubPage;

@@ -188,3 +188,5 @@ export const TaxRulesPage = () => {
     </div>
   );
 };
+
+export default TaxRulesPage;

@@ -191,3 +191,5 @@ export const PaymentProvidersPage = () => {
     </div>
   );
 };
+
+export default PaymentProvidersPage;

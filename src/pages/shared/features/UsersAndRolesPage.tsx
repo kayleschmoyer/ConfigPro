@@ -229,3 +229,5 @@ export const UsersAndRolesPage = () => {
     </div>
   );
 };
+
+export default UsersAndRolesPage;

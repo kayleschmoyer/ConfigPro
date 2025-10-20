@@ -218,3 +218,5 @@ export const BrandingPage = () => {
     </div>
   );
 };
+
+export default BrandingPage;

@@ -281,3 +281,5 @@ export const LocalizationPage = () => {
     </div>
   );
 };
+
+export default LocalizationPage;

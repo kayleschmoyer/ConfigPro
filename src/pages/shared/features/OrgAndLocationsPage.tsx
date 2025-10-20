@@ -403,3 +403,5 @@ export const OrgAndLocationsPage = () => {
     </div>
   );
 };
+
+export default OrgAndLocationsPage;

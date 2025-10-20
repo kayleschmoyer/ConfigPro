@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { SharedFeatureRegistry, FeatureKey } from './feature.registry';
+import { SharedNav } from './SharedNav';
 import { sharedFeatureGroups } from './sharedFeatures.data';
 import { SharedNav } from '../../../layout/SharedNav';
 
@@ -190,3 +191,5 @@ export const SharedFeaturesPage = () => {
     </div>
   );
 };
+
+export default SharedFeaturesPage;
