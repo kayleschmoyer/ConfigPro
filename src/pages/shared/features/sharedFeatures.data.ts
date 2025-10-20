@@ -113,6 +113,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Shared Platform', 'Revenue Ops', 'Data Services'],
         status: 'planned',
         href: '/shared/data-import-export',
+      },
+      {
         id: 'reporting-intelligence',
         title: 'Reporting intelligence',
         summary:
@@ -154,6 +156,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
+      {
+        id: 'offline-action-queue',
+        title: 'Offline action retry queue',
+        summary:
+          'Shared offline-first queue that batches API mutations, tracks retry attempts, and replays work as soon as connectivity returns.',
+        systems: ['Shared Platform', 'Mobile', 'Field Operations'],
+        status: 'in-progress',
+        href: '/shared/offline-action-queue',
+      },
     ],
   },
   {
@@ -169,6 +180,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Shared Platform', 'Security', 'Privacy'],
         status: 'planned',
         href: '/shared/audit-log',
+      },
       {
         id: 'customer-fields-consent-registry',
         title: 'Customer Fields & Consent Registry',
@@ -177,6 +189,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Customer Data Platform', 'Marketing', 'Service'],
         status: 'available',
         href: '/shared/customer-fields',
+      },
+      {
         id: 'notification-orchestration-hub',
         title: 'Notification orchestration hub',
         summary:
