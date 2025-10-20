@@ -123,6 +123,13 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         href: '/shared/tax-rules',
       },
       {
+        id: 'customer-fields-consent-registry',
+        title: 'Customer Fields & Consent Registry',
+        summary:
+          'Canonical documentation for profile attributes, consent primitives, and stewardship guardrails across ConfigPro teams.',
+        systems: ['Customer Data Platform', 'Marketing', 'Service'],
+        status: 'available',
+        href: '/shared/customer-fields',
         id: 'notification-orchestration-hub',
         title: 'Notification orchestration hub',
         summary:
