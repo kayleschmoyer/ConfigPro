@@ -97,6 +97,13 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         href: '/shared/pricing-rules',
       },
       {
+        id: 'data-import-export-studio',
+        title: 'Data import & export studio',
+        summary:
+          'CSV and Excel mapping kits plus validator coverage to bootstrap operational and revenue data loads.',
+        systems: ['Shared Platform', 'Revenue Ops', 'Data Services'],
+        status: 'planned',
+        href: '/shared/data-import-export',
         id: 'reporting-intelligence',
         title: 'Reporting intelligence',
         summary:

@@ -21,6 +21,8 @@ export * from './DocumentsAndBrandingPage';
 export * from './documentTemplates.data';
 export * from './PaymentProvidersPage';
 export * from './TaxRulesPage';
+export * from './DataImportExportPage';
+export * from './import.mappings';
 export * from './CustomerFieldsPage';
 export * from './loyalty.rules';
 export * from './NotificationsPage';
