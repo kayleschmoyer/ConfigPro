@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { SharedFeatureRegistry, FeatureKey } from './feature.registry';
 import { SharedNav } from './SharedNav';
 import { sharedFeatureGroups } from './sharedFeatures.data';
-import { SharedNav } from '../../../layout/SharedNav';
 
 const registryDefaults: Record<FeatureKey, boolean> = SharedFeatureRegistry.reduce(
   (accumulator, feature) => {
