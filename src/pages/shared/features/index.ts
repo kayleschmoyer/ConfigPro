@@ -1,4 +1,5 @@
 export * from './feature.registry';
+export * from '../../../shared/types/core';
 export * from './CatalogAttributesPage';
 export * from './DocumentsAndBrandingPage';
 export * from './FeatureFlagsPage';
