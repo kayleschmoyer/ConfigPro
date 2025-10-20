@@ -60,6 +60,14 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/users-and-roles',
       },
+      {
+        id: 'documents-and-branding-system',
+        title: 'Documents & Branding System',
+        summary: 'Handlebars templates plus brand guardrails for quotes, invoices, and receipts.',
+        systems: ['Billing', 'Shared Platform'],
+        status: 'available',
+        href: '/shared/documents-and-branding',
+      },
     ]
   }
 ];
