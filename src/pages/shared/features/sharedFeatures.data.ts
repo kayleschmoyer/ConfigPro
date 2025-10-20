@@ -165,6 +165,21 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
+      {
+        id: 'typed-api-client',
+        title: 'Typed API client & error normalization',
+        summary:
+          'Shared HTTP client utilities with consistent error normalization for ConfigPro developer experiences.',
+        systems: ['Shared Platform', 'Developer Experience'],
+        status: 'available',
+        id: 'offline-action-queue',
+        title: 'Offline action retry queue',
+        summary:
+          'Shared offline-first queue that batches API mutations, tracks retry attempts, and replays work as soon as connectivity returns.',
+        systems: ['Shared Platform', 'Mobile', 'Field Operations'],
+        status: 'in-progress',
+        href: '/shared/offline-action-queue',
+      },
     ],
   },
   {
