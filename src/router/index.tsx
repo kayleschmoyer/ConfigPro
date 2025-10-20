@@ -4,35 +4,23 @@ import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro
 import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
 import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
 import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
-
-import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
-import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
-import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
-import { PointOfSalePage } from '../pages/additional-paid-features/configpro/PointOfSalePage';
-import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro/ThemePlaygroundPage';
-import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
-import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 import {
-  BrandingPage,
-  DocumentsAndBrandingPage,
-  ErrorBoundaryPage,
   AuditLogPage,
-  DocumentsAndBrandingPage,
+  BrandingPage,
+  CatalogAttributesPage,
+  CustomerFieldsPage,
   DataImportExportPage,
   DocumentsAndBrandingPage,
+  ErrorBoundaryPage,
   FeatureFlagsPage,
-  CustomerFieldsPage,
-  DocumentsAndBrandingPage,
-  OrgAndLocationsPage,
-  OrderWorkflowPage,
-  PaymentProvidersPage,
-  PricingRulesPage,
-  ReportingPage,
+  InventorySettingsPage,
+  LocalizationPage,
   NotificationsPage,
   OrderWorkflowPage,
   OrgAndLocationsPage,
   PaymentProvidersPage,
   PricingRulesPage,
+  ReportingPage,
   SharedFeaturesPage,
   TaxRulesPage,
   TimeIntelligenceHubPage,
@@ -49,6 +37,7 @@ export const AppRouter = () => (
     <Route path="/theme-lab" element={<ThemePlaygroundPage />} />
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
+    <Route path="/shared/catalog" element={<CatalogAttributesPage />} />
     <Route path="/shared/org-and-locations" element={<OrgAndLocationsPage />} />
     <Route path="/shared/time-intelligence-hub" element={<TimeIntelligenceHubPage />} />
     <Route path="/shared/reporting" element={<ReportingPage />} />
@@ -64,6 +53,8 @@ export const AppRouter = () => (
     <Route path="/shared/tax-rules" element={<TaxRulesPage />} />
     <Route path="/shared/audit-log" element={<AuditLogPage />} />
     <Route path="/shared/customer-fields" element={<CustomerFieldsPage />} />
+    <Route path="/shared/inventory-settings" element={<InventorySettingsPage />} />
+    <Route path="/shared/localization" element={<LocalizationPage />} />
     <Route path="/shared/notifications" element={<NotificationsPage />} />
     <Route path="/scheduling" element={<SchedulingLayout />}>
       <Route index element={<ManagerConsole />} />
