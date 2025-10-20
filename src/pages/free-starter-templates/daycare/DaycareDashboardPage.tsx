@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { Button } from '../../../components/ui/Button';
+import { Button } from '../../../shared/ui/Button';
 import { useTheme } from '../../../hooks/useTheme';
 import { cn } from '../../../lib/cn';
 

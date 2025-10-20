@@ -4,7 +4,7 @@ import { LoginForm } from '../../../features/login/components/LoginForm';
 import { useTheme } from '../../../hooks/useTheme';
 import { baseTheme, resolveTheme } from '../../../app/config/theme';
 import { cn } from '../../../lib/cn';
-import { Button } from '../../../components/ui/Button';
+import { Button } from '../../../shared/ui/Button';
 
 type IndustryOption = {
   id: string;

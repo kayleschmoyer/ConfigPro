@@ -1,7 +1,17 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { Button } from '../../../components/ui/Button';
-import { Input } from '../../../components/ui/Input';
+import { Button } from '../../../shared/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../shared/ui/Card';
+import { Input } from '../../../shared/ui/Input';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '../../../shared/ui/Table';
 import { cn } from '../../../lib/cn';
 
 interface LineItem {
@@ -185,11 +195,11 @@ export const PointOfSalePage = () => {
             </div>
           </div>
 
-          <section className="space-y-6 rounded-3xl border border-foreground/10 bg-background/80 p-6 shadow-xl shadow-primary/10 backdrop-blur">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">Customer</h2>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Card className="space-y-6 border-foreground/10 bg-background/80 shadow-xl shadow-primary/10 backdrop-blur">
+            <CardHeader className="flex items-center justify-between p-0">
+              <CardTitle className="text-xl">Customer</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 p-0">
               <Input
                 label="Name"
                 placeholder="Customer or company name"
@@ -220,121 +230,123 @@ export const PointOfSalePage = () => {
                 onChange={(event) => setCustomerAddress(event.target.value)}
                 className="rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
               />
-            </div>
-          </section>
+            </CardContent>
+          </Card>
 
           <div className="flex flex-1 flex-col gap-8">
-            <section className="flex flex-col gap-6 rounded-3xl border border-foreground/10 bg-background/85 p-7 shadow-xl shadow-primary/10 backdrop-blur-xl">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 className="text-xl font-semibold">Line items</h2>
+            <Card className="flex flex-col gap-6 border-foreground/10 bg-background/85 p-7 shadow-xl shadow-primary/10 backdrop-blur-xl">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-3 p-0">
+                <CardTitle className="text-xl">Line items</CardTitle>
                 <Button variant="outline" size="sm" onClick={handleAddLineItem}>
                   Add line
                 </Button>
-              </div>
+              </CardHeader>
 
-              <div className="overflow-hidden rounded-2xl border border-foreground/5">
-                <table className="min-w-full border-collapse text-sm">
-                  <thead className="bg-surface/60 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">
-                    <tr>
-                      <th className="px-4 py-4 text-left">Line</th>
-                      <th className="px-4 py-4 text-left">Part</th>
-                      <th className="px-4 py-4 text-left">Description</th>
-                      <th className="px-4 py-4 text-left">Qty</th>
-                      <th className="px-4 py-4 text-left">Unit price</th>
-                      <th className="px-4 py-4 text-right">Line subtotal</th>
-                      <th className="px-4 py-4 text-right" aria-label="Actions" />
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-foreground/5 bg-background/70">
-                    {lineItems.map((item, index) => {
-                      const quantity = parseFloat(item.quantity) || 0;
-                      const unitPrice = parseFloat(item.unitPrice) || 0;
-                      const lineSubtotal = quantity * unitPrice;
+              <CardContent className="p-0">
+                <TableContainer className="rounded-2xl border border-foreground/5">
+                  <Table>
+                    <TableHeader className="bg-surface/60 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted">
+                      <TableRow>
+                        <TableHead className="text-left">Line</TableHead>
+                        <TableHead className="text-left">Part</TableHead>
+                        <TableHead className="text-left">Description</TableHead>
+                        <TableHead className="text-left">Qty</TableHead>
+                        <TableHead className="text-left">Unit price</TableHead>
+                        <TableHead className="text-right">Line subtotal</TableHead>
+                        <TableHead className="text-right" aria-label="Actions" />
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody className="divide-y divide-foreground/5 bg-background/70">
+                      {lineItems.map((item, index) => {
+                        const quantity = parseFloat(item.quantity) || 0;
+                        const unitPrice = parseFloat(item.unitPrice) || 0;
+                        const lineSubtotal = quantity * unitPrice;
 
-                      return (
-                        <tr
-                          key={item.id}
-                          className="align-top transition hover:bg-surface/80"
-                        >
-                          <td className="px-4 py-5 align-top text-xs font-semibold uppercase tracking-[0.25em] text-muted">
-                            #{index + 1}
-                          </td>
-                          <td className="px-4 py-5 align-top">
-                            <Input
-                              value={item.partNumber}
-                              onChange={(event) =>
-                                handleItemChange(item.id, 'partNumber', event.target.value)
-                              }
-                              placeholder="e.g. ABC-1234"
-                              aria-label="Part number"
-                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                            />
-                          </td>
-                          <td className="px-4 py-5 align-top">
-                            <Input
-                              value={item.description}
-                              onChange={(event) =>
-                                handleItemChange(item.id, 'description', event.target.value)
-                              }
-                              placeholder="Item description"
-                              aria-label="Description"
-                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                            />
-                          </td>
-                          <td className="px-4 py-5 align-top">
-                            <Input
-                              type="number"
-                              min="0"
-                              step="1"
-                              value={item.quantity}
-                              onChange={(event) =>
-                                handleItemChange(item.id, 'quantity', event.target.value)
-                              }
-                              aria-label="Quantity"
-                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                            />
-                          </td>
-                          <td className="px-4 py-5 align-top">
-                            <Input
-                              type="number"
-                              min="0"
-                              step="0.01"
-                              value={item.unitPrice}
-                              onChange={(event) =>
-                                handleItemChange(item.id, 'unitPrice', event.target.value)
-                              }
-                              className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
-                              placeholder="0.00"
-                              aria-label="Unit price"
-                            />
-                          </td>
-                          <td className="px-4 py-5 align-top text-right text-sm font-semibold text-foreground">
-                            {formatCurrency(lineSubtotal)}
-                          </td>
-                          <td className="px-4 py-5 align-top text-right">
-                            {lineItems.length > 1 && (
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                className="text-xs text-muted transition hover:text-red-500"
-                                onClick={() => handleRemoveLineItem(item.id)}
-                              >
-                                Remove
-                              </Button>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+                        return (
+                          <TableRow
+                            key={item.id}
+                            className="align-top transition hover:bg-surface/80"
+                          >
+                            <TableCell className="px-4 py-5 align-top text-xs font-semibold uppercase tracking-[0.25em] text-muted">
+                              #{index + 1}
+                            </TableCell>
+                            <TableCell className="px-4 py-5 align-top">
+                              <Input
+                                value={item.partNumber}
+                                onChange={(event) =>
+                                  handleItemChange(item.id, 'partNumber', event.target.value)
+                                }
+                                placeholder="e.g. ABC-1234"
+                                aria-label="Part number"
+                                className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                              />
+                            </TableCell>
+                            <TableCell className="px-4 py-5 align-top">
+                              <Input
+                                value={item.description}
+                                onChange={(event) =>
+                                  handleItemChange(item.id, 'description', event.target.value)
+                                }
+                                placeholder="Item description"
+                                aria-label="Description"
+                                className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                              />
+                            </TableCell>
+                            <TableCell className="px-4 py-5 align-top">
+                              <Input
+                                type="number"
+                                min="0"
+                                step="1"
+                                value={item.quantity}
+                                onChange={(event) =>
+                                  handleItemChange(item.id, 'quantity', event.target.value)
+                                }
+                                aria-label="Quantity"
+                                className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                              />
+                            </TableCell>
+                            <TableCell className="px-4 py-5 align-top">
+                              <Input
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                value={item.unitPrice}
+                                onChange={(event) =>
+                                  handleItemChange(item.id, 'unitPrice', event.target.value)
+                                }
+                                className="h-11 rounded-2xl border-transparent bg-surface/80 text-sm shadow-sm focus:border-primary"
+                                placeholder="0.00"
+                                aria-label="Unit price"
+                              />
+                            </TableCell>
+                            <TableCell className="px-4 py-5 align-top text-right text-sm font-semibold text-foreground">
+                              {formatCurrency(lineSubtotal)}
+                            </TableCell>
+                            <TableCell className="px-4 py-5 align-top text-right">
+                              {lineItems.length > 1 && (
+                                <Button
+                                  type="button"
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-xs text-muted transition hover:text-red-500"
+                                  onClick={() => handleRemoveLineItem(item.id)}
+                                >
+                                  Remove
+                                </Button>
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </Card>
 
-            </section>
             <footer className="sticky bottom-6 z-10 mt-auto">
-              <div className="rounded-3xl border border-primary/40 bg-primary/15 p-6 shadow-2xl shadow-primary/20 backdrop-blur-xl">
-                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <Card className="border-primary/40 bg-primary/15 p-6 shadow-2xl shadow-primary/20 backdrop-blur-xl">
+                <CardContent className="flex flex-col gap-6 p-0 md:flex-row md:items-center md:justify-between">
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 text-primary">
                       <h2 className="text-lg font-semibold">Totals</h2>
@@ -361,13 +373,17 @@ export const PointOfSalePage = () => {
                     <Button type="button" className="w-full" size="lg">
                       Collect payment
                     </Button>
-                    <Button type="button" variant="outline" className="w-full">
-                      Send invoice
+                    <Button type="button" variant="outline" className="w-full" size="sm">
+                      Email summary
                     </Button>
+                    <p className="text-center text-xs text-primary/70">
+                      Receipt automatically syncs to accounting and inventory adjusts in real time.
+                    </p>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </footer>
+
           </div>
         </motion.main>
       </div>

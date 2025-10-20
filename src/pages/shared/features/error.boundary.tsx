@@ -1,4 +1,13 @@
 import { Link } from 'react-router-dom';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '../../../shared/ui/Table';
 
 type RecoveryCard = {
   id: string;
@@ -205,32 +214,26 @@ export const ErrorBoundaryPage = () => {
           </p>
         </header>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-border text-left text-sm">
-            <thead>
-              <tr className="bg-muted/40 text-xs uppercase tracking-wide text-muted-foreground">
-                <th scope="col" className="px-4 py-3 font-semibold text-foreground">
-                  Signal
-                </th>
-                <th scope="col" className="px-4 py-3 font-semibold text-foreground">
-                  Description
-                </th>
-                <th scope="col" className="px-4 py-3 font-semibold text-foreground">
-                  Owner
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
+        <TableContainer>
+          <Table>
+            <TableHeader className="bg-muted/40">
+              <TableRow>
+                <TableHead scope="col">Signal</TableHead>
+                <TableHead scope="col">Description</TableHead>
+                <TableHead scope="col">Owner</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {observabilitySignals.map((signal) => (
-                <tr key={signal.id} className="bg-card">
-                  <td className="px-4 py-3 text-sm font-medium text-foreground">{signal.name}</td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">{signal.description}</td>
-                  <td className="px-4 py-3 text-sm text-muted-foreground">{signal.owner}</td>
-                </tr>
+                <TableRow key={signal.id} className="bg-card">
+                  <TableCell className="text-sm font-medium text-foreground">{signal.name}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{signal.description}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{signal.owner}</TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </section>
 
       <section aria-labelledby="playbook" className="space-y-6">

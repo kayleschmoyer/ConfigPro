@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { baseTheme, type ThemeConfig } from '../../../app/config/theme';
-import { Button } from '../../../components/ui/Button';
-import { Input } from '../../../components/ui/Input';
+import { Button } from '../../../shared/ui/Button';
+import { Input } from '../../../shared/ui/Input';
 import { cn } from '../../../lib/cn';
 
 type PaletteKey = 'primary' | 'accent' | 'background' | 'foreground' | 'surface' | 'muted';

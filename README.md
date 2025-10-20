@@ -136,7 +136,7 @@ pnpm create:component PaymentStatus ui
 
 This will create a new file:
 
-src/components/ui/PaymentStatus.tsx
+src/shared/ui/PaymentStatus.tsx
 
 
 …with typed props, export, and a base layout.

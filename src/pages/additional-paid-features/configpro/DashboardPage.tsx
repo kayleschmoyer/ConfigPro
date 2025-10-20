@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { Button } from '../../../components/ui/Button';
+import { Button } from '../../../shared/ui/Button';
 import { cn } from '../../../lib/cn';
 
 interface QuickStat {

@@ -1,3 +1,13 @@
+import { Card, CardDescription, CardTitle } from '../../../shared/ui/Card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '../../../shared/ui/Table';
 import { reportingSearchIndex } from './search.config';
 
 const savedReportCollections = [
@@ -283,11 +293,11 @@ export const ReportingPage = () => {
 
         <div className="space-y-6">
           {reportingSearchIndex.map((entry) => (
-            <article key={entry.id} className="space-y-4 rounded-lg border border-border bg-card p-6 shadow-sm">
+            <Card key={entry.id} className="space-y-4">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">{entry.module}</h3>
-                  <p className="text-sm text-muted-foreground">{entry.description}</p>
+                  <CardTitle>{entry.module}</CardTitle>
+                  <CardDescription>{entry.description}</CardDescription>
                 </div>
                 <div className="space-y-1 text-xs text-muted-foreground text-right">
                   <p className="font-semibold uppercase tracking-wide text-muted-foreground/80">Dataset</p>
@@ -298,40 +308,40 @@ export const ReportingPage = () => {
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-md border border-dashed border-border">
-                <table className="min-w-full divide-y divide-border text-left text-sm">
-                  <thead className="bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
-                    <tr>
-                      <th scope="col" className="px-4 py-3 font-semibold">Field</th>
-                      <th scope="col" className="px-4 py-3 font-semibold">Classification</th>
-                      <th scope="col" className="px-4 py-3 font-semibold">Description</th>
-                      <th scope="col" className="px-4 py-3 font-semibold">Sources</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border">
+              <TableContainer className="border border-dashed border-border">
+                <Table>
+                  <TableHeader className="bg-muted/60">
+                    <TableRow>
+                      <TableHead scope="col">Field</TableHead>
+                      <TableHead scope="col">Classification</TableHead>
+                      <TableHead scope="col">Description</TableHead>
+                      <TableHead scope="col">Sources</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
                     {entry.indexableFields.map((field) => (
-                      <tr key={field.id} className="align-top">
-                        <td className="px-4 py-3">
+                      <TableRow key={field.id} className="align-top">
+                        <TableCell>
                           <div className="space-y-1">
                             <p className="font-medium text-foreground">{field.label}</p>
                             {field.sampleValue ? (
                               <p className="text-xs font-mono text-muted-foreground">Sample: {field.sampleValue}</p>
                             ) : null}
                           </div>
-                        </td>
-                        <td className="px-4 py-3 text-xs uppercase tracking-wide text-muted-foreground/80">
+                        </TableCell>
+                        <TableCell className="text-xs uppercase tracking-wide text-muted-foreground/80">
                           {field.classification}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-muted-foreground">{field.description}</td>
-                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{field.description}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">
                           {field.sources.join(', ')}
-                        </td>
-                      </tr>
+                        </TableCell>
+                      </TableRow>
                     ))}
-                  </tbody>
-                </table>
-              </div>
-            </article>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Card>
           ))}
         </div>
       </section>

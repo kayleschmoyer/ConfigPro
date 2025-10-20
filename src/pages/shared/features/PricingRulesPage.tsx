@@ -1,4 +1,14 @@
 import { RequirePermission } from '../../../shared/components/RequirePermission';
+import { Card, CardDescription, CardFooter, CardTitle } from '../../../shared/ui/Card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '../../../shared/ui/Table';
 import { evaluateDiscounts, DiscountRule, PricingEvaluationContext } from './discounts.engine';
 
 const priceLists = [
@@ -304,11 +314,11 @@ const PricingRulesPageContent = () => {
 
         <div className="space-y-6">
           {tieredPricingModels.map((model) => (
-            <article key={model.sku} className="space-y-4 rounded-lg border border-border bg-card p-5 shadow-sm">
+            <Card key={model.sku} className="space-y-4">
               <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">{model.name}</h3>
-                  <p className="text-sm text-muted-foreground">SKU: {model.sku}</p>
+                  <CardTitle>{model.name}</CardTitle>
+                  <CardDescription>SKU: {model.sku}</CardDescription>
                 </div>
                 <div className="text-sm text-muted-foreground">
                   <div className="font-medium text-foreground">{formatCurrency.format(model.basePrice)} {model.measure}</div>
@@ -317,32 +327,36 @@ const PricingRulesPageContent = () => {
               </div>
               <p className="text-sm text-muted-foreground">{model.insights}</p>
 
-              <div className="overflow-hidden rounded-lg border border-border">
-                <table className="min-w-full divide-y divide-border text-left text-sm">
-                  <thead className="bg-muted/40 text-xs uppercase tracking-wide text-muted-foreground">
-                    <tr>
-                      <th className="px-4 py-2 font-medium">Threshold</th>
-                      <th className="px-4 py-2 font-medium">Discount</th>
-                      <th className="px-4 py-2 font-medium">Effective price</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border">
+              <TableContainer>
+                <Table>
+                  <TableHeader className="bg-muted/40">
+                    <TableRow>
+                      <TableHead>Threshold</TableHead>
+                      <TableHead>Discount</TableHead>
+                      <TableHead>Effective price</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
                     {model.tiers.map((tier) => {
                       const effectivePrice = model.basePrice * (1 - tier.discount / 100);
                       return (
-                        <tr key={`${model.sku}-${tier.threshold}`} className="bg-card">
-                          <td className="px-4 py-2 text-foreground">{tier.threshold.toLocaleString()}</td>
-                          <td className="px-4 py-2 text-muted-foreground">{formatPercent(tier.discount)}</td>
-                          <td className="px-4 py-2 text-muted-foreground">
+                        <TableRow key={`${model.sku}-${tier.threshold}`} className="bg-card">
+                          <TableCell className="text-foreground">
+                            {tier.threshold.toLocaleString()}
+                          </TableCell>
+                          <TableCell className="text-muted-foreground">
+                            {formatPercent(tier.discount)}
+                          </TableCell>
+                          <TableCell className="text-muted-foreground">
                             {formatCurrency.format(effectivePrice)}
-                          </td>
-                        </tr>
+                          </TableCell>
+                        </TableRow>
                       );
                     })}
-                  </tbody>
-                </table>
-              </div>
-            </article>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Card>
           ))}
         </div>
       </section>
@@ -393,7 +407,7 @@ const PricingRulesPageContent = () => {
           </p>
         </header>
 
-        <article className="space-y-4 rounded-lg border border-border bg-card p-5 shadow-sm">
+        <Card className="space-y-4">
           <div className="grid gap-4 md:grid-cols-4">
             <div>
               <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Subtotal</div>
@@ -413,39 +427,41 @@ const PricingRulesPageContent = () => {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-border">
-            <table className="min-w-full divide-y divide-border text-left text-sm">
-              <thead className="bg-muted/40 text-xs uppercase tracking-wide text-muted-foreground">
-                <tr>
-                  <th className="px-4 py-2 font-medium">Rule</th>
-                  <th className="px-4 py-2 font-medium">Description</th>
-                  <th className="px-4 py-2 font-medium">Amount</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
+          <TableContainer>
+            <Table>
+              <TableHeader className="bg-muted/40">
+                <TableRow>
+                  <TableHead>Rule</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead>Amount</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {evaluation.appliedDiscounts.map((entry) => (
-                  <tr key={entry.ruleId} className="bg-card">
-                    <td className="px-4 py-2 text-foreground">{entry.name}</td>
-                    <td className="px-4 py-2 text-muted-foreground">{entry.description}</td>
-                    <td className="px-4 py-2 text-primary">-{formatCurrency.format(entry.amount)}</td>
-                  </tr>
+                  <TableRow key={entry.ruleId} className="bg-card">
+                    <TableCell className="text-foreground">{entry.name}</TableCell>
+                    <TableCell className="text-muted-foreground">{entry.description}</TableCell>
+                    <TableCell className="text-primary">
+                      -{formatCurrency.format(entry.amount)}
+                    </TableCell>
+                  </TableRow>
                 ))}
                 {evaluation.appliedDiscounts.length === 0 ? (
-                  <tr className="bg-card">
-                    <td colSpan={3} className="px-4 py-4 text-center text-sm text-muted-foreground">
+                  <TableRow className="bg-card">
+                    <TableCell colSpan={3} className="text-center text-sm text-muted-foreground">
                       No discounts qualified for this scenario.
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ) : null}
-              </tbody>
-            </table>
-          </div>
+              </TableBody>
+            </Table>
+          </TableContainer>
 
-          <footer className="text-xs text-muted-foreground">
+          <CardFooter className="text-xs text-muted-foreground">
             Pricing sample uses enterprise direct order from March 2024 with shared rule definitions. Update the shared
             engine to propagate behaviour across quoting surfaces.
-          </footer>
-        </article>
+          </CardFooter>
+        </Card>
       </section>
     </div>
   );
