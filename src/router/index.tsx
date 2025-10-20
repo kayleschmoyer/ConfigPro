@@ -12,6 +12,7 @@ import {
   SharedFeaturesPage,
   TimeIntelligenceHubPage,
   UsersAndRolesPage,
+  TaxRulesPage,
 } from '../pages/shared/features';
 
 export const AppRouter = () => (
@@ -26,6 +27,7 @@ export const AppRouter = () => (
     <Route path="/shared/time-intelligence-hub" element={<TimeIntelligenceHubPage />} />
     <Route path="/shared/pricing-rules" element={<PricingRulesPage />} />
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
+    <Route path="/shared/tax-rules" element={<TaxRulesPage />} />
     <Route path="/scheduling" element={<SchedulingLayout />}>
       <Route index element={<ManagerConsole />} />
       <Route path="manager" element={<ManagerConsole />} />

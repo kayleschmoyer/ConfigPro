@@ -85,6 +85,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/users-and-roles',
       },
+      {
+        id: 'global-tax-rules-foundation',
+        title: 'Global Tax Rules Foundation',
+        summary:
+          'Regional VAT, sales tax, and nexus guardrails with pluggable calculation services for every channel.',
+        systems: ['Shared Platform', 'Billing', 'Commerce'],
+        status: 'in-progress',
+        href: '/shared/tax-rules',
+      },
     ]
   }
 ];

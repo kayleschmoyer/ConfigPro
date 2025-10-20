@@ -10,3 +10,4 @@ export * from './uom.data';
 export * from './UsersAndRolesPage';
 export * from './sharedFeatures.data';
 export * from './permissions.model';
+export * from './TaxRulesPage';
