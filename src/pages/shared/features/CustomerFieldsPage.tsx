@@ -1,3 +1,13 @@
+import { Card, CardDescription, CardTitle } from '../../../shared/ui/Card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '../../../shared/ui/Table';
 import { loyaltyRulebook } from './loyalty.rules';
 
 interface CustomFieldDefinition {
@@ -342,11 +352,11 @@ export const CustomerFieldsPage = () => {
 
         <div className="space-y-5">
           {fieldCollections.map((collection) => (
-            <div key={collection.id} className="rounded-lg border border-border bg-card p-6 shadow-sm">
+            <Card key={collection.id} className="space-y-5">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
-                  <h3 className="text-lg font-semibold text-foreground">{collection.title}</h3>
-                  <p className="text-sm text-muted-foreground">{collection.description}</p>
+                  <CardTitle>{collection.title}</CardTitle>
+                  <CardDescription>{collection.description}</CardDescription>
                   <p className="text-xs text-muted-foreground">
                     <span className="font-semibold text-foreground">Steward:</span> {collection.steward}
                   </p>
@@ -363,38 +373,38 @@ export const CustomerFieldsPage = () => {
                 </div>
               </div>
 
-              <div className="mt-5 overflow-x-auto">
-                <table className="min-w-full divide-y divide-border text-left text-sm">
-                  <thead className="bg-muted/50 text-xs uppercase tracking-wide text-muted-foreground">
-                    <tr>
-                      <th className="px-3 py-2 font-semibold text-foreground">Field</th>
-                      <th className="px-3 py-2 font-semibold text-foreground">Data type</th>
-                      <th className="px-3 py-2 font-semibold text-foreground">Requirement</th>
-                      <th className="px-3 py-2 font-semibold text-foreground">Usage</th>
-                      <th className="px-3 py-2 font-semibold text-foreground">Surfaces</th>
-                      <th className="px-3 py-2 font-semibold text-foreground">Retention</th>
-                      <th className="px-3 py-2 font-semibold text-foreground">Consent gate</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border">
+              <TableContainer className="mt-5">
+                <Table>
+                  <TableHeader className="bg-muted/50">
+                    <TableRow>
+                      <TableHead>Field</TableHead>
+                      <TableHead>Data type</TableHead>
+                      <TableHead>Requirement</TableHead>
+                      <TableHead>Usage</TableHead>
+                      <TableHead>Surfaces</TableHead>
+                      <TableHead>Retention</TableHead>
+                      <TableHead>Consent gate</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
                     {collection.fields.map((field) => (
-                      <tr key={field.key} className="align-top">
-                        <td className="px-3 py-2">
+                      <TableRow key={field.key} className="align-top">
+                        <TableCell>
                           <div className="font-medium text-foreground">{field.label}</div>
                           <div className="text-xs uppercase tracking-wide text-muted-foreground">{field.key}</div>
-                        </td>
-                        <td className="px-3 py-2 text-sm text-muted-foreground">{field.dataType}</td>
-                        <td className="px-3 py-2 text-sm text-muted-foreground">{field.requirement}</td>
-                        <td className="px-3 py-2 text-sm text-muted-foreground">{field.usage}</td>
-                        <td className="px-3 py-2 text-sm text-muted-foreground">{field.surfaces.join(', ')}</td>
-                        <td className="px-3 py-2 text-sm text-muted-foreground">{field.retention}</td>
-                        <td className="px-3 py-2 text-sm text-muted-foreground">{field.consentGate ?? '—'}</td>
-                      </tr>
+                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{field.dataType}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{field.requirement}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{field.usage}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{field.surfaces.join(', ')}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{field.retention}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{field.consentGate ?? '—'}</TableCell>
+                      </TableRow>
                     ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Card>
           ))}
         </div>
       </section>

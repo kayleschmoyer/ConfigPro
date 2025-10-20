@@ -9,6 +9,16 @@ import {
   resolveFlagState,
   isFeatureEnabled,
 } from './flags.client';
+import { Card, CardDescription, CardTitle } from '../../../shared/ui/Card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '../../../shared/ui/Table';
 
 const stateLabels: Record<FlagResolution['state'], string> = {
   on: 'Enabled',
@@ -143,56 +153,46 @@ export const FeatureFlagsPage = () => {
           {orgProfiles.map((org) => {
             const flagStates = listOrgFlagStates(org.id);
             return (
-              <article key={org.id} className="rounded-lg border border-border bg-card p-6 shadow-sm">
-                <header className="mb-4 space-y-1">
-                  <div className="flex flex-wrap items-baseline justify-between gap-3">
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground">{org.name}</h3>
-                      <p className="text-sm text-muted-foreground">{org.segment}</p>
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      <span className="font-semibold text-foreground">Steward:</span> {org.steward}
-                    </div>
+              <Card key={org.id} className="space-y-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <div>
+                    <CardTitle>{org.name}</CardTitle>
+                    <CardDescription>{org.segment}</CardDescription>
                   </div>
-                  <p className="text-sm text-muted-foreground">{org.notes}</p>
-                </header>
+                  <div className="text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground">Steward:</span> {org.steward}
+                  </div>
+                </div>
+                <CardDescription>{org.notes}</CardDescription>
 
-                <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-border text-sm">
-                    <thead className="bg-muted/40 text-xs uppercase tracking-wide text-muted-foreground">
-                      <tr>
-                        <th scope="col" className="px-4 py-2 text-left font-semibold">
-                          Feature
-                        </th>
-                        <th scope="col" className="px-4 py-2 text-left font-semibold">
-                          Org state
-                        </th>
-                        <th scope="col" className="px-4 py-2 text-left font-semibold">
-                          Global default
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
+                <TableContainer>
+                  <Table>
+                    <TableHeader className="bg-muted/40">
+                      <TableRow>
+                        <TableHead scope="col">Feature</TableHead>
+                        <TableHead scope="col">Org state</TableHead>
+                        <TableHead scope="col">Global default</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
                       {flagStates.map(({ definition, resolution }) => (
-                        <tr key={`${org.id}-${definition.key}`} className="align-top">
-                          <td className="px-4 py-3">
+                        <TableRow key={`${org.id}-${definition.key}`} className="align-top">
+                          <TableCell>
                             <div className="font-medium text-foreground">{definition.label}</div>
                             <p className="text-xs text-muted-foreground">{definition.description}</p>
-                          </td>
-                          <td className="px-4 py-3">
-                            {renderStateBadge(resolution)}
-                          </td>
-                          <td className="px-4 py-3">
+                          </TableCell>
+                          <TableCell>{renderStateBadge(resolution)}</TableCell>
+                          <TableCell>
                             <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold ${stateClasses[definition.defaultState]}`}>
                               {stateLabels[definition.defaultState]}
                             </span>
-                          </td>
-                        </tr>
+                          </TableCell>
+                        </TableRow>
                       ))}
-                    </tbody>
-                  </table>
-                </div>
-              </article>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Card>
             );
           })}
         </div>

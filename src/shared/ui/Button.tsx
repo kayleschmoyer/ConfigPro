@@ -3,7 +3,7 @@ import { motion, type HTMLMotionProps } from 'framer-motion';
 import { forwardRef } from 'react';
 import { cn } from '../../lib/cn';
 
-type ButtonVariant = 'primary' | 'outline' | 'ghost';
+type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'destructive' | 'subtle';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 type MotionButtonProps = HTMLMotionProps<'button'>;
@@ -15,13 +15,17 @@ export interface ButtonProps extends MotionButtonProps {
 }
 
 const baseStyles =
-  'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70';
+  'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-70';
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: 'bg-primary text-white shadow-md shadow-primary/30 hover:bg-primary/90 focus-visible:ring-primary',
   outline:
     'border border-primary/70 text-primary hover:bg-primary/10 focus-visible:ring-primary/60 bg-surface/80 backdrop-blur',
-  ghost: 'text-foreground hover:bg-surface/60 focus-visible:ring-surface'
+  ghost: 'text-foreground hover:bg-surface/60 focus-visible:ring-surface/70',
+  destructive:
+    'bg-red-500 text-white shadow-md shadow-red-400/20 hover:bg-red-500/90 focus-visible:ring-red-500',
+  subtle:
+    'bg-surface/80 text-foreground shadow-sm shadow-primary/10 hover:bg-surface focus-visible:ring-primary/30'
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -31,7 +35,14 @@ const sizeStyles: Record<ButtonSize, string> = {
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ asChild, className, variant = 'primary', size = 'md', whileTap = { scale: 0.97 }, ...props }, ref) => {
+  ({
+    asChild,
+    className,
+    variant = 'primary',
+    size = 'md',
+    whileTap = { scale: 0.97 },
+    ...props
+  }, ref) => {
     const classes = cn(baseStyles, variantStyles[variant], sizeStyles[size], className);
 
     if (asChild) {
