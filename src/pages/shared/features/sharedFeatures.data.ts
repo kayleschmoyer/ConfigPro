@@ -50,6 +50,16 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
     id: 'supporting-tools',
     title: 'Supporting Tools',
     description: 'Utilities and enablement shared between teams.',
-    features: []
+    features: [
+      {
+        id: 'users-and-roles-foundation',
+        title: 'Users & Roles Foundation',
+        summary:
+          'Unified RBAC and ABAC modeling with invitation orchestration for every ConfigPro org.',
+        systems: ['Scheduling', 'Forecasting', 'Shared Platform'],
+        status: 'in-progress',
+        href: '/shared/users-and-roles',
+      },
+    ]
   }
 ];
