@@ -1,5 +1,15 @@
-import { z } from 'zod';
+import type { ZodType, ZodTypeDef } from 'zod';
 import * as yup from 'yup';
+
+import { sharedFormValidators } from '../../../shared/validation/validators';
+
+import type {
+  WorkspaceInput,
+  LocationInput,
+  MenuItemInput,
+  TaxProfileInput,
+  SchedulingRuleInput,
+} from '../../../shared/validation/zodSchemas';
 
 export type SchemaVersion = `${number}.${number}.${number}`;
 
@@ -17,7 +27,9 @@ export interface SchemaLifecycleNotes {
   activation: string;
 }
 
-export interface ValidationSchemaBundle<TZod extends z.ZodTypeAny = z.ZodTypeAny> {
+type AnyZodSchema = ZodType<unknown, ZodTypeDef, unknown>;
+
+export interface ValidationSchemaBundle<TZod extends AnyZodSchema = AnyZodSchema> {
   id: string;
   entity: string;
   version: SchemaVersion;
@@ -29,263 +41,6 @@ export interface ValidationSchemaBundle<TZod extends z.ZodTypeAny = z.ZodTypeAny
   fields: SchemaFieldDescriptor[];
   example: Record<string, unknown>;
 }
-
-const workspaceSchema = z.object({
-  id: z.string().uuid(),
-  name: z.string().min(3).max(120),
-  status: z.enum(['draft', 'active', 'suspended']),
-  timezone: z.string().regex(/^[A-Za-z_\\/]+$/, 'Use an IANA timezone identifier'),
-  currency: z.string().length(3),
-  goLiveDate: z.coerce.date().optional(),
-  primaryContact: z.object({
-    name: z.string().min(2),
-    email: z.string().email(),
-  }),
-});
-
-export type WorkspaceInput = z.infer<typeof workspaceSchema>;
-
-const workspaceYupSchema: yup.ObjectSchema<WorkspaceInput> = yup
-  .object({
-    id: yup.string().uuid('Workspace ID must be a UUID').required('Workspace ID is required'),
-    name: yup.string().min(3).max(120).required('Workspace name is required'),
-    status: yup
-      .mixed<WorkspaceInput['status']>()
-      .oneOf(['draft', 'active', 'suspended'], 'Status must be draft, active, or suspended')
-      .required('Workspace status is required'),
-    timezone: yup
-      .string()
-      .matches(/^[A-Za-z_\\/]+$/, 'Timezone must be an IANA identifier')
-      .required('Timezone is required'),
-    currency: yup
-      .string()
-      .matches(/^[A-Z]{3}$/i, 'Use a three letter ISO 4217 currency code')
-      .required('Currency is required'),
-    goLiveDate: yup.date().optional(),
-    primaryContact: yup
-      .object({
-        name: yup.string().min(2, 'Contact name must have at least 2 characters').required('Contact name is required'),
-        email: yup.string().email('Contact email must be valid').required('Contact email is required'),
-      })
-      .required('Primary contact details are required'),
-  })
-  .noUnknown(true, 'Unexpected field provided for workspace schema') as yup.ObjectSchema<WorkspaceInput>;
-
-const locationSchema = z.object({
-  id: z.string().uuid(),
-  workspaceId: z.string().uuid(),
-  name: z.string().min(2).max(120),
-  status: z.enum(['draft', 'active', 'temporarily_closed']),
-  timezone: z.string().regex(/^[A-Za-z_\\/]+$/, 'Use an IANA timezone identifier'),
-  address: z.object({
-    line1: z.string().min(3),
-    city: z.string().min(2),
-    region: z.string().min(2),
-    postalCode: z.string().min(3).max(10),
-    country: z.string().length(2),
-  }),
-  opensAt: z.string().regex(/^([01]?\d|2[0-3]):[0-5]\d$/, 'Use HH:mm 24-hour format'),
-  closesAt: z.string().regex(/^([01]?\d|2[0-3]):[0-5]\d$/, 'Use HH:mm 24-hour format'),
-  fulfilmentChannels: z.array(z.enum(['in_store', 'pickup', 'delivery', 'kiosk'])).min(1),
-});
-
-export type LocationInput = z.infer<typeof locationSchema>;
-
-const locationYupSchema: yup.ObjectSchema<LocationInput> = yup
-  .object({
-    id: yup.string().uuid('Location ID must be a UUID').required('Location ID is required'),
-    workspaceId: yup.string().uuid('Workspace ID must be a UUID').required('Workspace ID is required'),
-    name: yup.string().min(2).max(120).required('Location name is required'),
-    status: yup
-      .mixed<LocationInput['status']>()
-      .oneOf(['draft', 'active', 'temporarily_closed'], 'Invalid location status')
-      .required('Location status is required'),
-    timezone: yup
-      .string()
-      .matches(/^[A-Za-z_\\/]+$/, 'Timezone must be an IANA identifier')
-      .required('Timezone is required'),
-    address: yup
-      .object({
-        line1: yup.string().min(3).required('Address line 1 is required'),
-        city: yup.string().min(2).required('City is required'),
-        region: yup.string().min(2).required('Region is required'),
-        postalCode: yup
-          .string()
-          .min(3, 'Postal code must contain at least 3 characters')
-          .max(10, 'Postal code must contain at most 10 characters')
-          .required('Postal code is required'),
-        country: yup
-          .string()
-          .matches(/^[A-Z]{2}$/i, 'Use a two letter ISO country code')
-          .required('Country is required'),
-      })
-      .required('Location address is required'),
-    opensAt: yup
-      .string()
-      .matches(/^([01]?\d|2[0-3]):[0-5]\d$/, 'Opening time must use HH:mm 24-hour format')
-      .required('Opening time is required'),
-    closesAt: yup
-      .string()
-      .matches(/^([01]?\d|2[0-3]):[0-5]\d$/, 'Closing time must use HH:mm 24-hour format')
-      .required('Closing time is required'),
-    fulfilmentChannels: yup
-      .array()
-      .of(yup.mixed<LocationInput['fulfilmentChannels'][number]>().oneOf(['in_store', 'pickup', 'delivery', 'kiosk']))
-      .min(1, 'Select at least one fulfilment channel')
-      .required('Fulfilment channels are required'),
-  })
-  .noUnknown(true, 'Unexpected field provided for location schema') as yup.ObjectSchema<LocationInput>;
-
-const menuItemSchema = z.object({
-  sku: z.string().min(4).max(32),
-  workspaceId: z.string().uuid(),
-  name: z.string().min(2).max(80),
-  category: z.string().min(2),
-  price: z.number().nonnegative().multipleOf(0.01),
-  taxProfileId: z.string().uuid(),
-  isActive: z.boolean().default(true),
-  allergens: z.array(z.string()).max(10).optional(),
-  modifiers: z
-    .array(
-      z.object({
-        id: z.string().uuid(),
-        label: z.string().min(2),
-        additionalPrice: z.number().min(0).max(1000).default(0),
-        required: z.boolean().default(false),
-      })
-    )
-    .optional(),
-});
-
-export type MenuItemInput = z.infer<typeof menuItemSchema>;
-
-const menuItemYupSchema: yup.ObjectSchema<MenuItemInput> = yup
-  .object({
-    sku: yup.string().min(4).max(32).required('SKU is required'),
-    workspaceId: yup.string().uuid('Workspace ID must be a UUID').required('Workspace ID is required'),
-    name: yup.string().min(2).max(80).required('Menu item name is required'),
-    category: yup.string().min(2).required('Category is required'),
-    price: yup
-      .number()
-      .min(0, 'Price must be zero or greater')
-      .test('currency-increment', 'Price must increment by 0.01', (value) => value == null || Number.isInteger(Math.round(value * 100)))
-      .required('Price is required'),
-    taxProfileId: yup.string().uuid('Tax profile ID must be a UUID').required('Tax profile ID is required'),
-    isActive: yup.boolean().default(true).required(),
-    allergens: yup
-      .array()
-      .of(yup.string().min(2, 'Allergen entries should be at least 2 characters'))
-      .max(10, 'Limit allergens to 10 entries')
-      .optional(),
-    modifiers: yup
-      .array()
-      .of(
-        yup
-          .object({
-            id: yup.string().uuid('Modifier ID must be a UUID').required('Modifier ID is required'),
-            label: yup.string().min(2).required('Modifier label is required'),
-            additionalPrice: yup
-              .number()
-              .min(0, 'Additional price must be >= 0')
-              .max(1000, 'Additional price must be <= 1000')
-              .default(0),
-            required: yup.boolean().default(false),
-          })
-          .noUnknown(true, 'Unexpected field provided for modifier')
-      )
-      .optional(),
-  })
-  .noUnknown(true, 'Unexpected field provided for menu item schema') as yup.ObjectSchema<MenuItemInput>;
-
-const taxProfileSchema = z.object({
-  id: z.string().uuid(),
-  name: z.string().min(3).max(80),
-  jurisdiction: z.string().min(2),
-  rate: z.number().min(0).max(1),
-  exemptions: z.array(z.string()).optional(),
-  effectiveFrom: z.coerce.date(),
-  workspaceId: z.string().uuid(),
-});
-
-export type TaxProfileInput = z.infer<typeof taxProfileSchema>;
-
-const taxProfileYupSchema: yup.ObjectSchema<TaxProfileInput> = yup
-  .object({
-    id: yup.string().uuid('Tax profile ID must be a UUID').required('Tax profile ID is required'),
-    name: yup.string().min(3).max(80).required('Tax profile name is required'),
-    jurisdiction: yup.string().min(2).required('Jurisdiction is required'),
-    rate: yup
-      .number()
-      .min(0, 'Rate must be >= 0')
-      .max(1, 'Rate must be <= 1 (100%)')
-      .required('Tax rate is required'),
-    exemptions: yup
-      .array()
-      .of(yup.string().min(2, 'Exemption codes should be descriptive'))
-      .optional(),
-    effectiveFrom: yup.date().required('Effective from date is required'),
-    workspaceId: yup.string().uuid('Workspace ID must be a UUID').required('Workspace ID is required'),
-  })
-  .noUnknown(true, 'Unexpected field provided for tax profile schema') as yup.ObjectSchema<TaxProfileInput>;
-
-const schedulingRuleSchema = z.object({
-  id: z.string().uuid(),
-  locationId: z.string().uuid(),
-  role: z.string().min(2),
-  coverageHours: z.array(
-    z.object({
-      day: z.enum(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']),
-      start: z.string().regex(/^([01]?\d|2[0-3]):[0-5]\d$/, 'Use HH:mm 24-hour format'),
-      end: z.string().regex(/^([01]?\d|2[0-3]):[0-5]\d$/, 'Use HH:mm 24-hour format'),
-    })
-  ),
-  minStaff: z.number().int().min(0),
-  maxStaff: z.number().int().min(1),
-  constraints: z.array(z.string()).optional(),
-});
-
-export type SchedulingRuleInput = z.infer<typeof schedulingRuleSchema>;
-
-const schedulingRuleYupSchema: yup.ObjectSchema<SchedulingRuleInput> = yup
-  .object({
-    id: yup.string().uuid('Rule ID must be a UUID').required('Rule ID is required'),
-    locationId: yup.string().uuid('Location ID must be a UUID').required('Location ID is required'),
-    role: yup.string().min(2).required('Role is required'),
-    coverageHours: yup
-      .array()
-      .of(
-        yup
-          .object({
-            day: yup
-              .mixed<SchedulingRuleInput['coverageHours'][number]['day']>()
-              .oneOf(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'])
-              .required('Day is required'),
-            start: yup
-              .string()
-              .matches(/^([01]?\d|2[0-3]):[0-5]\d$/, 'Start time must use HH:mm 24-hour format')
-              .required('Start time is required'),
-            end: yup
-              .string()
-              .matches(/^([01]?\d|2[0-3]):[0-5]\d$/, 'End time must use HH:mm 24-hour format')
-              .required('End time is required'),
-          })
-          .noUnknown(true, 'Unexpected field provided for coverage hours row')
-      )
-      .min(1, 'Provide coverage hours for at least one day')
-      .required('Coverage hours are required'),
-    minStaff: yup
-      .number()
-      .integer('Minimum staff must be a whole number')
-      .min(0, 'Minimum staff must be >= 0')
-      .required('Minimum staff is required'),
-    maxStaff: yup
-      .number()
-      .integer('Maximum staff must be a whole number')
-      .min(1, 'Maximum staff must be >= 1')
-      .required('Maximum staff is required'),
-    constraints: yup.array().of(yup.string().min(3, 'Constraints should be descriptive')).optional(),
-  })
-  .noUnknown(true, 'Unexpected field provided for scheduling rule schema') as yup.ObjectSchema<SchedulingRuleInput>;
 
 export const validationSchemaLibrary: ValidationSchemaBundle[] = [
   {
@@ -300,8 +55,8 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       hydration: 'Mirrors core properties to analytics and scheduling contexts via change-data-capture streams.',
       activation: 'Publishes derived status flags to feature toggles for onboarding, billing, and telemetry workloads.',
     },
-    zod: workspaceSchema,
-    yup: workspaceYupSchema as yup.ObjectSchema<Record<string, unknown>>,
+    zod: sharedFormValidators.workspace.schema,
+    yup: sharedFormValidators.workspace.yup as yup.ObjectSchema<Record<string, unknown>>,
     fields: [
       {
         name: 'id',
@@ -355,12 +110,12 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       status: 'active',
       timezone: 'America/Chicago',
       currency: 'USD',
-      goLiveDate: '2025-02-03',
+      goLiveDate: new Date('2025-02-03'),
       primaryContact: {
         name: 'Jordan Patel',
         email: 'jordan.patel@example.com',
       },
-    },
+    } satisfies WorkspaceInput,
   },
   {
     id: 'location-profile',
@@ -374,8 +129,8 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       hydration: 'Syncs with workforce scheduling, tax nexus, and logistics planning surfaces nightly.',
       activation: 'Raises change events for status flips to notify pickup, delivery, and kiosk orchestration services.',
     },
-    zod: locationSchema,
-    yup: locationYupSchema as yup.ObjectSchema<Record<string, unknown>>,
+    zod: sharedFormValidators.location.schema,
+    yup: sharedFormValidators.location.yup as yup.ObjectSchema<Record<string, unknown>>,
     fields: [
       {
         name: 'id',
@@ -448,7 +203,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       opensAt: '07:00',
       closesAt: '22:00',
       fulfilmentChannels: ['in_store', 'pickup', 'delivery'],
-    },
+    } satisfies LocationInput,
   },
   {
     id: 'menu-item-canonical',
@@ -462,8 +217,8 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       hydration: 'Serves canonical fields to KDS, kiosks, and third-party marketplaces via fan-out adapters.',
       activation: 'Triggers price broadcast events and allergen notifications on activation toggles.',
     },
-    zod: menuItemSchema,
-    yup: menuItemYupSchema as yup.ObjectSchema<Record<string, unknown>>,
+    zod: sharedFormValidators.menuItem.schema,
+    yup: sharedFormValidators.menuItem.yup as yup.ObjectSchema<Record<string, unknown>>,
     fields: [
       {
         name: 'sku',
@@ -537,7 +292,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
           required: false,
         },
       ],
-    },
+    } satisfies MenuItemInput,
   },
   {
     id: 'tax-profile-governance',
@@ -551,8 +306,8 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       hydration: 'Feeds downstream calculation engines and business intelligence aggregates nightly.',
       activation: 'Versioned events broadcast to ordering and invoicing services for seamless rate transitions.',
     },
-    zod: taxProfileSchema,
-    yup: taxProfileYupSchema as yup.ObjectSchema<Record<string, unknown>>,
+    zod: sharedFormValidators.taxProfile.schema,
+    yup: sharedFormValidators.taxProfile.yup as yup.ObjectSchema<Record<string, unknown>>,
     fields: [
       {
         name: 'id',
@@ -603,9 +358,9 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       jurisdiction: 'IL-Cook',
       rate: 0.1025,
       exemptions: ['grocery'],
-      effectiveFrom: '2025-01-01',
+      effectiveFrom: new Date('2025-01-01'),
       workspaceId: '0fd1a1a4-7c4a-49f6-8e0a-33a33a3d8b09',
-    },
+    } satisfies TaxProfileInput,
   },
   {
     id: 'scheduling-rule-blueprint',
@@ -619,8 +374,8 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       hydration: 'Replicated into forecasting sandboxes and live roster builders on publish.',
       activation: 'Emits alerts if coverage windows violate labour, tax, or safety policies.',
     },
-    zod: schedulingRuleSchema,
-    yup: schedulingRuleYupSchema as yup.ObjectSchema<Record<string, unknown>>,
+    zod: sharedFormValidators.schedulingRule.schema,
+    yup: sharedFormValidators.schedulingRule.yup as yup.ObjectSchema<Record<string, unknown>>,
     fields: [
       {
         name: 'id',
@@ -676,7 +431,7 @@ export const validationSchemaLibrary: ValidationSchemaBundle[] = [
       minStaff: 1,
       maxStaff: 3,
       constraints: ['Requires food safety certification', 'Max 40 hours per associate'],
-    },
+    } satisfies SchedulingRuleInput,
   },
 ];
 
@@ -693,4 +448,12 @@ export function getValidationSchemaBundle(entity: string): ValidationSchemaBundl
 export function listValidationEntities(): string[] {
   return validationSchemaLibrary.map((bundle) => bundle.entity);
 }
+
+export type {
+  WorkspaceInput,
+  LocationInput,
+  MenuItemInput,
+  TaxProfileInput,
+  SchedulingRuleInput,
+} from '../../../shared/validation/zodSchemas';
 
