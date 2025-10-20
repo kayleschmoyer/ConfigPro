@@ -25,7 +25,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
       {
         id: 'forecast-to-schedule-orchestration',
         title: 'Forecast-to-Schedule Orchestration',
-        summary: 'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
+        summary:
+          'Connect the AuroraDemandNet forecasting workspace to scheduling coverage plans with shared guardrails.',
         systems: ['Forecasting', 'Scheduling'],
         status: 'in-progress',
       },
@@ -47,7 +48,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/time-intelligence-hub',
       },
-    ]
+    ],
   },
   {
     id: 'enterprise-foundation',
@@ -79,13 +80,22 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/payment-providers',
       },
-    ]
+    ],
   },
   {
     id: 'supporting-tools',
     title: 'Supporting Tools',
     description: 'Utilities and enablement shared between teams.',
     features: [
+      {
+        id: 'feature-flags-control-service',
+        title: 'Feature Flags Control Service',
+        summary:
+          'Org and location aware gating with ownership metadata so releases coordinate across every ConfigPro surface.',
+        systems: ['Shared Platform', 'Product', 'Operations'],
+        status: 'in-progress',
+        href: '/shared/feature-flags',
+      },
       {
         id: 'pricing-rules-control-center',
         title: 'Pricing Rules Control Center',
@@ -95,7 +105,7 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'planned',
         href: '/shared/pricing-rules',
       },
-    ],
+      {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary:
@@ -111,6 +121,8 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         systems: ['Billing', 'Shared Platform'],
         status: 'available',
         href: '/shared/documents-and-branding',
+      },
+      {
         id: 'global-tax-rules-foundation',
         title: 'Global Tax Rules Foundation',
         summary:
@@ -119,6 +131,6 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         status: 'in-progress',
         href: '/shared/tax-rules',
       },
-    ]
-  }
+    ],
+  },
 ];

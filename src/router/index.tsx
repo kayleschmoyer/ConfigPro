@@ -1,22 +1,23 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
-import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
-import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
 import { PointOfSalePage } from '../pages/additional-paid-features/configpro/PointOfSalePage';
 import { ThemePlaygroundPage } from '../pages/additional-paid-features/configpro/ThemePlaygroundPage';
-import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
-import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
-import { OrgAndLocationsPage, SharedFeaturesPage, TimeIntelligenceHubPage } from '../pages/shared/features';
-import { SharedFeaturesPage, TimeIntelligenceHubPage, PricingRulesPage } from '../pages/shared/features';
+import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
+import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
+import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
 import {
   DocumentsAndBrandingPage,
-  SharedFeaturesPage,
-  TimeIntelligenceHubPage,
-  PaymentProvidersPage,
-  UsersAndRolesPage,
+  FeatureFlagsPage,
+  OrgAndLocationsPage,
   OrderWorkflowPage,
+  PaymentProvidersPage,
+  PricingRulesPage,
+  SharedFeaturesPage,
   TaxRulesPage,
+  TimeIntelligenceHubPage,
+  UsersAndRolesPage,
 } from '../pages/shared/features';
+import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
+import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 
 export const AppRouter = () => (
   <Routes>
@@ -29,6 +30,7 @@ export const AppRouter = () => (
     <Route path="/shared/org-and-locations" element={<OrgAndLocationsPage />} />
     <Route path="/shared/time-intelligence-hub" element={<TimeIntelligenceHubPage />} />
     <Route path="/shared/payment-providers" element={<PaymentProvidersPage />} />
+    <Route path="/shared/feature-flags" element={<FeatureFlagsPage />} />
     <Route path="/shared/pricing-rules" element={<PricingRulesPage />} />
     <Route path="/shared/users-and-roles" element={<UsersAndRolesPage />} />
     <Route path="/shared/order-workflows" element={<OrderWorkflowPage />} />
