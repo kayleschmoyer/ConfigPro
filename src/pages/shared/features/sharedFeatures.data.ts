@@ -97,6 +97,15 @@ export const sharedFeatureGroups: SharedFeatureGroup[] = [
         href: '/shared/pricing-rules',
       },
       {
+        id: 'reporting-intelligence',
+        title: 'Reporting intelligence',
+        summary:
+          'Governed saved reports, curated exports, and indexable datasets that standardise how teams analyse ConfigPro performance.',
+        systems: ['Shared Platform', 'Revenue Ops', 'Operations'],
+        status: 'in-progress',
+        href: '/shared/reporting',
+      },
+      {
         id: 'users-and-roles-foundation',
         title: 'Users & Roles Foundation',
         summary:
