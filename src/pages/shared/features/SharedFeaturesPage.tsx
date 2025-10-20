@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { SharedFeatureRegistry, FeatureKey } from './feature.registry';
+import { SharedNav } from './SharedNav';
 import { sharedFeatureGroups } from './sharedFeatures.data';
 
 const registryDefaults: Record<FeatureKey, boolean> = SharedFeatureRegistry.reduce(
@@ -47,6 +48,8 @@ export const SharedFeaturesPage = () => {
           become available.
         </p>
       </header>
+
+      <SharedNav />
 
       <section aria-labelledby="base-package" className="space-y-6">
         <header className="space-y-2">
@@ -187,3 +190,5 @@ export const SharedFeaturesPage = () => {
     </div>
   );
 };
+
+export default SharedFeaturesPage;

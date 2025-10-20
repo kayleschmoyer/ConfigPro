@@ -208,3 +208,5 @@ export const DataImportExportPage = () => {
     </div>
   );
 };
+
+export default DataImportExportPage;

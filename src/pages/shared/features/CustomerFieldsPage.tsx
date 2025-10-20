@@ -534,3 +534,5 @@ export const CustomerFieldsPage = () => {
     </div>
   );
 };
+
+export default CustomerFieldsPage;

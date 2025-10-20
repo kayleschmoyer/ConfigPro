@@ -253,3 +253,5 @@ export const CatalogAttributesPage = () => {
   );
 };
 
+export default CatalogAttributesPage;
+

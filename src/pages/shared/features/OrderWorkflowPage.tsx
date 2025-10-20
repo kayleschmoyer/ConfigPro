@@ -625,3 +625,5 @@ export const OrderWorkflowPage = () => {
     </div>
   );
 };
+
+export default OrderWorkflowPage;

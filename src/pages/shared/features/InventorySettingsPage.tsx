@@ -322,3 +322,5 @@ export const InventorySettingsPage = () => {
     </div>
   );
 };
+
+export default InventorySettingsPage;
