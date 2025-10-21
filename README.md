@@ -1,4 +1,4 @@
-Test commit for Jira integration.
+Testing Jira
 
 🏁 STEP 1: Create Your Dev Folder
 
