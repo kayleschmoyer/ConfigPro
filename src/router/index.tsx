@@ -11,6 +11,17 @@ import { FeaturePlaygroundPage } from '../pages/dev/FeaturePlaygroundPage';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 import {
+  SchedulerLayout,
+  Schedule as SchedulerSchedule,
+  Availability as SchedulerAvailability,
+  Rules as SchedulerRules,
+  AutoScheduler as SchedulerAuto,
+  Swaps as SchedulerSwaps,
+  Publishing as SchedulerPublishing,
+  Reports as SchedulerReports,
+  Settings as SchedulerSettings,
+} from '../features/shared/scheduler';
+import {
   ARLayout,
   ARHome,
   ARInvoices,
@@ -45,10 +56,20 @@ export const AppRouter = () => (
     <Route path="/industries/daycare" element={<BaseDaycarePage />} />
     <Route path="/industries/construction" element={<BaseConstructionPage />} />
     <Route path="/industries/automotive" element={<BaseAutomotivePage />} />
-    <Route element={<Suspense fallback={<div className="p-6 text-muted-foreground">Loading…</div>} />}>
+    <Route element={<Suspense fallback={<div className="p-6 text-muted-foreground">Loading…</div>} />}> 
       {sharedRoutes.map((route) => (
         <Route key={route.path} path={route.path} element={route.element} />
       ))}
+    </Route>
+    <Route path="/scheduler" element={<SchedulerLayout />}>
+      <Route index element={<SchedulerSchedule />} />
+      <Route path="availability" element={<SchedulerAvailability />} />
+      <Route path="rules" element={<SchedulerRules />} />
+      <Route path="auto" element={<SchedulerAuto />} />
+      <Route path="swaps" element={<SchedulerSwaps />} />
+      <Route path="publishing" element={<SchedulerPublishing />} />
+      <Route path="reports" element={<SchedulerReports />} />
+      <Route path="settings" element={<SchedulerSettings />} />
     </Route>
     <Route path="/scheduling" element={<SchedulingLayout />}>
       <Route index element={<ManagerConsole />} />
