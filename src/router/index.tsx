@@ -36,6 +36,19 @@ import {
   Reports as APReports,
   Settings as APSettings,
 } from '../routes/ap';
+  TimeClockLayout,
+  TimeClockHome,
+  Clock,
+  Breaks,
+  Timesheets,
+  Approvals,
+  Exceptions,
+  Policies,
+  Devices,
+  Reports,
+  Settings,
+  Scheduling,
+} from '../features/shared/timeclock';
 import {
   BaseAutomotivePage,
   BaseConstructionPage,
@@ -74,18 +87,18 @@ export const AppRouter = () => (
       <Route path="studio" element={<DemandStudio />} />
       <Route path="workbench" element={<ScenarioWorkbench />} />
     </Route>
-    <Route path="/ap" element={<APLayout />}>
-      <Route index element={<APHome />} />
-      <Route path="bills" element={<APBills />} />
-      <Route path="vendors" element={<APVendors />} />
-      <Route path="purchase-orders" element={<APPurchaseOrders />} />
-      <Route path="match" element={<APMatch />} />
-      <Route path="approvals" element={<APApprovals />} />
-      <Route path="payments" element={<APPayments />} />
-      <Route path="exceptions" element={<APExceptions />} />
-      <Route path="automation" element={<APAutomation />} />
-      <Route path="reports" element={<APReports />} />
-      <Route path="settings" element={<APSettings />} />
+    <Route path="/time-clock" element={<TimeClockLayout />}>
+      <Route index element={<TimeClockHome />} />
+      <Route path="clock" element={<Clock />} />
+      <Route path="breaks" element={<Breaks />} />
+      <Route path="timesheets" element={<Timesheets />} />
+      <Route path="scheduling" element={<Scheduling />} />
+      <Route path="approvals" element={<Approvals />} />
+      <Route path="exceptions" element={<Exceptions />} />
+      <Route path="policies" element={<Policies />} />
+      <Route path="devices" element={<Devices />} />
+      <Route path="reports" element={<Reports />} />
+      <Route path="settings" element={<Settings />} />
     </Route>
     <Route path="/ar" element={<ARLayout />}>
       <Route index element={<ARHome />} />
