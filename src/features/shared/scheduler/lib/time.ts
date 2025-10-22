@@ -1,4 +1,4 @@
-import { DateISO } from './types';
+import type { DateISO } from './types';
 
 const MINUTE = 60 * 1000;
 
