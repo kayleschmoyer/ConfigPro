@@ -23,6 +23,20 @@ import {
   ARSettings
 } from '../routes/accounts-receivable';
 import {
+  TimeClockLayout,
+  TimeClockHome,
+  Clock,
+  Breaks,
+  Timesheets,
+  Approvals,
+  Exceptions,
+  Policies,
+  Devices,
+  Reports,
+  Settings,
+  Scheduling,
+} from '../features/shared/timeclock';
+import {
   BaseAutomotivePage,
   BaseConstructionPage,
   BaseDaycarePage,
@@ -59,6 +73,19 @@ export const AppRouter = () => (
       <Route index element={<DemandStudio />} />
       <Route path="studio" element={<DemandStudio />} />
       <Route path="workbench" element={<ScenarioWorkbench />} />
+    </Route>
+    <Route path="/time-clock" element={<TimeClockLayout />}>
+      <Route index element={<TimeClockHome />} />
+      <Route path="clock" element={<Clock />} />
+      <Route path="breaks" element={<Breaks />} />
+      <Route path="timesheets" element={<Timesheets />} />
+      <Route path="scheduling" element={<Scheduling />} />
+      <Route path="approvals" element={<Approvals />} />
+      <Route path="exceptions" element={<Exceptions />} />
+      <Route path="policies" element={<Policies />} />
+      <Route path="devices" element={<Devices />} />
+      <Route path="reports" element={<Reports />} />
+      <Route path="settings" element={<Settings />} />
     </Route>
     <Route path="/ar" element={<ARLayout />}>
       <Route index element={<ARHome />} />
