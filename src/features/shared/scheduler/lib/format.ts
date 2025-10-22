@@ -1,4 +1,4 @@
-import { DateISO } from './types';
+import type { DateISO } from './types';
 import { differenceInMinutes, minutesToHHmm } from './time';
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
