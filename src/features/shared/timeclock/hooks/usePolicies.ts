@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { Policy } from '../lib/types';
+import type { Policy } from '../lib';
 
 const demoPolicies: Policy[] = [
   {

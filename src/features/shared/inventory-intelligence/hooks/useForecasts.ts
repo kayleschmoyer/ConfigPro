@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { DemandSeries, Forecast, ForecastMethod, SKU } from '../lib/types';
+import type { DemandSeries, Forecast, ForecastMethod, SKU } from '../lib';
 import { createForecastSummary, evaluateForecasts } from '../lib/forecast';
 import { normalizeDemandSeries } from '../lib/demand';
 

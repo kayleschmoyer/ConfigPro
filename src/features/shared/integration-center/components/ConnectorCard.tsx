@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
-import type { ConnectorCatalogItem } from '../lib/types';
+import type { ConnectorCatalogItem } from '../lib';
 
 interface ConnectorCardProps {
   connector: ConnectorCatalogItem;

@@ -9,7 +9,7 @@ export const StepPricing = () => {
   return (
     <PricingSummary
       breakdown={priceBreakdown}
-      formatCurrency={(value) => formatCurrency({ currency: draft.currency, value })}
+      formatCurrency={(value) => formatCurrency(value)}
       couponCode={draft.couponCode}
       onCouponChange={setCouponCode}
       billingVisible={billingVisible}

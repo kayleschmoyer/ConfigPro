@@ -1,4 +1,4 @@
-import { SKU, StockSnapshot } from './types';
+import type { SKU, StockSnapshot } from './index';
 
 type KitAvailability = {
   skuId: string;

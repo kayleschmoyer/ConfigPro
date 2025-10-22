@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
 import { journeyActions, journeyTriggerCatalog } from '../lib/journeys';
-import type { Journey, JourneySimulationResult } from '../lib/types';
+import type { Journey, JourneySimulationResult } from '../lib';
 
 interface JourneyCanvasProps {
   journey: Journey;

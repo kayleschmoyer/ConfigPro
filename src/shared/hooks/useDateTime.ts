@@ -85,8 +85,12 @@ export const useDateTime = (options: UseDateTimeOptions = {}): DateTimeFormatter
       const startDate = toSafeDate(start);
       const endDate = toSafeDate(end);
 
-      if (typeof formatter.formatRange === 'function') {
-        return formatter.formatRange(startDate, endDate);
+      const maybeRangeFormatter = formatter as Intl.DateTimeFormat & {
+        formatRange?: (start: Date, end: Date) => string;
+      };
+
+      if (typeof maybeRangeFormatter.formatRange === 'function') {
+        return maybeRangeFormatter.formatRange(startDate, endDate);
       }
 
       return `${formatter.format(startDate)} – ${formatter.format(endDate)}`;

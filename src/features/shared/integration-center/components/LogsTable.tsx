@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow
 } from '@/shared/ui/Table';
-import type { LogEvent } from '../lib/types';
+import type { LogEvent } from '../lib';
 
 interface LogsTableProps {
   events: Array<LogEvent & { atRelative: string }>;

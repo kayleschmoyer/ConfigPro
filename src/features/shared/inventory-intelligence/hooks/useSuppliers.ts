@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { calculateLeadTimeStats, updateLeadTimeScore } from '../lib/leadtime';
-import { LeadTimeStats, Supplier } from '../lib/types';
+import type { LeadTimeStats, Supplier } from '../lib';
 
 const DEMO_SUPPLIERS: Supplier[] = [
   {

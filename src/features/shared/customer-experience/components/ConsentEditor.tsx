@@ -2,7 +2,7 @@ import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
 import { describeConsent } from '../lib/privacy';
-import type { Customer } from '../lib/types';
+import type { Customer } from '../lib';
 
 interface ConsentEditorProps {
   customer: Customer;

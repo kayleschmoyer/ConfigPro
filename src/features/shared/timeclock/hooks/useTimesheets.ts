@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { Employee, Policy, TimesheetEntry } from '../lib/types';
+import type { Employee, Policy, TimesheetEntry } from '../lib';
 import { evaluateTimesheetEntry } from '../lib/policy';
 
 const now = new Date();

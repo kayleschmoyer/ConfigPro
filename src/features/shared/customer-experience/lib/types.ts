@@ -162,6 +162,13 @@ export type SegmentOperator =
   | 'EXISTS'
   | 'NOT_EXISTS';
 
+export type SegmentField = {
+  key: string;
+  label: string;
+  type: 'string' | 'number' | 'date' | 'boolean';
+  source: 'core' | 'custom' | 'behavior' | 'event';
+};
+
 export type SegmentLeaf = {
   type: 'LEAF';
   field: string;

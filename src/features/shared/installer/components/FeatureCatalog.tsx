@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
-import type { FeatureCatalogItem } from '../lib/types';
+import type { FeatureCatalogItem } from '../lib';
 import { FeatureCard } from './FeatureCard';
 import { FeatureOptionsDrawer } from './FeatureOptionsDrawer';
 
@@ -18,7 +18,7 @@ interface FeatureCatalogProps {
   dependencyMap: Record<string, string[]>;
   conflictMap: Record<string, string[]>;
   selectionOptions: Record<string, Record<string, unknown> | undefined>;
-  onRegisterSearchFocus?: (fn: () => void) => void;
+  onRegisterSearchFocus?: (fn: (() => void) | null) => void;
   isAdmin?: boolean;
   adminMode?: boolean;
   pinnedFeatureIds?: string[];

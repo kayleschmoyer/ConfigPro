@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/cn';
 import { formatDate } from '../lib/format';
-import type { OrderRef } from '../lib/types';
+import type { OrderRef } from '../lib';
 
 interface OrderTimelineProps {
   orders: Array<OrderRef & { statusTone?: string; formattedDate?: string }>;

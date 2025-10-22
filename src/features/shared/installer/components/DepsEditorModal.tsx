@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Modal } from '@/shared/ui/Modal';
 import { Button } from '@/shared/ui/Button';
-import type { FeatureCatalogItem } from '../lib/types';
+import type { FeatureCatalogItem } from '../lib';
 import type { DependencyOverride } from '../lib/admin';
 
 interface DepsEditorModalProps {
@@ -130,7 +130,7 @@ export const DepsEditorModal = ({ isOpen, onClose, catalog, overrides, onSave }:
       onClose={onClose}
       title="Advanced dependencies"
       description="Fine-tune dependency and conflict relationships across features."
-      size="xl"
+      size="lg"
       footer={
         <div className="flex items-center justify-between gap-2">
           <Button variant="ghost" onClick={onClose}>

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { AutomationSimulation, Rule } from '../lib/types';
+import type { AutomationSimulation, Rule } from '../lib';
 
 const DEMO_RULES: Rule[] = [
   {

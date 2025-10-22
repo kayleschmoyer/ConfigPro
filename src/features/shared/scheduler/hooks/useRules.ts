@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { sampleLabor } from '../lib/constants';
-import type { LaborLawProfile } from '../lib/types';
+import type { LaborLawProfile } from '../lib';
 
 export const useRules = () => {
   const [profile, setProfile] = useState<LaborLawProfile>(sampleLabor);

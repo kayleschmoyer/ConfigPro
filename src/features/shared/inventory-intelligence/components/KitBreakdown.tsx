@@ -1,6 +1,6 @@
 import { Card } from '@/shared/ui/Card';
 import { formatPercent } from '../lib/format';
-import { SKU, StockSnapshot } from '../lib/types';
+import type { SKU, StockSnapshot } from '../lib';
 import { computeKitAvailability } from '../lib/kits';
 
 export type KitBreakdownProps = {

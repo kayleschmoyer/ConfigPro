@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
 import { formatDateTime } from '../lib/format';
-import type { Employee, ExceptionItem } from '../lib/types';
+import type { Employee, ExceptionItem } from '../lib';
 
 const severityStyles: Record<ExceptionItem['severity'], string> = {
   INFO: 'border-sky-500/30 bg-sky-500/10 text-sky-100',

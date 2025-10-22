@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { summarizeLoyalty, projectAccrual } from '../lib/loyalty';
 import { formatDate, formatMoney } from '../lib/format';
-import type { Reward } from '../lib/types';
+import type { Reward } from '../lib';
 import { usePortal } from './usePortal';
 
 export const useLoyalty = () => {

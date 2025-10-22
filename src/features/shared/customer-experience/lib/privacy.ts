@@ -19,19 +19,21 @@ export const filterMarketingChannels = (customer: Customer) =>
 
 export const shouldAnonymize = (customer: Customer) => {
   if (!customer.consents?.privacyAcceptedAt) return true;
-  const lifecycle = consentLifecycle?.policies?.anonymizeWithoutConsent;
-  if (!lifecycle) return false;
+  const anonymizePolicy = consentPrimitives.find(policy => policy.id === 'gdpr-marketing-communications');
+  if (!anonymizePolicy) return false;
+  const purgeText = anonymizePolicy.retentionWindow.purge ?? '';
+  const monthsMatch = purgeText.match(/(\d+)/);
+  const expiryMonths = monthsMatch ? Number(monthsMatch[1]) : 0;
+  if (!expiryMonths) return false;
   const signedAt = new Date(customer.consents.privacyAcceptedAt);
-  const expiryDays = lifecycle.expireAfterDays ?? 0;
-  if (!expiryDays) return false;
-  const threshold = new Date(signedAt.getTime() + expiryDays * 24 * 60 * 60 * 1000);
+  const threshold = new Date(signedAt.getTime() + expiryMonths * 30 * 24 * 60 * 60 * 1000);
   return Date.now() > threshold.getTime();
 };
 
 export const describeConsent = (customer: Customer) => {
   const marketing = customer.consents?.[MARKETING_CONSENT_KEY as keyof typeof customer.consents];
   const channel = customer.preferences?.channel ?? 'PORTAL';
-  const signals = consentSignalChannels?.channels?.join(', ');
+  const signals = consentSignalChannels.map(({ channel: name }) => name).join(', ');
   return {
     marketingEnabled: Boolean(marketing),
     preferredChannel: channel,

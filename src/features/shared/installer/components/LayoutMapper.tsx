@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
 import { cn } from '@/lib/cn';
-import type { FeatureCatalogItem, LayoutItem, LayoutRegion } from '../lib/types';
+import type { FeatureCatalogItem, LayoutItem, LayoutRegion } from '../lib';
 import { groupLayoutByRegion, layoutRegionLabels, moveLayoutItem, regionOrder } from '../lib/layout';
 
 interface LayoutMapperProps {

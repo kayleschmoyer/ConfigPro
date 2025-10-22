@@ -1,5 +1,5 @@
 import { rateLimitDescription } from '../lib/rateLimit';
-import type { Connection } from '../lib/types';
+import type { Connection } from '../lib';
 
 interface RateLimitBadgeProps {
   connection: Connection;

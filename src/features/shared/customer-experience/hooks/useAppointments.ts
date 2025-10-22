@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import { formatDateTime } from '../lib/format';
-import type { Appointment } from '../lib/types';
+import type { Appointment } from '../lib';
 import { usePortal } from './usePortal';
 
 export const useAppointments = () => {

@@ -12,10 +12,10 @@ const normalize = (combo: string) =>
 const matchShortcut = (event: KeyboardEvent, combo: string) => {
   const normalized = normalize(combo);
   const parts = normalized.split(' ');
-  const sequence = parts.at(-1);
+  const sequence = parts[parts.length - 1];
   if (!sequence) return false;
   const keys = sequence.split('+');
-  const key = keys.at(-1);
+  const key = keys[keys.length - 1];
   if (!key) return false;
   const requiresMeta = keys.includes('cmd') || keys.includes('meta');
   const requiresShift = keys.includes('shift');

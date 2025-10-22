@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import { runAutoScheduler } from '../lib/auto';
-import type { AutoScheduleRequest, AutoScheduleResult, Shift, Violation } from '../lib/types';
-import type { SchedulerContext } from '../lib/types';
+import type { AutoScheduleRequest, AutoScheduleResult, Shift, Violation , SchedulerContext } from '../lib';
 
 type UseAutoSchedulerOptions = {
   context: SchedulerContext;

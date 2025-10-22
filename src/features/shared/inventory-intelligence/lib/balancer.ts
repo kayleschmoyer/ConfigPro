@@ -1,4 +1,4 @@
-import { Location, StockSnapshot, TransferPlan } from './types';
+import type { Location, StockSnapshot, TransferPlan } from './index';
 
 type SurplusDeficit = {
   skuId: string;

@@ -6,7 +6,7 @@ import { Select } from '@/shared/ui/Select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
 import { cn } from '@/lib/cn';
 import type { ConnectionDraft } from '../hooks/useConnectors';
-import type { ConnectorCatalogItem } from '../lib/types';
+import type { ConnectorCatalogItem } from '../lib';
 import { ScheduleInput } from './ScheduleInput';
 import { MappingEditor } from './MappingEditor';
 

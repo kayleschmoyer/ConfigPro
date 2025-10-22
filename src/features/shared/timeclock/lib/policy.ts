@@ -88,7 +88,7 @@ const applyDailyOvertime = (
 };
 
 const applyWeeklyOvertime = (
-  evaluation: PolicyEvaluation,
+  evaluation: Pick<PolicyEvaluation, 'regularMinutes' | 'otMinutes' | 'dtMinutes'>,
   policy: Policy,
   context: PolicyEvaluationContext | undefined
 ) => {

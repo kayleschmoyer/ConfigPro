@@ -1,4 +1,4 @@
-import { Exception, ExceptionBucket, Forecast, LeadTimeStats, StockSnapshot } from './types';
+import type { Exception, ExceptionBucket, Forecast, LeadTimeStats, StockSnapshot } from './index';
 
 const severityFromDelta = (delta: number): Exception['severity'] => {
   if (delta > 0.4) return 'HIGH';

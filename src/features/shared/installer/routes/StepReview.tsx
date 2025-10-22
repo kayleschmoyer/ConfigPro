@@ -65,7 +65,7 @@ export const StepReview = () => {
           <p className="mt-3 text-sm font-semibold text-foreground">Billing impact</p>
           <p className="mt-1 text-xs text-muted-foreground">
             {billingVisible
-              ? `${formatCurrency({ currency: draft.currency, value: priceBreakdown.totalMonthly?.value ?? 0 })} monthly`
+              ? `${formatCurrency(priceBreakdown.totalMonthly?.value ?? 0)} monthly`
               : 'Hidden for your role'}
           </p>
         </div>

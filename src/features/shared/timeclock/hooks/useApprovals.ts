@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { ApprovalDecision, ApprovalItem, Employee } from '../lib/types';
+import type { ApprovalDecision, ApprovalItem, Employee } from '../lib';
 import { formatDate } from '../lib/format';
 
 const createApproval = (employee: Employee, offset: number): ApprovalItem => {

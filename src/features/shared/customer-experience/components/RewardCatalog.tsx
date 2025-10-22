@@ -1,7 +1,7 @@
 import { Button } from '@/shared/ui/Button';
 import { convertRewardToMoney } from '../lib/loyalty';
 import { formatMoney } from '../lib/format';
-import type { Reward } from '../lib/types';
+import type { Reward } from '../lib';
 
 interface RewardCatalogProps {
   rewards: Reward[];

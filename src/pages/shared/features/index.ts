@@ -1,14 +1,10 @@
 export { SharedFeatureRegistry } from './feature.registry';
 export type { FeatureDef, FeatureKey } from './feature.registry';
 
-export {
-  sharedFeatureGroups,
-  type SharedFeature,
-  type SharedFeatureGroup,
-  type SharedFeatureStatus,
-} from './sharedFeatures.data';
+export { sharedFeatureGroups } from './sharedFeatures.data';
+export type { SharedFeature, SharedFeatureGroup, SharedFeatureStatus } from './sharedFeatures.data';
 
-export * from '@/shared/types/core';
+export type * from '@/shared/types/core';
 
 export { default as SharedNav } from './SharedNav';
 
@@ -36,7 +32,6 @@ export { default as TimeIntelligenceHubPage } from './TimeIntelligenceHubPage';
 
 export * from './api.client';
 export * from './businessHours.data';
-export * from './DataImportExportPage';
 export * from './discounts.engine';
 export * from './documentTemplates.data';
 export * from './flags.client';
@@ -45,7 +40,6 @@ export * from './loyalty.rules';
 export * from './offline.queue';
 export * from './permissions.model';
 export * from './privacy.consents';
-export * from './sharedFeatures.data';
 export * from './suppliers.data';
 export * from './uom.data';
 export * from './validation.schemas';

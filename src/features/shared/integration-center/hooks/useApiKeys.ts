@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { ApiKey, SecretMask } from '../lib/types';
+import type { ApiKey, SecretMask } from '../lib';
 import { formatRelative } from '../lib/format';
 import { maskSecret } from '../lib/secrets';
 

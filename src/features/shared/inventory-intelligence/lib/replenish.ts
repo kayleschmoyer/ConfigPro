@@ -1,4 +1,4 @@
-import { Money, ReorderProposal, SKU, StockSnapshot } from './types';
+import type { Money, ReorderProposal, SKU, StockSnapshot } from './index';
 
 const Z_TABLE: Record<number, number> = {
   0.8: 0.8416,

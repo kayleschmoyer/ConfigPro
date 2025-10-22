@@ -8,7 +8,7 @@ import {
   TableRow,
   TableContainer
 } from '@/shared/ui/Table';
-import type { SyncJob } from '../lib/types';
+import type { SyncJob } from '../lib';
 import { EnvBadge } from './EnvBadge';
 
 interface SyncJobsTableProps {

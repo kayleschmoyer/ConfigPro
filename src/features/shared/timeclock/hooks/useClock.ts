@@ -7,7 +7,7 @@ import type {
   PunchComposer,
   Policy,
   OfflineQueueSnapshot,
-} from '../lib/types';
+} from '../lib';
 import { resolveShiftMilestones } from '../lib/policy';
 
 const basePolicy: Policy = {
@@ -208,7 +208,7 @@ export const useClock = () => {
     setIsSyncing(false);
   }, [state.offlineQueue.events.length]);
 
-  const status = useMemo(() => {
+  const status = useMemo<'CLOCKED_IN' | 'CLOCKED_OUT' | 'ON_BREAK'>(() => {
     if (!state.selectedEmployee) return 'CLOCKED_OUT';
     if (!state.activePunch) return 'CLOCKED_OUT';
     if (state.activePunch.type === 'BREAK_START') return 'ON_BREAK';

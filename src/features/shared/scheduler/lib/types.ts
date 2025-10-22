@@ -129,5 +129,6 @@ export type SchedulerContext = {
   locations: Location[];
   employees: Employee[];
   coverage: CoverageRequirement[];
+  availability: AvailabilityRule[];
   labor: LaborLawProfile;
 };

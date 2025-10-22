@@ -69,6 +69,7 @@ export const useCurrencyFormat = (options: UseCurrencyFormatOptions = {}) => {
     currency: fallbackCurrency,
     locale,
     format,
+    formatCurrency: format,
     formatToParts,
     numberFormat: defaultFormatter,
   };

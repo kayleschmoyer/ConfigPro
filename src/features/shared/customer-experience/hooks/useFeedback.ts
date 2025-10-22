@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { calculateCsat, calculateNps, tagFeedback, throttleSurvey } from '../lib/feedback';
-import type { Survey } from '../lib/types';
+import type { Survey } from '../lib';
 import { filterMarketingChannels } from '../lib/privacy';
 import { usePortal } from './usePortal';
 

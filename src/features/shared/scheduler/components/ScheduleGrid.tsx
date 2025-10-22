@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent, UIEvent } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
-import type { GridGrouping, ScheduleView, Shift, Violation } from '../lib/types';
+import type { GridGrouping, ScheduleView, Shift, Violation } from '../lib';
 import type { HeatmapEntry, ScheduleColumn, ScheduleRow, ShiftTemplate, ShiftWithMeta } from '../hooks/useSchedule';
 import { ShiftCard } from './ShiftCard';
 import { CoverageOverlay } from './CoverageOverlay';

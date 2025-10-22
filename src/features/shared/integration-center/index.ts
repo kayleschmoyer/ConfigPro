@@ -14,4 +14,4 @@ export * from './hooks/useSyncJobs';
 export * from './hooks/useLogs';
 export * from './hooks/useSettings';
 
-export * from './lib/types';
+export * from './lib';

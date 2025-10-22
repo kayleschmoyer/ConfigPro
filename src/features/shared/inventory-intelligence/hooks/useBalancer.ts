@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { optimizeTransfers } from '../lib/balancer';
-import { Location, StockSnapshot, TransferPlan } from '../lib/types';
+import type { Location, StockSnapshot, TransferPlan } from '../lib';
 
 const DEMO_SNAPSHOTS: StockSnapshot[] = [
   { skuId: 'sku-001', locationId: 'loc-nyc', onHand: 120, onOrder: 10, allocated: 40, safety: 60 },

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import type { ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
 import {
   FileText,
@@ -196,7 +197,7 @@ export default function ARInvoices() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
             <Input
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
               placeholder="Search invoices or customers..."
               className="pl-9 bg-slate-900/60 border-slate-700 text-slate-200 placeholder:text-slate-500 focus-visible:ring-0 focus-visible:border-slate-500"
             />
@@ -216,19 +217,19 @@ export default function ARInvoices() {
                 <div>
                   <Label className="text-slate-300">Amount Range</Label>
                   <div className="mt-2 grid grid-cols-2 gap-3">
-                    <Input value={amountMin} onChange={(e) => setAmountMin(e.target.value)} placeholder="Min" className="bg-slate-900/60 border-slate-700" />
-                    <Input value={amountMax} onChange={(e) => setAmountMax(e.target.value)} placeholder="Max" className="bg-slate-900/60 border-slate-700" />
+                    <Input value={amountMin} onChange={(event: ChangeEvent<HTMLInputElement>) => setAmountMin(event.target.value)} placeholder="Min" className="bg-slate-900/60 border-slate-700" />
+                    <Input value={amountMax} onChange={(event: ChangeEvent<HTMLInputElement>) => setAmountMax(event.target.value)} placeholder="Max" className="bg-slate-900/60 border-slate-700" />
                   </div>
                 </div>
                 <div>
                   <Label className="text-slate-300">Issue Date</Label>
                   <div className="mt-2 grid grid-cols-2 gap-3">
-                    <Input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="bg-slate-900/60 border-slate-700" />
-                    <Input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} className="bg-slate-900/60 border-slate-700" />
+                    <Input type="date" value={dateFrom} onChange={(event: ChangeEvent<HTMLInputElement>) => setDateFrom(event.target.value)} className="bg-slate-900/60 border-slate-700" />
+                    <Input type="date" value={dateTo} onChange={(event: ChangeEvent<HTMLInputElement>) => setDateTo(event.target.value)} className="bg-slate-900/60 border-slate-700" />
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Checkbox id="overdue" checked={onlyOverdue} onCheckedChange={(v) => setOnlyOverdue(Boolean(v))} />
+                  <Checkbox id="overdue" checked={onlyOverdue} onCheckedChange={(value: boolean) => setOnlyOverdue(Boolean(value))} />
                   <Label htmlFor="overdue" className="text-slate-300">Show overdue only</Label>
                 </div>
               </div>
@@ -267,7 +268,7 @@ export default function ARInvoices() {
                 <th className="py-3 px-4">
                   <Checkbox
                     checked={filtered.length > 0 && filtered.every((i) => selected[i.id])}
-                    onCheckedChange={(v) => toggleAll(Boolean(v))}
+                    onCheckedChange={(value: boolean) => toggleAll(Boolean(value))}
                   />
                 </th>
                 <th className="px-4">Invoice</th>
@@ -286,7 +287,7 @@ export default function ARInvoices() {
                   <td className="py-3 px-4">
                     <Checkbox
                       checked={Boolean(selected[inv.id])}
-                      onCheckedChange={(v) => setSelected((s) => ({ ...s, [inv.id]: Boolean(v) }))}
+                      onCheckedChange={(value: boolean) => setSelected((prev) => ({ ...prev, [inv.id]: Boolean(value) }))}
                     />
                   </td>
                   <td className="px-4 font-medium text-slate-100">{inv.id}</td>
@@ -347,39 +348,39 @@ export default function ARInvoices() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-2">
             <div>
               <Label>Invoice #</Label>
-              <Input value={form.id ?? ''} onChange={(e) => setForm((f) => ({ ...f, id: e.target.value }))} className="bg-slate-900/60 border-slate-700" />
+              <Input value={form.id ?? ''} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, id: event.target.value }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div>
               <Label>Customer</Label>
-              <Input value={form.customer ?? ''} onChange={(e) => setForm((f) => ({ ...f, customer: e.target.value }))} className="bg-slate-900/60 border-slate-700" />
+              <Input value={form.customer ?? ''} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, customer: event.target.value }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div>
               <Label>Amount</Label>
-              <Input type="number" value={form.amount ?? 0} onChange={(e) => setForm((f) => ({ ...f, amount: Number(e.target.value) }))} className="bg-slate-900/60 border-slate-700" />
+              <Input type="number" value={form.amount ?? 0} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, amount: Number(event.target.value) }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div>
               <Label>Paid</Label>
-              <Input type="number" value={form.paid ?? 0} onChange={(e) => setForm((f) => ({ ...f, paid: Number(e.target.value) }))} className="bg-slate-900/60 border-slate-700" />
+              <Input type="number" value={form.paid ?? 0} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, paid: Number(event.target.value) }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div>
               <Label>Issue Date</Label>
-              <Input type="date" value={toDateInput(form.date)} onChange={(e) => setForm((f) => ({ ...f, date: fromDateInput(e.target.value) }))} className="bg-slate-900/60 border-slate-700" />
+              <Input type="date" value={toDateInput(form.date)} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, date: fromDateInput(event.target.value) }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div>
               <Label>Due Date</Label>
-              <Input type="date" value={toDateInput(form.due)} onChange={(e) => setForm((f) => ({ ...f, due: fromDateInput(e.target.value) }))} className="bg-slate-900/60 border-slate-700" />
+              <Input type="date" value={toDateInput(form.due)} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, due: fromDateInput(event.target.value) }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div>
               <Label>Terms</Label>
-              <Input value={form.terms ?? ''} onChange={(e) => setForm((f) => ({ ...f, terms: e.target.value }))} className="bg-slate-900/60 border-slate-700" />
+              <Input value={form.terms ?? ''} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, terms: event.target.value }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div>
               <Label>PO #</Label>
-              <Input value={form.po ?? ''} onChange={(e) => setForm((f) => ({ ...f, po: e.target.value }))} className="bg-slate-900/60 border-slate-700" />
+              <Input value={form.po ?? ''} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, po: event.target.value }))} className="bg-slate-900/60 border-slate-700" />
             </div>
             <div className="md:col-span-2">
               <Label>Notes</Label>
-              <Input value={form.notes ?? ''} onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))} className="bg-slate-900/60 border-slate-700" />
+              <Input value={form.notes ?? ''} onChange={(event: ChangeEvent<HTMLInputElement>) => setForm((prev) => ({ ...prev, notes: event.target.value }))} className="bg-slate-900/60 border-slate-700" />
             </div>
           </div>
 

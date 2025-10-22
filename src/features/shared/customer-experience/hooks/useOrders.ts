@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { formatDate } from '../lib/format';
-import type { OrderRef } from '../lib/types';
+import type { OrderRef } from '../lib';
 import { usePortal } from './usePortal';
 
 export const useOrders = () => {

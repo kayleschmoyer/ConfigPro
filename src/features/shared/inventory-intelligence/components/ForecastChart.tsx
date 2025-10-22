@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { baseTheme } from '@/app/config/theme';
 import { cn } from '@/lib/cn';
 import { formatDate } from '../lib/format';
-import { DemandSeries, Forecast } from '../lib/types';
+import type { DemandSeries, Forecast } from '../lib';
 
 export type ForecastChartProps = {
   demand: DemandSeries;
@@ -120,7 +120,7 @@ export const ForecastChart = ({ demand, forecast, className }: ForecastChartProp
           transition={{ duration: 0.18 }}
         >
           <span>{formatDate(demand.points[0]?.at)}</span>
-          <span>{formatDate(forecast.values.at(-1)?.at ?? new Date().toISOString())}</span>
+          <span>{formatDate(forecast.values[forecast.values.length - 1]?.at ?? new Date().toISOString())}</span>
         </motion.div>
       </div>
     </div>

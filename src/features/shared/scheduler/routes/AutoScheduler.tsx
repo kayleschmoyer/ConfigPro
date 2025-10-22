@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
 import { sampleAvailability, sampleCoverage, sampleEmployees, sampleLabor, sampleLocations, sampleRoles, sampleShifts } from '../lib/constants';
-import type { SchedulerContext } from '../lib/types';
+import type { SchedulerContext } from '../lib';
 import { useAutoScheduler } from '../hooks/useAutoScheduler';
 
 const demoContext: SchedulerContext = {

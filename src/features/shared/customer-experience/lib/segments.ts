@@ -3,19 +3,13 @@ import type {
   Loyalty,
   Segment,
   SegmentExpression,
+  SegmentField,
   SegmentGroup,
   SegmentLeaf,
   SegmentOperator,
   SegmentPreview,
   SurveyResponse
 } from './types';
-
-export type SegmentField = {
-  key: string;
-  label: string;
-  type: 'string' | 'number' | 'date' | 'boolean';
-  source: 'core' | 'custom' | 'behavior' | 'event';
-};
 
 export type SegmentEvaluationContext = {
   loyalty?: Loyalty;

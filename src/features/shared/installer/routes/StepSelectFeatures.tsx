@@ -27,7 +27,7 @@ export const StepSelectFeatures = ({ onRegisterSearchFocus, selectionOptions }: 
       onToggle={toggleFeature}
       onUpdateOptions={updateFeatureOptions}
       billingVisible={billingVisible}
-      formatCurrency={(value) => formatCurrency({ currency: draft.currency, value })}
+      formatCurrency={(value) => formatCurrency(value)}
       dependencyMap={validation.dependencies}
       conflictMap={validation.conflicts}
       selectionOptions={selectionOptions}

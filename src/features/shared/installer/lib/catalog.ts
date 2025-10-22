@@ -120,7 +120,7 @@ const normalizedCatalog: FeatureCatalogItem[] = sharedFeatureGroups.flatMap((gro
     return {
       id: feature.id,
       name: feature.title,
-      description: feature.summary ?? feature.description ?? '',
+      description: overrides.description ?? feature.summary ?? '',
       category,
       basePrice,
       priceModel: overrides.priceModel ?? 'MONTHLY',

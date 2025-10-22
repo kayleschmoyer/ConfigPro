@@ -1,4 +1,4 @@
-import { DemandSeries, Forecast, ForecastMethod } from './types';
+import type { DemandSeries, Forecast, ForecastMethod } from './index';
 import {
   croston,
   extractDemandValues,

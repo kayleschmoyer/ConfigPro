@@ -19,12 +19,13 @@ import { InstallerStepper } from '../components/InstallerStepper';
 import { useInstallerCatalog } from '../lib/catalog';
 import { planDefinitions, computePricing, getPlanDefinition } from '../lib/pricing';
 import {
+  type ApplyResult,
   type InstallerContextValue,
   type InstallerDraft,
   type InstallerStepKey,
   type LayoutItem,
   type PlanTier,
-} from '../lib/types';
+} from '../lib';
 import { summarizeDependencyImpact, toggleFeatureWithDependencies } from '../lib/deps';
 import { normalizeLayout, validateLayout } from '../lib/layout';
 import { useApplyChanges } from '../lib/apply';
@@ -490,13 +491,14 @@ export const InstallerLayout = () => {
     setActiveStepIndex((index) => Math.max(index - 1, 0));
   }, []);
 
-  const handleApply = useCallback(async () => {
+  const handleApply = useCallback(async (): Promise<ApplyResult> => {
     const outcome = await applyChanges();
     showToast({
       title: 'Configuration applied',
       description: outcome.message,
       variant: 'success',
     });
+    return outcome;
   }, [applyChanges, showToast]);
 
   const summaryHighlights = useMemo<ReactNode[]>(() => {

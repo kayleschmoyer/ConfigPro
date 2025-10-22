@@ -5,7 +5,7 @@ import { Input } from '@/shared/ui/Input';
 import { cn } from '@/lib/cn';
 import { formatMoney } from '../lib/format';
 import { calculateRedeemable, buildPaymentIntent } from '../lib/payments';
-import type { InvoiceRef, Loyalty, Reward } from '../lib/types';
+import type { InvoiceRef, Loyalty, Reward } from '../lib';
 
 interface PaymentDrawerProps {
   isOpen: boolean;

@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn';
 import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { useShortcut } from '../lib/shortcuts';
-import type { TimeClockNavItem } from '../lib/types';
+import type { TimeClockNavItem } from '../lib';
 import { ClockProvider } from '../hooks/ClockProvider';
 
 const navItems: TimeClockNavItem[] = [

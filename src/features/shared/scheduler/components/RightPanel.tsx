@@ -2,7 +2,7 @@ import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
 import { formatRange } from '../lib/format';
 import { differenceInMinutes } from '../lib/time';
-import type { LaborLawProfile, Violation } from '../lib/types';
+import type { LaborLawProfile, Violation } from '../lib';
 import type { ShiftWithMeta } from '../hooks/useSchedule';
 
 const minutesToHours = (minutes: number) => `${(minutes / 60).toFixed(1)}h`;
