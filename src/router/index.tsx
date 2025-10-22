@@ -23,6 +23,20 @@ import {
   ARSettings
 } from '../routes/accounts-receivable';
 import {
+  APLayout,
+  APHome,
+  Bills as APBills,
+  Vendors as APVendors,
+  PurchaseOrders as APPurchaseOrders,
+  Match as APMatch,
+  Approvals as APApprovals,
+  Payments as APPayments,
+  Exceptions as APExceptions,
+  Automation as APAutomation,
+  Reports as APReports,
+  Settings as APSettings,
+} from '../routes/ap';
+import {
   BaseAutomotivePage,
   BaseConstructionPage,
   BaseDaycarePage,
@@ -59,6 +73,19 @@ export const AppRouter = () => (
       <Route index element={<DemandStudio />} />
       <Route path="studio" element={<DemandStudio />} />
       <Route path="workbench" element={<ScenarioWorkbench />} />
+    </Route>
+    <Route path="/ap" element={<APLayout />}>
+      <Route index element={<APHome />} />
+      <Route path="bills" element={<APBills />} />
+      <Route path="vendors" element={<APVendors />} />
+      <Route path="purchase-orders" element={<APPurchaseOrders />} />
+      <Route path="match" element={<APMatch />} />
+      <Route path="approvals" element={<APApprovals />} />
+      <Route path="payments" element={<APPayments />} />
+      <Route path="exceptions" element={<APExceptions />} />
+      <Route path="automation" element={<APAutomation />} />
+      <Route path="reports" element={<APReports />} />
+      <Route path="settings" element={<APSettings />} />
     </Route>
     <Route path="/ar" element={<ARLayout />}>
       <Route index element={<ARHome />} />
