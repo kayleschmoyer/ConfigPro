@@ -92,31 +92,92 @@ http://localhost:5173
 
 🧭 Explore All Available Pages
 
-Use these routes in your browser to jump directly to the different demo pages included in the project:
+Use these routes in your browser to jump directly to the different demo pages included in the project.
+
+### Core Product Templates & Utilities
 
 | Route | Description |
 | --- | --- |
 | `http://localhost:5173/` | ConfigPro Login |
 | `http://localhost:5173/daycare` | Daycare Dashboard |
-| `http://localhost:5173/pos` | Point of Sale (POS) |
-| `http://localhost:5173/theme-lab` | Theme Playground |
+| `http://localhost:5173/pos` | Point of Sale (POS) demo |
+| `http://localhost:5173/theme-lab` | Theme Playground for live branding tweaks |
 | `http://localhost:5173/dashboard` | Feature Construction Dashboard |
 | `http://localhost:5173/dev/features` | Developer Feature Playground |
-| `http://localhost:5173/shared/features` | Shared Features Showcase |
-| `http://localhost:5173/shared/error-boundary` | Shared Feature Error Boundary Demo |
-| `http://localhost:5173/admin/features` | Admin Feature Management |
+| `http://localhost:5173/shared/features` | Shared Features Showcase landing page |
+| `http://localhost:5173/shared/installer` | Shared Installer experience |
+| `http://localhost:5173/shared/error-boundary` | Shared Feature Error Boundary demo |
+| `http://localhost:5173/admin/features` | Admin Feature Management (guarded by AdminGuard) |
 | `http://localhost:5173/industries/retail` | Retail Industry Base Experience |
 | `http://localhost:5173/industries/daycare` | Daycare Industry Base Experience |
 | `http://localhost:5173/industries/construction` | Construction Industry Base Experience |
 | `http://localhost:5173/industries/automotive` | Automotive Industry Base Experience |
-| `http://localhost:5173/scheduling` | Scheduling Layout (defaults to Manager Console) |
+
+### Scheduling & Workforce
+
+| Route | Description |
+| --- | --- |
+| `http://localhost:5173/scheduler` | Scheduler suite (defaults to Schedule view) |
+| `http://localhost:5173/scheduler/availability` | Scheduler Availability planning |
+| `http://localhost:5173/scheduler/rules` | Scheduler Rules configuration |
+| `http://localhost:5173/scheduler/auto` | Auto-Scheduler automation |
+| `http://localhost:5173/scheduler/swaps` | Shift swap management |
+| `http://localhost:5173/scheduler/publishing` | Publishing center |
+| `http://localhost:5173/scheduler/reports` | Scheduler reporting |
+| `http://localhost:5173/scheduler/settings` | Scheduler settings |
+| `http://localhost:5173/scheduling` | Scheduling layout shell (defaults to Manager Console) |
 | `http://localhost:5173/scheduling/manager` | Scheduling Manager Console |
 | `http://localhost:5173/scheduling/employee` | Scheduling Employee Portal |
-| `http://localhost:5173/forecasting` | Forecasting Layout (defaults to Demand Studio) |
+| `http://localhost:5173/time-clock` | Time Clock hub (defaults to Overview) |
+| `http://localhost:5173/time-clock/clock` | Time Clock punch view |
+| `http://localhost:5173/time-clock/breaks` | Time Clock breaks review |
+| `http://localhost:5173/time-clock/timesheets` | Time Clock timesheets |
+| `http://localhost:5173/time-clock/scheduling` | Time Clock scheduling snapshot |
+| `http://localhost:5173/time-clock/approvals` | Time Clock approvals |
+| `http://localhost:5173/time-clock/exceptions` | Time Clock exceptions |
+| `http://localhost:5173/time-clock/policies` | Time Clock policy management |
+| `http://localhost:5173/time-clock/devices` | Time Clock device management |
+| `http://localhost:5173/time-clock/reports` | Time Clock reporting |
+| `http://localhost:5173/time-clock/settings` | Time Clock configuration |
+
+### Forecasting
+
+| Route | Description |
+| --- | --- |
+| `http://localhost:5173/forecasting` | Forecasting layout (defaults to Demand Studio) |
 | `http://localhost:5173/forecasting/studio` | Forecasting Demand Studio |
 | `http://localhost:5173/forecasting/workbench` | Forecasting Scenario Workbench |
 
-**Shared Feature Microsites**
+### Accounts Receivable (AR)
+
+| Route | Description |
+| --- | --- |
+| `http://localhost:5173/ar` | AR Home (dashboards and KPIs) |
+| `http://localhost:5173/ar/invoices` | AR Invoices workspace |
+| `http://localhost:5173/ar/payments` | AR Payments center |
+| `http://localhost:5173/ar/customers` | AR Customer management |
+| `http://localhost:5173/ar/aging` | AR Aging analysis |
+| `http://localhost:5173/ar/disputes` | AR Dispute resolution |
+| `http://localhost:5173/ar/automation` | AR Automation designer |
+| `http://localhost:5173/ar/reports` | AR reporting dashboards |
+| `http://localhost:5173/ar/settings` | AR configuration settings |
+
+### Inventory Intelligence
+
+| Route | Description |
+| --- | --- |
+| `http://localhost:5173/inventory` | Inventory Intelligence home |
+| `http://localhost:5173/inventory/forecasts` | Inventory demand forecasts |
+| `http://localhost:5173/inventory/replenishment` | Replenishment planning |
+| `http://localhost:5173/inventory/suppliers` | Supplier collaboration |
+| `http://localhost:5173/inventory/balancer` | Inventory balancer tooling |
+| `http://localhost:5173/inventory/kits` | Kit and bundle management |
+| `http://localhost:5173/inventory/exceptions` | Exception monitoring |
+| `http://localhost:5173/inventory/automation` | Automation rules |
+| `http://localhost:5173/inventory/reports` | Inventory reporting |
+| `http://localhost:5173/inventory/settings` | Inventory configuration |
+
+### Shared Feature Microsites
 
 These routes are generated from the shared feature registry and surface individual configuration workspaces:
 
@@ -140,8 +201,6 @@ These routes are generated from the shared feature registry and surface individu
 | `http://localhost:5173/shared/localization` | Localization |
 | `http://localhost:5173/shared/branding` | Branding |
 | `http://localhost:5173/shared/time-intelligence-hub` | Time Intelligence Hub |
-
-> ℹ️ The shared feature registry also exposes the Scheduling Manager Console at `http://localhost:5173/scheduling/manager` (listed in the table above).
 
 🎨 Customize the Theme (Brand Colors, Logo, Fonts)
 
