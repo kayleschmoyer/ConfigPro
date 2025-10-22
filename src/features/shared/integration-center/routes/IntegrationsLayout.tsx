@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { baseTheme, resolveTheme } from '../../../../app/config/theme';
-import { cn } from '../../../../lib/cn';
+import { baseTheme, resolveTheme } from '@/app/config/theme';
+import { cn } from '@/lib/cn';
 import { useShortcuts } from '../lib/shortcuts';
 
 const theme = resolveTheme() ?? baseTheme;

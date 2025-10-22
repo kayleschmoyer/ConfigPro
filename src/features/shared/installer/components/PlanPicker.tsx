@@ -1,7 +1,7 @@
 import { BadgeCheck, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { cn } from '@/lib/cn';
 import type { PlanDefinition, PlanTier } from '../lib/types';
 
 interface PlanPickerProps {

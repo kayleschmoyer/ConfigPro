@@ -1,4 +1,4 @@
-import { WorkflowEngine } from '../../../../pages/shared/features/workflow.engine';
+import { WorkflowEngine } from '@/pages/shared/features/workflow.engine';
 import type { Journey, JourneyDryRun, JourneySimulationResult } from './types';
 
 export type JourneyContext = {

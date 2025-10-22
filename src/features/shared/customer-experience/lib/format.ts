@@ -1,4 +1,4 @@
-import { baseTheme } from '../../../../app/config/theme';
+import { baseTheme } from '@/app/config/theme';
 import type { Money } from './types';
 
 export const formatMoney = (money: Money, locale = 'en-US') => {

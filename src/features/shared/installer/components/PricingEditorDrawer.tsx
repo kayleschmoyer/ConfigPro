@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Drawer } from '../../../shared/ui/Drawer';
-import { Input } from '../../../shared/ui/Input';
-import { Switch } from '../../../components/ui/Switch';
-import { Button } from '../../../shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Input } from '@/shared/ui/Input';
+import { Switch } from '@/components/ui/Switch';
+import { Button } from '@/shared/ui/Button';
 import type { PricingSheet } from '../lib/admin';
 
 interface PricingEditorDrawerProps {

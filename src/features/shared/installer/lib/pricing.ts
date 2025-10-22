@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useCurrencyFormat } from '../../../shared/hooks/useCurrencyFormat';
+import { useCurrencyFormat } from '@/shared/hooks/useCurrencyFormat';
 import type {
   FeatureCatalogItem,
   FeatureSelection,

@@ -1,4 +1,4 @@
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 
 const STATUS_STYLES: Record<string, string> = {
   'UNDER ROP': 'bg-orange-500/20 text-orange-200 border border-orange-400/40',

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 import {
   Table,
   TableBody,
@@ -8,8 +8,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../../../shared/ui/Table';
-import { Button } from '../../../shared/ui/Button';
+} from '@/shared/ui/Table';
+import { Button } from '@/shared/ui/Button';
 import { formatClockTime, formatDate, formatDuration } from '../lib/format';
 import type { TimesheetEntry } from '../lib/types';
 

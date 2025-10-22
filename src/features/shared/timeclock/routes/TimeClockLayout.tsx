@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { resolveTheme } from '../../../app/config/theme';
-import { cn } from '../../../lib/cn';
-import { Input } from '../../../shared/ui/Input';
-import { Button } from '../../../shared/ui/Button';
+import { resolveTheme } from '@/app/config/theme';
+import { cn } from '@/lib/cn';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
 import { useShortcut } from '../lib/shortcuts';
 import type { TimeClockNavItem } from '../lib/types';
 import { ClockProvider } from '../hooks/ClockProvider';

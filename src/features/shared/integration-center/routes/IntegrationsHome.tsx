@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button } from '../../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { useConnectors } from '../hooks/useConnectors';
 import { useSyncJobs } from '../hooks/useSyncJobs';
 import { useWebhooks } from '../hooks/useWebhooks';

@@ -1,9 +1,9 @@
 import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
-import { Input } from '../../../shared/ui/Input';
-import { Button } from '../../../shared/ui/Button';
-import { Tabs, TabsList, TabsTrigger } from '../../../shared/ui/Tabs';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Tabs, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
 import type { FeatureCatalogItem } from '../lib/types';
 import { FeatureCard } from './FeatureCard';
 import { FeatureOptionsDrawer } from './FeatureOptionsDrawer';

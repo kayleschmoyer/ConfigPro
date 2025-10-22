@@ -1,4 +1,4 @@
-import { Card, CardDescription, CardTitle } from '../../../shared/ui/Card';
+import { Card, CardDescription, CardTitle } from '@/shared/ui/Card';
 import {
   Table,
   TableBody,
@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '../../../shared/ui/Table';
+} from '@/shared/ui/Table';
 import { loyaltyRulebook } from './loyalty.rules';
 
 interface CustomFieldDefinition {

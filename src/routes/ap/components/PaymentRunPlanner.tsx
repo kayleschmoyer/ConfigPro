@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { Stepper } from './Stepper';
 import { formatMoney } from '../lib/format';
 import type { CashPlan } from '../lib/cashPlan';

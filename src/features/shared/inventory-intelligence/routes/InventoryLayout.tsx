@@ -1,10 +1,10 @@
 import { useMemo, useRef, useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { baseTheme } from '../../../app/config/theme';
-import { cn } from '../../../lib/cn';
-import { Input } from '../../../shared/ui/Input';
-import { Button } from '../../../shared/ui/Button';
+import { baseTheme } from '@/app/config/theme';
+import { cn } from '@/lib/cn';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
 import { useInventoryShortcuts } from '../lib/shortcuts';
 import type { SearchResult } from '../lib/types';
 

@@ -1,4 +1,4 @@
-import type { ThemeConfig } from '../../../../app/config/theme';
+import type { ThemeConfig } from '@/app/config/theme';
 
 export type ID = string;
 export type ISO = string;

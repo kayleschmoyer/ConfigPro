@@ -1,4 +1,4 @@
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 
 const statusItems = [
   { label: 'Overtime', tone: 'bg-red-500/20 text-red-600 border-red-500/40' },

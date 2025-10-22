@@ -1,5 +1,5 @@
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 import { usePolicies } from '../hooks/usePolicies';
 import { PolicyEditor } from '../components/PolicyEditor';
 

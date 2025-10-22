@@ -1,4 +1,4 @@
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { convertRewardToMoney } from '../lib/loyalty';
 import { formatMoney } from '../lib/format';
 import type { Reward } from '../lib/types';

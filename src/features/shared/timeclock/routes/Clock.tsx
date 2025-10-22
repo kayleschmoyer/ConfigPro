@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../shared/ui/Tabs';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
 import { useClockContext } from '../hooks/ClockProvider';
 import { PinKeypad } from '../components/PinKeypad';
 import { ClockStatusCard } from '../components/ClockStatusCard';

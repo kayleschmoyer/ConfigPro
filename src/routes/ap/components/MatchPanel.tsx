@@ -1,6 +1,6 @@
 import { VarianceBadge } from './VarianceBadge';
 import type { MatchAssessment } from '../lib/match';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 
 export const MatchPanel = ({ assessment }: { assessment?: MatchAssessment }) => {
   if (!assessment) {

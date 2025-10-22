@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 import { formatDate } from '../lib/format';
 import type { OrderRef } from '../lib/types';
 

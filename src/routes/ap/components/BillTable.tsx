@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type UIEvent } from 'react';
 import { motion } from 'framer-motion';
-import { cn } from '../../../lib/cn';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableContainer } from '../../../shared/ui/Table';
+import { cn } from '@/lib/cn';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableContainer } from '@/shared/ui/Table';
 import { DiscountChip } from './DiscountChip';
 import { VarianceBadge } from './VarianceBadge';
 import type { DiscountInsight } from '../lib/discounts';

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useState, type FormEvent } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Loader } from '../../../components/elements/Loader';
-import { useAuth } from '../../../hooks/useAuth';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Loader } from '@/components/elements/Loader';
+import { useAuth } from '@/hooks/useAuth';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },

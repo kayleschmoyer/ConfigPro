@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Drawer } from '../../../shared/ui/Drawer';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
-import { Switch } from '../../../components/ui/Switch';
-import { Button } from '../../../shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { Switch } from '@/components/ui/Switch';
+import { Button } from '@/shared/ui/Button';
 import type { FeatureCatalogItem, LayoutRegion } from '../lib/types';
 import type { CatalogOverride } from '../lib/admin';
 

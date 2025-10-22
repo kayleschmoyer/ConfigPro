@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { Card } from '../../../shared/ui/Card';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { cn } from '@/lib/cn';
 import { formatCurrency, formatPercent } from '../lib/format';
 import { PlannerStep, ReorderProposal, SKU } from '../lib/types';
 

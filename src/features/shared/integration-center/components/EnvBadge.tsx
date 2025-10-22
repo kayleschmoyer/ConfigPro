@@ -1,4 +1,4 @@
-import { cn } from '../../../../lib/cn';
+import { cn } from '@/lib/cn';
 import type { Environment } from '../lib/types';
 
 export interface EnvBadgeProps {

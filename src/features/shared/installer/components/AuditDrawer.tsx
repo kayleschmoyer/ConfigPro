@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Drawer } from '../../../shared/ui/Drawer';
+import { Drawer } from '@/shared/ui/Drawer';
 import { useAuditLog } from '../lib/admin';
 
 interface AuditDrawerProps {

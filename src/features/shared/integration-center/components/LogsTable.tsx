@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import { Button } from '../../../../shared/ui/Button';
-import { Input } from '../../../../shared/ui/Input';
-import { Select } from '../../../../shared/ui/Select';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '../../../../shared/ui/Table';
+} from '@/shared/ui/Table';
 import type { LogEvent } from '../lib/types';
 
 interface LogsTableProps {

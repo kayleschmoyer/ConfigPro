@@ -1,5 +1,5 @@
-import { RequirePermission } from '../../../shared/components/RequirePermission';
-import { Card, CardDescription, CardFooter, CardTitle } from '../../../shared/ui/Card';
+import { RequirePermission } from '@/shared/components/RequirePermission';
+import { Card, CardDescription, CardFooter, CardTitle } from '@/shared/ui/Card';
 import {
   Table,
   TableBody,
@@ -8,7 +8,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '../../../shared/ui/Table';
+} from '@/shared/ui/Table';
 import { evaluateDiscounts } from './discounts.engine';
 import type { DiscountRule, PricingEvaluationContext } from './discounts.engine';
 

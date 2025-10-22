@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '../../../shared/ui/Card';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/Card';
+import { Input } from '@/shared/ui/Input';
 import {
   Table,
   TableBody,
@@ -11,8 +11,8 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '../../../shared/ui/Table';
-import { cn } from '../../../lib/cn';
+} from '@/shared/ui/Table';
+import { cn } from '@/lib/cn';
 
 interface LineItem {
   id: string;

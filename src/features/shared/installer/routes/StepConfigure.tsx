@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings } from 'lucide-react';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { useInstaller } from './InstallerLayout';
 import { FeatureOptionsDrawer } from '../components/FeatureOptionsDrawer';
 

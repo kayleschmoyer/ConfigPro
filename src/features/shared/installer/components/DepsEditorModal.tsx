@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Modal } from '../../../shared/ui/Modal';
-import { Button } from '../../../shared/ui/Button';
+import { Modal } from '@/shared/ui/Modal';
+import { Button } from '@/shared/ui/Button';
 import type { FeatureCatalogItem } from '../lib/types';
 import type { DependencyOverride } from '../lib/admin';
 

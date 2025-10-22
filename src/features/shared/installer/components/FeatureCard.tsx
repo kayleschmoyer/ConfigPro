@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Clock, Settings } from 'lucide-react';
-import { Switch } from '../../../components/ui/Switch';
-import { Button } from '../../../shared/ui/Button';
-import { cn } from '../../../lib/cn';
+import { Switch } from '@/components/ui/Switch';
+import { Button } from '@/shared/ui/Button';
+import { cn } from '@/lib/cn';
 import type { FeatureCatalogItem } from '../lib/types';
 import { ConflictBadge } from './ConflictBadge';
 import { DependencyNotice } from './DependencyNotice';

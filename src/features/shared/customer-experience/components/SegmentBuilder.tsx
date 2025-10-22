@@ -1,6 +1,6 @@
-import { Button } from '../../../shared/ui/Button';
-import { Select } from '../../../shared/ui/Select';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Select } from '@/shared/ui/Select';
+import { Input } from '@/shared/ui/Input';
 import type { Segment, SegmentExpression, SegmentField, SegmentLeaf, SegmentOperator } from '../lib/types';
 
 interface SegmentBuilderProps {

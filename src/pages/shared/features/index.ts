@@ -8,7 +8,7 @@ export {
   type SharedFeatureStatus,
 } from './sharedFeatures.data';
 
-export * from '../../../shared/types/core';
+export * from '@/shared/types/core';
 
 export { default as SharedNav } from './SharedNav';
 

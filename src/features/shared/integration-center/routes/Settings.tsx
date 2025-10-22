@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Button } from '../../../../shared/ui/Button';
-import { Input } from '../../../../shared/ui/Input';
-import { Select } from '../../../../shared/ui/Select';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
 import { useSettings } from '../hooks/useSettings';
 import { EnvBadge } from '../components/EnvBadge';
 

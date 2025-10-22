@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { SharedNav } from '../../../layout/SharedNav';
 import { SharedFeatureRegistry } from '../../shared/features';
 import type { FeatureDef } from '../../shared/features';
-import { IndustryFeatureMatrix } from '../../../app/config/industry.presets';
-import type { IndustryKey } from '../../../app/config/industry.presets';
-import { setIndustry } from '../../../app/state/industry';
+import { IndustryFeatureMatrix } from '@/app/config/industry.presets';
+import type { IndustryKey } from '@/app/config/industry.presets';
+import { setIndustry } from '@/app/state/industry';
 
 export type IndustryHighlight = {
   label: string;

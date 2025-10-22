@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { useTheme } from '../../../hooks/useTheme';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { useTheme } from '@/hooks/useTheme';
+import { cn } from '@/lib/cn';
 
 const screenVariants = {
   hidden: { opacity: 0, y: 24 },

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 import { SegmentBuilder } from '../components/SegmentBuilder';
 import { useSegmentBuilder, useSegments } from '../hooks/useSegments';
 

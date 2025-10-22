@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import type { CSSProperties, PointerEvent } from 'react';
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 import { formatRange } from '../lib/format';
 import type { ShiftWithMeta } from '../hooks/useSchedule';
 

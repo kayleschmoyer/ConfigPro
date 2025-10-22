@@ -1,5 +1,5 @@
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 import { useClockContext } from '../hooks/ClockProvider';
 import { useApprovals } from '../hooks/useApprovals';
 import { formatDate } from '../lib/format';

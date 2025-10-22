@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { sharedFeatureGroups } from '../../../pages/shared/features/sharedFeatures.data';
+import { sharedFeatureGroups } from '@/pages/shared/features/sharedFeatures.data';
 import type { FeatureCatalogItem, FeatureCategory, LayoutRegion } from './types';
 
 const groupCategoryMap: Record<string, FeatureCategory> = {

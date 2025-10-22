@@ -2,7 +2,7 @@ import {
   evaluateAccrualRules,
   evaluateRedemptionRules,
   loyaltyRulebook
-} from '../../../../pages/shared/features/loyalty.rules';
+} from '@/pages/shared/features/loyalty.rules';
 import type { Loyalty, LoyaltyHistoryItem, Money, Reward } from './types';
 
 const tierThresholds = [

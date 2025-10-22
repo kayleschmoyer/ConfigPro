@@ -2,7 +2,7 @@ import {
   consentLifecycle,
   consentPrimitives,
   consentSignalChannels
-} from '../../../../pages/shared/features/privacy.consents';
+} from '@/pages/shared/features/privacy.consents';
 import type { Customer } from './types';
 
 const MARKETING_CONSENT_KEY = 'marketing';

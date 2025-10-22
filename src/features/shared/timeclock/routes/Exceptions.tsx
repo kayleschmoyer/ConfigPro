@@ -1,5 +1,5 @@
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
 import { useClockContext } from '../hooks/ClockProvider';
 import { useExceptions } from '../hooks/useExceptions';
 import { ExceptionRow } from '../components/ExceptionRow';

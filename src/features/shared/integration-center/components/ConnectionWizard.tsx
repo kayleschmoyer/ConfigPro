@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../../shared/ui/Button';
-import { Input } from '../../../../shared/ui/Input';
-import { Select } from '../../../../shared/ui/Select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../shared/ui/Tabs';
-import { cn } from '../../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
+import { cn } from '@/lib/cn';
 import type { ConnectionDraft } from '../hooks/useConnectors';
 import type { ConnectorCatalogItem } from '../lib/types';
 import { ScheduleInput } from './ScheduleInput';

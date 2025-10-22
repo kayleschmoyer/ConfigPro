@@ -1,9 +1,9 @@
 import { useMemo, useCallback } from 'react';
 import { GripVertical, ArrowUp, ArrowDown } from 'lucide-react';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { cn } from '@/lib/cn';
 import type { FeatureCatalogItem, LayoutItem, LayoutRegion } from '../lib/types';
 import { groupLayoutByRegion, layoutRegionLabels, moveLayoutItem, regionOrder } from '../lib/layout';
 

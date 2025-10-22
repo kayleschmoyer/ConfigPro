@@ -1,5 +1,5 @@
-import { Select } from '../../../shared/ui/Select';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
+import { Select } from '@/shared/ui/Select';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { useBills } from '../hooks/useBills';
 import { useApprovals } from '../hooks/useApprovals';
 import { formatDate, formatMoney } from '../lib/format';

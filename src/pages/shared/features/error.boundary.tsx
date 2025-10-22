@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '../../../shared/ui/Table';
+} from '@/shared/ui/Table';
 
 type RecoveryCard = {
   id: string;

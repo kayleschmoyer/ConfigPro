@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../shared/ui/Tabs';
-import { Button } from '../../../shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
+import { Button } from '@/shared/ui/Button';
 import type { Policy } from '../lib/types';
 
 export type PolicyEditorProps = {
