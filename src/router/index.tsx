@@ -23,6 +23,19 @@ import {
   ARSettings
 } from '../routes/accounts-receivable';
 import {
+  APLayout,
+  APHome,
+  Bills as APBills,
+  Vendors as APVendors,
+  PurchaseOrders as APPurchaseOrders,
+  Match as APMatch,
+  Approvals as APApprovals,
+  Payments as APPayments,
+  Exceptions as APExceptions,
+  Automation as APAutomation,
+  Reports as APReports,
+  Settings as APSettings,
+} from '../routes/ap';
   TimeClockLayout,
   TimeClockHome,
   Clock,
