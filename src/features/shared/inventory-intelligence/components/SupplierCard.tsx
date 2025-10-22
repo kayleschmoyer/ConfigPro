@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Card } from '@/shared/ui/Card';
 import { formatCurrency, formatPercent } from '../lib/format';
-import { LeadTimeStats, Supplier } from '../lib/types';
+import type { LeadTimeStats, Supplier } from '../lib';
 
 export type SupplierCardProps = {
   supplier: Supplier;

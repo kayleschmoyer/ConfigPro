@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { cn } from '@/lib/cn';
-import type { Message } from '../lib/types';
+import type { Message } from '../lib';
 
 interface MessageThreadProps {
   threadId: string;

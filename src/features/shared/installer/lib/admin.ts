@@ -33,7 +33,7 @@ export interface AdminAuditEntry {
   timestamp: string;
 }
 
-export interface CatalogOverride {
+export interface CatalogOverride extends Record<string, unknown> {
   description?: string;
   defaultRegion?: LayoutRegion;
   defaultIcon?: string;
@@ -46,7 +46,7 @@ export interface CatalogOverride {
   };
 }
 
-export interface DependencyOverride {
+export interface DependencyOverride extends Record<string, unknown> {
   dependsOn?: string[];
   conflictsWith?: string[];
 }

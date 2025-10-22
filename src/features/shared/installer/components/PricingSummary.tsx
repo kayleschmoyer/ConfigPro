@@ -3,7 +3,7 @@ import { BadgeDollarSign } from 'lucide-react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
-import type { PriceBreakdown } from '../lib/types';
+import type { PriceBreakdown } from '../lib';
 
 interface PricingSummaryProps {
   breakdown: PriceBreakdown;
@@ -41,7 +41,7 @@ export const PricingSummary = ({
     if (!lastPublishedAt) return null;
     try {
       return new Date(lastPublishedAt).toLocaleString();
-    } catch (error) {
+    } catch {
       return lastPublishedAt;
     }
   }, [lastPublishedAt]);

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ExceptionRow } from '../components/ExceptionRow';
 import { detectInventoryExceptions, detectLeadTimeExceptions, sortExceptions } from '../lib/exceptions';
-import { LeadTimeStats, StockSnapshot } from '../lib/types';
+import type { LeadTimeStats, StockSnapshot } from '../lib';
 
 const SNAPSHOTS: StockSnapshot[] = [
   { skuId: 'sku-001', locationId: 'loc-nyc', onHand: 20, onOrder: 0, allocated: 10, safety: 40, reorderPoint: 55 },

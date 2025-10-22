@@ -1,4 +1,4 @@
-import { LeadTimeStats } from './types';
+import type { LeadTimeStats } from './index';
 
 const median = (values: number[]): number => {
   if (values.length === 0) return 0;

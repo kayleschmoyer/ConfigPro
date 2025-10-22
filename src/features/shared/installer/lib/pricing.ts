@@ -150,7 +150,7 @@ export const usePriceBreakdown = (
     () => ({
       breakdown,
       format: (value: number, currency = breakdown.subtotal.currency) =>
-        formatCurrency({ currency, value }),
+        formatCurrency(value, { currency }),
     }),
     [breakdown, formatCurrency]
   );

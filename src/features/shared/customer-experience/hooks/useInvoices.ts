@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { buildPaymentIntent, rewardSavings } from '../lib/payments';
 import { formatMoney } from '../lib/format';
-import type { InvoiceRef, Reward } from '../lib/types';
+import type { InvoiceRef, Reward } from '../lib';
 import { usePortal } from './usePortal';
 
 export const useInvoices = () => {

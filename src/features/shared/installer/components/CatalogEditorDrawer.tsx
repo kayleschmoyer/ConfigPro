@@ -4,7 +4,7 @@ import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
 import { Switch } from '@/components/ui/Switch';
 import { Button } from '@/shared/ui/Button';
-import type { FeatureCatalogItem, LayoutRegion } from '../lib/types';
+import type { FeatureCatalogItem, LayoutRegion } from '../lib';
 import type { CatalogOverride } from '../lib/admin';
 
 interface CatalogEditorDrawerProps {
@@ -152,7 +152,7 @@ export const CatalogEditorDrawer = ({
             <div className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface/70 p-4">
               <Switch
                 checked={pinnedSet.has(feature.id)}
-                onCheckedChange={(checked) => void handlePinnedToggle(checked)}
+                onCheckedChange={(checked: boolean) => void handlePinnedToggle(checked)}
                 aria-label="Toggle pinned"
               />
               <div className="text-sm text-muted-foreground">

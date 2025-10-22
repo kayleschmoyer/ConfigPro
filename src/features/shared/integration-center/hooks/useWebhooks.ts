@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { WebhookEndpoint } from '../lib/types';
+import type { WebhookEndpoint } from '../lib';
 import { formatRelative } from '../lib/format';
 import { buildSamplePayload, buildSignature, verifySignature, webhookTemplates } from '../lib/webhooks';
 

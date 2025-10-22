@@ -3,7 +3,7 @@ import { Clock, Settings } from 'lucide-react';
 import { Switch } from '@/components/ui/Switch';
 import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
-import type { FeatureCatalogItem } from '../lib/types';
+import type { FeatureCatalogItem } from '../lib';
 import { ConflictBadge } from './ConflictBadge';
 import { DependencyNotice } from './DependencyNotice';
 
@@ -85,7 +85,7 @@ export const FeatureCard = ({
         </div>
         <Switch
           checked={selected}
-          onCheckedChange={(checked) => onToggle(feature.id, checked)}
+          onCheckedChange={(checked: boolean) => onToggle(feature.id, checked)}
           disabled={disabled}
         />
       </header>

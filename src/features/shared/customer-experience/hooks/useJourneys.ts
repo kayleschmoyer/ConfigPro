@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { dryRunJourney, journeyActions, journeyTriggerCatalog } from '../lib/journeys';
-import type { Journey } from '../lib/types';
+import type { Journey } from '../lib';
 import { usePortal, usePortalJourneys } from './usePortal';
 
 export const useJourneys = () => {

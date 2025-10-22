@@ -1,4 +1,4 @@
-export * from './lib/types';
+export * from './lib';
 export * from './lib/demand';
 export * from './lib/forecast';
 export * from './lib/replenish';

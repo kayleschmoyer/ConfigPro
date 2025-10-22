@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { buildReorderLine, groupProposalsBySupplier, minMaxPolicy, periodicReviewPolicy } from '../lib/replenish';
-import { Location, ReorderProposal, SKU, StockSnapshot } from '../lib/types';
+import type { Location, ReorderProposal, SKU, StockSnapshot } from '../lib';
 
 const DEMO_SKUS: SKU[] = [
   {

@@ -12,7 +12,7 @@ import {
 } from '@/shared/ui/Table';
 import { cn } from '@/lib/cn';
 import { badgeToneForStatus, formatDate, formatMoney } from '../lib/format';
-import type { InvoiceRef } from '../lib/types';
+import type { InvoiceRef } from '../lib';
 
 const ROW_HEIGHT = 72;
 const OVERSCAN = 4;

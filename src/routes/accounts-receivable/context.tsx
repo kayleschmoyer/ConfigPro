@@ -17,7 +17,7 @@ interface AccountsReceivableContextValue {
 
 const AccountsReceivableContext = createContext<AccountsReceivableContextValue | null>(null);
 
-// eslint-disable-next-line react-refresh/only-export-components
+ 
 export const useAccountsReceivable = () => {
   const context = useContext(AccountsReceivableContext);
   if (!context) {

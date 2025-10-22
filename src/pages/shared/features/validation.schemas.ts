@@ -1,5 +1,5 @@
 import type { ZodType, ZodTypeDef } from 'zod';
-import * as yup from 'yup';
+import type * as yup from 'yup';
 
 import { sharedFormValidators } from '@/shared/validation/validators';
 

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import type { Shift } from '../lib/types';
+import type { Shift } from '../lib';
 
 type PublishSnapshot = {
   id: string;

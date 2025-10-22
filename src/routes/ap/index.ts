@@ -22,4 +22,4 @@ export * from './hooks/useMatch';
 export * from './hooks/useApprovals';
 export * from './hooks/usePayments';
 export * from './hooks/useAutomation';
-export * from './lib/types';
+export type * from './lib/types';

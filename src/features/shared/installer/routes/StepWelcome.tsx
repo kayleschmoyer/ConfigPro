@@ -32,7 +32,7 @@ export const StepWelcome = () => {
         plans={planDefinitions}
         activePlan={draft.plan}
         onSelect={updatePlan}
-        formatCurrency={(value) => (billingVisible ? formatCurrency({ currency: draft.currency, value }) : 'Hidden')}
+        formatCurrency={(value) => (billingVisible ? formatCurrency(value) : 'Hidden')}
       />
       <div className="grid gap-4 md:grid-cols-2">
         <Input
@@ -57,7 +57,7 @@ export const StepWelcome = () => {
       <div className="rounded-3xl border border-border/60 bg-surface/80 p-5 text-sm text-muted-foreground">
         <p>
           {billingVisible
-            ? `Current bundle: ${plan.name} • ${formatCurrency({ currency: draft.currency, value: plan.basePrice.value })} base`
+            ? `Current bundle: ${plan.name} • ${formatCurrency(plan.basePrice.value)} base`
             : 'Billing details hidden for your role.'}
         </p>
         <p className="mt-2 text-xs text-muted-foreground/80">

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { SyncJob } from '../lib/types';
+import type { SyncJob } from '../lib';
 import { cronPresets, deriveJobHealth, jobRuntimeSummary, nextRunCountdown } from '../lib/sync';
 import { formatRelative } from '../lib/format';
 

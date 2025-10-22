@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { LogEvent } from '../lib/types';
+import type { LogEvent } from '../lib';
 import { formatRelative } from '../lib/format';
 
 type FilterState = {

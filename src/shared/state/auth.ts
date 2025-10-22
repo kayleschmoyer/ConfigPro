@@ -61,7 +61,7 @@ const DEFAULT_USER: CurrentUser = {
   email: 'jordan.martinez@configpro.com',
   orgId: 'org-001',
   org: 'ConfigPro',
-  roles: ['owner', 'ADMIN'],
+  roles: ['owner', 'admin'],
   permissions: ['policies:approve', 'systems:audit'],
   attributes: {
     regions: ['north-america', 'emea'],

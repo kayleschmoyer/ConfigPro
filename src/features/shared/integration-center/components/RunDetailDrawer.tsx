@@ -1,6 +1,6 @@
 import { Drawer } from '@/shared/ui/Drawer';
 import { Button } from '@/shared/ui/Button';
-import type { SyncJob } from '../lib/types';
+import type { SyncJob } from '../lib';
 import { formatDuration, formatNumber, formatRelative, formatTimestamp } from '../lib/format';
 
 interface RunDetailDrawerProps {

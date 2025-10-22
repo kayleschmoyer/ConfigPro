@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { cn } from '@/lib/cn';
-import type { SecretMask } from '../lib/types';
+import type { SecretMask } from '../lib';
 import { confirmReveal } from '../lib/secrets';
 
 interface SecretMaskedProps {

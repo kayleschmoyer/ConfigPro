@@ -11,7 +11,7 @@ import {
 } from '@/shared/ui/Table';
 import { Button } from '@/shared/ui/Button';
 import { formatClockTime, formatDate, formatDuration } from '../lib/format';
-import type { TimesheetEntry } from '../lib/types';
+import type { TimesheetEntry } from '../lib';
 
 const ROW_HEIGHT = 72;
 const BUFFER_ROWS = 6;

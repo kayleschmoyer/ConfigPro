@@ -10,6 +10,7 @@ import { ClockStatusCard } from '../components/ClockStatusCard';
 import { GeoGuard } from '../components/GeoGuard';
 import { SelfieCapture } from '../components/SelfieCapture';
 import { formatDateTime } from '../lib/format';
+import type { PunchType } from '../lib/types';
 
 const authModes = [
   { label: 'PIN Keypad', value: 'PIN' },
@@ -47,25 +48,25 @@ export const Clock = () => {
   const nextAction = useMemo(() => {
     switch (status) {
       case 'CLOCKED_OUT':
-        return { label: 'Clock In', type: 'IN' as const };
+        return { label: 'Clock In', type: 'IN' as PunchType };
       case 'ON_BREAK':
-        return { label: 'End Break', type: 'BREAK_END' as const };
+        return { label: 'End Break', type: 'BREAK_END' as PunchType };
       default:
-        return { label: 'Clock Out', type: 'OUT' as const };
+        return { label: 'Clock Out', type: 'OUT' as PunchType };
     }
   }, [status]);
 
   const secondaryAction = useMemo(() => {
     if (status === 'CLOCKED_IN') {
-      return { label: 'Start Break', type: 'BREAK_START' as const };
+      return { label: 'Start Break', type: 'BREAK_START' as PunchType };
     }
     if (status === 'CLOCKED_OUT') {
-      return { label: 'Switch Job', type: 'JOB_SWITCH' as const };
+      return { label: 'Switch Job', type: 'JOB_SWITCH' as PunchType };
     }
     return undefined;
   }, [status]);
 
-  const handlePunch = async (type: typeof nextAction.type) => {
+  const handlePunch = async (type: PunchType) => {
     if (!state.selectedEmployee) return;
     await submitPunch({
       employee: state.selectedEmployee,

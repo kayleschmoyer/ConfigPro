@@ -4,7 +4,7 @@ import type {
   ConnectorCatalogItem,
   ConnectorKind,
   FieldMapping
-} from '../lib/types';
+} from '../lib';
 import { formatRelative } from '../lib/format';
 import { rateLimitDescription } from '../lib/rateLimit';
 

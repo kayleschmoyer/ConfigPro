@@ -128,7 +128,7 @@ export const PricingEditorDrawer = ({
           <div className="flex items-center gap-2">
             <Switch
               checked={form.perSeat}
-              onCheckedChange={(checked) => handleToggle('perSeat', checked)}
+              onCheckedChange={(checked: boolean) => handleToggle('perSeat', checked)}
               aria-label="Charge per seat"
             />
             <span className="text-sm text-muted-foreground">Charge per seat</span>
@@ -136,7 +136,7 @@ export const PricingEditorDrawer = ({
           <div className="flex items-center gap-2">
             <Switch
               checked={form.perLocation}
-              onCheckedChange={(checked) => handleToggle('perLocation', checked)}
+              onCheckedChange={(checked: boolean) => handleToggle('perLocation', checked)}
               aria-label="Charge per location"
             />
             <span className="text-sm text-muted-foreground">Charge per location</span>

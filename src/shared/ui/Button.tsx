@@ -3,7 +3,7 @@ import { motion, type HTMLMotionProps } from 'framer-motion';
 import { forwardRef } from 'react';
 import { cn } from '../../lib/cn';
 
-type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'destructive' | 'subtle';
+type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'destructive' | 'subtle' | 'secondary';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 type MotionButtonProps = HTMLMotionProps<'button'>;
@@ -19,6 +19,7 @@ const baseStyles =
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: 'bg-primary text-white shadow-md shadow-primary/30 hover:bg-primary/90 focus-visible:ring-primary',
+  secondary: 'bg-secondary/20 text-secondary-foreground hover:bg-secondary/30 focus-visible:ring-secondary/60',
   outline:
     'border border-primary/70 text-primary hover:bg-primary/10 focus-visible:ring-primary/60 bg-surface/80 backdrop-blur',
   ghost: 'text-foreground hover:bg-surface/60 focus-visible:ring-surface/70',

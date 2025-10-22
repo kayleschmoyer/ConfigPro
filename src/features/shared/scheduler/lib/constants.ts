@@ -153,7 +153,7 @@ export const sampleEmployees: Employee[] = [
 ];
 
 export const sampleAvailability: AvailabilityRule[] = [
-  ...sampleEmployees.flatMap((employee) => [
+  ...sampleEmployees.flatMap<AvailabilityRule>((employee) => [
     {
       id: `avail-${employee.id}-week`,
       employeeId: employee.id,

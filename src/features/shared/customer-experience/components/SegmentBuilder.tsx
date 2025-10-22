@@ -1,7 +1,7 @@
 import { Button } from '@/shared/ui/Button';
 import { Select } from '@/shared/ui/Select';
 import { Input } from '@/shared/ui/Input';
-import type { Segment, SegmentExpression, SegmentField, SegmentLeaf, SegmentOperator } from '../lib/types';
+import type { Segment, SegmentExpression, SegmentField, SegmentLeaf, SegmentOperator } from '../lib';
 
 interface SegmentBuilderProps {
   fields: SegmentField[];
@@ -28,9 +28,11 @@ export const SegmentBuilder = ({ fields, segment, onChange }: SegmentBuilderProp
 
   const updateLeaf = (index: number, updates: Partial<SegmentLeaf>) => {
     if (segment.rules.type !== 'GROUP') return;
-    const updatedChildren = segment.rules.children.map((child, childIndex) =>
-      childIndex === index ? { ...child, ...updates } : child
-    );
+    const updatedChildren = segment.rules.children.map((child, childIndex) => {
+      if (childIndex !== index) return child;
+      if (child.type !== 'LEAF') return child;
+      return { ...child, ...updates };
+    });
     onChange({ ...segment.rules, children: updatedChildren });
   };
 

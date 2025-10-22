@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/shared/ui/Button';
 import { cn } from '@/lib/cn';
 import { formatClockTime, formatDateTime, formatDuration } from '../lib/format';
-import type { Employee, OfflineQueueSnapshot, Punch } from '../lib/types';
+import type { Employee, OfflineQueueSnapshot, Punch } from '../lib';
 
 const statusColors: Record<string, string> = {
   CLOCKED_IN: 'bg-emerald-500/20 text-emerald-200 border border-emerald-400/30',

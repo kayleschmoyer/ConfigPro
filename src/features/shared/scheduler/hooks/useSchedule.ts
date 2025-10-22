@@ -14,7 +14,7 @@ import type {
   ScheduleView,
   Shift,
   Violation,
-} from '../lib/types';
+} from '../lib';
 import {
   defaultStartDate,
   sampleAvailability,
@@ -27,6 +27,8 @@ import {
   shiftTemplates,
   type ShiftTemplate,
 } from '../lib/constants';
+
+export type { ShiftTemplate } from '../lib/constants';
 
 const createId = () =>
   typeof crypto !== 'undefined' && 'randomUUID' in crypto

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { Employee, ExceptionItem } from '../lib/types';
+import type { Employee, ExceptionItem } from '../lib';
 import { formatRelative } from '../lib/format';
 
 const createException = (employee: Employee, index: number): ExceptionItem => {

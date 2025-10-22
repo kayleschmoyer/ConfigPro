@@ -127,7 +127,8 @@ const assignCoverage = (
     if (deficit <= 0) continue;
     for (let slot = 0; slot < deficit; slot += 1) {
       const draft = buildShift(segment);
-      let bestCandidate: { employee: Employee; score: number; violations: Violation[]; shift: Shift } | null = null;
+      type Candidate = { employee: Employee; score: number; violations: Violation[]; shift: Shift };
+      let bestCandidate: Candidate | undefined;
       request.employees.forEach((employee) => {
         const candidateShift: Shift = { ...draft, employeeId: employee.id };
         const context = buildRuleContext(request, [...planned, candidateShift]);

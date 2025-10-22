@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { LayoutDashboard, Menu } from 'lucide-react';
-import type { FeatureCatalogItem, LayoutItem } from '../lib/types';
+import type { FeatureCatalogItem, LayoutItem } from '../lib';
 import { groupLayoutByRegion } from '../lib/layout';
 
 interface LayoutPreviewProps {

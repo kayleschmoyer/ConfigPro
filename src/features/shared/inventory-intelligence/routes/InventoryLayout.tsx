@@ -6,7 +6,7 @@ import { cn } from '@/lib/cn';
 import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { useInventoryShortcuts } from '../lib/shortcuts';
-import type { SearchResult } from '../lib/types';
+import type { SearchResult } from '../lib';
 
 const NAV_ITEMS = [
   { label: 'Home', path: '/inventory', key: 'home', shortcut: 'g h' },

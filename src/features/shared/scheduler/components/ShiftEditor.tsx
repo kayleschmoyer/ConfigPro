@@ -3,9 +3,8 @@ import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Modal } from '@/shared/ui/Modal';
 import { Select } from '@/shared/ui/Select';
-import type { Violation } from '../lib/types';
+import type { Violation , Employee, Location, Role, Shift } from '../lib';
 import type { ShiftWithMeta } from '../hooks/useSchedule';
-import type { Employee, Location, Role, Shift } from '../lib/types';
 
 const toISO = (date: string, time: string) => {
   const [hours, minutes] = time.split(':').map(Number);

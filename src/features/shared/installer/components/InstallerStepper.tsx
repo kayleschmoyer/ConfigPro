@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/cn';
-import type { InstallerStep } from '../lib/types';
+import type { InstallerStep } from '../lib';
 
 interface InstallerStepperProps {
   steps: InstallerStep[];

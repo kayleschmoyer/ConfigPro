@@ -8,7 +8,7 @@ export * from './hooks/useFeedback';
 export * from './hooks/useSegments';
 export * from './hooks/useJourneys';
 
-export * from './lib/types';
+export * from './lib';
 export * from './lib/format';
 export * from './lib/segments';
 export * from './lib/loyalty';

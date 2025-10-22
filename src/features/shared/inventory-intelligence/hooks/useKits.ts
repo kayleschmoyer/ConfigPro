@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { computeKitAvailability, detectKitExceptions, explodeKitDemand } from '../lib/kits';
-import { Exception, SKU, StockSnapshot } from '../lib/types';
+import type { Exception, SKU, StockSnapshot } from '../lib';
 
 const DEMO_KITS: SKU[] = [
   {

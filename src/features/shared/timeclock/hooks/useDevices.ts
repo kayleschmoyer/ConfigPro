@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { Device, DeviceTelemetry } from '../lib/types';
+import type { Device, DeviceTelemetry } from '../lib';
 import { formatRelative } from '../lib/format';
 
 const deviceSeed: Device[] = [

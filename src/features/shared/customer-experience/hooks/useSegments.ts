@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { previewSegment, segmentFields, buildEmptySegment } from '../lib/segments';
-import type { Customer, Segment, SegmentExpression } from '../lib/types';
+import type { Customer, Segment, SegmentExpression } from '../lib';
 import { usePortal } from './usePortal';
 
 const sampleCustomers: Customer[] = [

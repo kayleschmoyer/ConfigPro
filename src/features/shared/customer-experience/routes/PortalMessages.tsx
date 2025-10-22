@@ -28,7 +28,7 @@ export const PortalMessages = () => {
                 }`}
               >
                 <p className="font-semibold">Thread {thread.threadId.slice(-4)}</p>
-                <p className="text-xs text-muted">{thread.messages.at(-1)?.atLabel}</p>
+                <p className="text-xs text-muted">{thread.messages[thread.messages.length - 1]?.atLabel}</p>
               </button>
             </li>
           ))}

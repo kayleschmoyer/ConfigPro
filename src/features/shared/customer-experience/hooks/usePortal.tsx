@@ -1,4 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
+ 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { baseTheme, resolveTheme } from '@/app/config/theme';
 import type {
@@ -9,7 +9,7 @@ import type {
   Reward,
   Survey,
   SurveyResponse
-} from '../lib/types';
+} from '../lib';
 
 const PortalContext = createContext<PortalState | undefined>(undefined);
 

@@ -1,7 +1,7 @@
 import { Button } from '@/shared/ui/Button';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { formatRelative } from '../lib/format';
-import type { Device, DeviceTelemetry } from '../lib/types';
+import type { Device, DeviceTelemetry } from '../lib';
 
 export type DeviceListProps = {
   devices: Device[];

@@ -1,4 +1,4 @@
-import { DemandPoint, DemandSeries } from './types';
+import type { DemandPoint, DemandSeries } from './index';
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 

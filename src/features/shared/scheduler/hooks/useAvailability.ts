@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { sampleAvailability } from '../lib/constants';
-import type { AvailabilityRule, Employee } from '../lib/types';
+import type { AvailabilityRule, Employee } from '../lib';
 
 type UseAvailabilityOptions = {
   employees: Employee[];

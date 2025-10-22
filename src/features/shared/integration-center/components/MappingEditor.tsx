@@ -3,7 +3,7 @@ import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
-import type { FieldMapping } from '../lib/types';
+import type { FieldMapping } from '../lib';
 import { describeDomain, evaluateTransform } from '../lib/mapping';
 import { formatNumber } from '../lib/format';
 

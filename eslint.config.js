@@ -1,23 +1,18 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import { FlatCompat } from '@eslint/eslintrc';
+import { fileURLToPath } from 'node:url';
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser
-    }
-  }
-]);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const compat = new FlatCompat({ baseDirectory: __dirname });
+
+const configPath = path.join(__dirname, '.eslintrc.js');
+const code = fs.readFileSync(configPath, 'utf8');
+const sandbox = { module: { exports: {} }, exports: {} };
+vm.runInNewContext(code, sandbox, { filename: configPath, dirname: __dirname });
+const legacyConfig = sandbox.module.exports;
+
+export default compat.config(legacyConfig);

@@ -1,6 +1,6 @@
 import type { FieldMapping } from './types';
 
-// eslint-disable-next-line no-useless-escape
+ 
 const SAFE_EXPRESSION = /^[\w\s.+\-*/():'",?|&!<>\[\]]+$/;
 
 export type MappingEvaluation = {

@@ -10,7 +10,7 @@ import { useSchedulerShortcuts } from '../lib/shortcuts';
 import { ScheduleGrid } from '../components/ScheduleGrid';
 import { ShiftEditor } from '../components/ShiftEditor';
 import { RightPanel } from '../components/RightPanel';
-import type { Shift } from '../lib/types';
+import type { Shift } from '../lib';
 import { differenceInMinutes } from '../lib/time';
 
 const viewModes = [
@@ -252,7 +252,6 @@ export const Schedule = () => {
           rowHeight={schedule.rowHeight}
           timeIncrement={schedule.timeIncrement}
           selectedShiftId={schedule.selectedShiftId}
-          filters={schedule.filters}
           onSelectShift={schedule.setSelectedShiftId}
           onBeginCreateShift={schedule.beginCreateShift}
           onBeginEditShift={schedule.beginEditShift}

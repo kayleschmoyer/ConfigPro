@@ -5,7 +5,7 @@ import { Button } from '@/shared/ui/Button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { formatRelative, formatTimestamp } from '../lib/format';
-import type { Connection } from '../lib/types';
+import type { Connection } from '../lib';
 import { EnvBadge } from './EnvBadge';
 import { RateLimitBadge } from './RateLimitBadge';
 

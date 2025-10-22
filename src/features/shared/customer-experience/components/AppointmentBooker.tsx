@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
 import { formatDateTime } from '../lib/format';
-import type { Appointment } from '../lib/types';
+import type { Appointment } from '../lib';
 
 interface AppointmentBookerProps {
   appointments: Array<Appointment & { window: string }>;

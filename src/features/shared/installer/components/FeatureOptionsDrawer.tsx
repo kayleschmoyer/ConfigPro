@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
 import { Switch } from '@/components/ui/Switch';
-import type { FeatureCatalogItem } from '../lib/types';
+import type { FeatureCatalogItem } from '../lib';
 
 type FieldType = 'string' | 'number' | 'select' | 'toggle';
 
@@ -183,7 +183,7 @@ export const FeatureOptionsDrawer = ({ feature, isOpen, onClose, value, onSave }
                     </div>
                     <Switch
                       checked={Boolean(currentValue)}
-                      onCheckedChange={(checked) => updateField(field.key, checked)}
+                      onCheckedChange={(checked: boolean) => updateField(field.key, checked)}
                     />
                   </label>
                 );

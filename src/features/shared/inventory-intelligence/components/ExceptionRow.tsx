@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/shared/ui/Button';
 import { formatDate } from '../lib/format';
-import { Exception } from '../lib/types';
+import type { Exception } from '../lib';
 
 export type ExceptionRowProps = {
   exception: Exception;
