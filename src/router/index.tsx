@@ -11,6 +11,18 @@ import { FeaturePlaygroundPage } from '../pages/dev/FeaturePlaygroundPage';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 import {
+  ARLayout,
+  ARHome,
+  ARInvoices,
+  ARPayments,
+  ARCustomers,
+  ARAging,
+  ARDisputes,
+  ARAutomation,
+  ARReports,
+  ARSettings
+} from '../routes/accounts-receivable';
+import {
   BaseAutomotivePage,
   BaseConstructionPage,
   BaseDaycarePage,
@@ -47,6 +59,17 @@ export const AppRouter = () => (
       <Route index element={<DemandStudio />} />
       <Route path="studio" element={<DemandStudio />} />
       <Route path="workbench" element={<ScenarioWorkbench />} />
+    </Route>
+    <Route path="/ar" element={<ARLayout />}>
+      <Route index element={<ARHome />} />
+      <Route path="invoices" element={<ARInvoices />} />
+      <Route path="payments" element={<ARPayments />} />
+      <Route path="customers" element={<ARCustomers />} />
+      <Route path="aging" element={<ARAging />} />
+      <Route path="disputes" element={<ARDisputes />} />
+      <Route path="automation" element={<ARAutomation />} />
+      <Route path="reports" element={<ARReports />} />
+      <Route path="settings" element={<ARSettings />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>

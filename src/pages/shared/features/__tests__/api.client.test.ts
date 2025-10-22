@@ -6,7 +6,6 @@ import {
   createTypedApiClient,
   defineEndpoint,
   normalizeApiError,
-  type ApiResponse,
   type EndpointDefinition,
 } from '../api.client';
 
@@ -45,12 +44,11 @@ describe('ApiClient', () => {
     const headers = init?.headers as Headers;
     expect(headers.get('authorization')).toBe('Bearer token');
 
-    expect(response).toMatchObject<ApiResponse<{ id: string }>>({
-      data: { id: 'schedule-1' },
-      status: 200,
-      headers: expect.any(Headers),
-      requestId: 'req-123',
-    });
+    expect(response.data).toEqual({ id: 'schedule-1' });
+    expect(response.status).toBe(200);
+    expect(response.requestId).toBe('req-123');
+    expect(response.headers.get('x-request-id')).toBe('req-123');
+    expect(response.headers.get('content-type')).toBe('application/json');
   });
 
   it('throws an ApiHttpError with normalized body on non-success responses', async () => {
