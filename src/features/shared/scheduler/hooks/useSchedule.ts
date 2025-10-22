@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { formatDate } from '../lib/format';
-import { RuleContext, violationsForShift } from '../lib/rules';
+import type { RuleContext } from '../lib/rules';
+import { violationsForShift } from '../lib/rules';
 import { differenceInMinutes } from '../lib/time';
 import type {
   AvailabilityRule,
