@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card } from '../../../shared/ui/Card';
-import { Button } from '../../../shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Button } from '@/shared/ui/Button';
 import { useReplenishment } from '../hooks/useReplenishment';
 import { ReplenishmentPlanner } from '../components/ReplenishmentPlanner';
 import { ProposalDrawer } from '../components/ProposalDrawer';

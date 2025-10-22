@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Card } from '../../../shared/ui/Card';
-import { Button } from '../../../shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Button } from '@/shared/ui/Button';
 
 const SETTINGS = [
   { label: 'Default Forecast Method', value: 'Croston for Intermittent', helper: 'Category overrides available' },

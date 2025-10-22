@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { baseTheme, resolveTheme } from '../../../../app/config/theme';
+import { baseTheme, resolveTheme } from '@/app/config/theme';
 import type {
   Appointment,
   Journey,

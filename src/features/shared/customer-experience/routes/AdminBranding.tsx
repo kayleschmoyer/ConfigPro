@@ -1,7 +1,7 @@
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
-import { resolveTheme } from '../../../app/config/theme';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { resolveTheme } from '@/app/config/theme';
 
 const themes = [
   { label: 'Default', value: 'default' },

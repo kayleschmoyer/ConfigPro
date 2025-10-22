@@ -1,7 +1,7 @@
 import { ShieldCheck, Settings2, FileSpreadsheet, GitCompare, ClipboardList, Power } from 'lucide-react';
-import { Switch } from '../../../components/ui/Switch';
-import { Button } from '../../../shared/ui/Button';
-import { cn } from '../../../lib/cn';
+import { Switch } from '@/components/ui/Switch';
+import { Button } from '@/shared/ui/Button';
+import { cn } from '@/lib/cn';
 
 interface AdminToolbarProps {
   adminMode: boolean;

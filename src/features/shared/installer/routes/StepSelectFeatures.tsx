@@ -1,6 +1,6 @@
 import { useInstaller } from './InstallerLayout';
 import { FeatureCatalog } from '../components/FeatureCatalog';
-import { useCurrencyFormat } from '../../../shared/hooks/useCurrencyFormat';
+import { useCurrencyFormat } from '@/shared/hooks/useCurrencyFormat';
 
 interface StepSelectFeaturesProps {
   onRegisterSearchFocus: (fn: (() => void) | null) => void;

@@ -1,7 +1,7 @@
 import type { ZodType, ZodTypeDef } from 'zod';
 import * as yup from 'yup';
 
-import { sharedFormValidators } from '../../../shared/validation/validators';
+import { sharedFormValidators } from '@/shared/validation/validators';
 
 import type {
   WorkspaceInput,
@@ -9,7 +9,7 @@ import type {
   MenuItemInput,
   TaxProfileInput,
   SchedulingRuleInput,
-} from '../../../shared/validation/zodSchemas';
+} from '@/shared/validation/zodSchemas';
 
 export type SchemaVersion = `${number}.${number}.${number}`;
 
@@ -455,5 +455,5 @@ export type {
   MenuItemInput,
   TaxProfileInput,
   SchedulingRuleInput,
-} from '../../../shared/validation/zodSchemas';
+} from '@/shared/validation/zodSchemas';
 

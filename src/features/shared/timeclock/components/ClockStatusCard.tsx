@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { cn } from '@/lib/cn';
 import { formatClockTime, formatDateTime, formatDuration } from '../lib/format';
 import type { Employee, OfflineQueueSnapshot, Punch } from '../lib/types';
 

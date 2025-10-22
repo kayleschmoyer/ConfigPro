@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Button } from '../../../shared/ui/Button';
-import { Card } from '../../../shared/ui/Card';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
 import { formatCurrency } from '../lib/format';
 import { useForecasts } from '../hooks/useForecasts';
 import { useReplenishment } from '../hooks/useReplenishment';

@@ -1,4 +1,4 @@
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 import type { MatchAssessment, Variance } from '../lib/match';
 
 const varianceCopy: Record<Variance['kind'], string> = {

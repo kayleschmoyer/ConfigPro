@@ -8,13 +8,13 @@ import {
   type ReactNode,
 } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { baseTheme, resolveTheme } from '../../../app/config/theme';
-import { Button } from '../../../shared/ui/Button';
-import { ToastProvider, useToast } from '../../../shared/ui/Toast';
-import { useLocalStorage } from '../../../hooks/useLocalStorage';
-import { coreRoleDefinitions } from '../../../pages/shared/features/permissions.model';
-import { useCurrentUser } from '../../../shared/state/auth';
-import { isAdmin, isConfigPro, type User as GuardUser } from '../../../lib/authz';
+import { baseTheme, resolveTheme } from '@/app/config/theme';
+import { Button } from '@/shared/ui/Button';
+import { ToastProvider, useToast } from '@/shared/ui/Toast';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { coreRoleDefinitions } from '@/pages/shared/features/permissions.model';
+import { useCurrentUser } from '@/shared/state/auth';
+import { isAdmin, isConfigPro, type User as GuardUser } from '@/lib/authz';
 import { InstallerStepper } from '../components/InstallerStepper';
 import { useInstallerCatalog } from '../lib/catalog';
 import { planDefinitions, computePricing, getPlanDefinition } from '../lib/pricing';

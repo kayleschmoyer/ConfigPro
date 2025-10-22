@@ -1,4 +1,4 @@
-import { Card } from '../../../shared/ui/Card';
+import { Card } from '@/shared/ui/Card';
 import { formatPercent } from '../lib/format';
 import { SKU, StockSnapshot } from '../lib/types';
 import { computeKitAvailability } from '../lib/kits';

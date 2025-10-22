@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { cn } from '@/lib/cn';
 import { heroGradient } from '../lib/format';
 import { useShortcuts } from '../lib/shortcuts';
 import { PortalProvider, usePortal } from '../hooks/usePortal';

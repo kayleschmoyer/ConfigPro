@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { baseTheme } from '../../../app/config/theme';
-import { cn } from '../../../lib/cn';
+import { baseTheme } from '@/app/config/theme';
+import { cn } from '@/lib/cn';
 import { formatDate } from '../lib/format';
 import { DemandSeries, Forecast } from '../lib/types';
 

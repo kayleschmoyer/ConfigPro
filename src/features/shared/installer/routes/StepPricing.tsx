@@ -1,6 +1,6 @@
 import { useInstaller } from './InstallerLayout';
 import { PricingSummary } from '../components/PricingSummary';
-import { useCurrencyFormat } from '../../../shared/hooks/useCurrencyFormat';
+import { useCurrencyFormat } from '@/shared/hooks/useCurrencyFormat';
 
 export const StepPricing = () => {
   const { priceBreakdown, draft, setCouponCode, billingVisible, admin } = useInstaller();

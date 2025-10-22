@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Drawer } from '../../../shared/ui/Drawer';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
-import { Switch } from '../../../components/ui/Switch';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { Switch } from '@/components/ui/Switch';
 import type { FeatureCatalogItem } from '../lib/types';
 
 type FieldType = 'string' | 'number' | 'select' | 'toggle';

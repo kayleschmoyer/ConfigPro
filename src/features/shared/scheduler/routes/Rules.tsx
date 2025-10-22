@@ -1,5 +1,5 @@
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 import { useRules } from '../hooks/useRules';
 
 export const Rules = () => {

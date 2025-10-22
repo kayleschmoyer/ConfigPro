@@ -1,4 +1,4 @@
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { sampleShifts } from '../lib/constants';
 import { usePublishing } from '../hooks/usePublishing';
 

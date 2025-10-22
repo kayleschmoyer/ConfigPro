@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { useCurrencyFormat } from '../../../shared/hooks/useCurrencyFormat';
-import { Input } from '../../../shared/ui/Input';
+import { useCurrencyFormat } from '@/shared/hooks/useCurrencyFormat';
+import { Input } from '@/shared/ui/Input';
 import { PlanPicker } from '../components/PlanPicker';
 import { useInstaller } from './InstallerLayout';
 

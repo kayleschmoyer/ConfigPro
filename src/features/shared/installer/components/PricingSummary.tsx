@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { BadgeDollarSign } from 'lucide-react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
-import { Input } from '../../../shared/ui/Input';
-import { Button } from '../../../shared/ui/Button';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
 import type { PriceBreakdown } from '../lib/types';
 
 interface PricingSummaryProps {

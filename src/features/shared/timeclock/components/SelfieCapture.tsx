@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import type { Employee } from '../lib/types';
 
 export type SelfieCaptureProps = {

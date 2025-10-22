@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { useFeedback } from '../hooks/useFeedback';
 import { SurveyRunner } from '../components/SurveyRunner';
 

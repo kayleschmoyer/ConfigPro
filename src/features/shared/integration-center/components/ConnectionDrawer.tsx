@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Drawer } from '../../../../shared/ui/Drawer';
-import { Button } from '../../../../shared/ui/Button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../shared/ui/Tabs';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../shared/ui/Table';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Button } from '@/shared/ui/Button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { formatRelative, formatTimestamp } from '../lib/format';
 import type { Connection } from '../lib/types';
 import { EnvBadge } from './EnvBadge';

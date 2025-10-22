@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../../shared/ui/Button';
-import { Input } from '../../../../shared/ui/Input';
-import { Select } from '../../../../shared/ui/Select';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../shared/ui/Table';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { useApiKeys } from '../hooks/useApiKeys';
 import { SecretMasked } from './SecretMasked';
 import { EnvBadge } from './EnvBadge';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { useSyncJobs } from '../hooks/useSyncJobs';
 import { SyncJobsTable } from '../components/SyncJobsTable';
 import { RunDetailDrawer } from '../components/RunDetailDrawer';

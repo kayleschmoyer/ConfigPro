@@ -1,8 +1,8 @@
 import { useMemo, useRef } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { cn } from '@/lib/cn';
 import { useSchedule } from '../hooks/useSchedule';
 import { useAutoScheduler } from '../hooks/useAutoScheduler';
 import { usePublishing } from '../hooks/usePublishing';

@@ -1,4 +1,4 @@
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 
 const reports = [
   { label: 'Coverage attainment', value: '95%', helper: 'Week to date vs requirement', tone: 'text-emerald-500' },

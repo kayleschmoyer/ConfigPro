@@ -1,4 +1,4 @@
-import { Button } from '../../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import {
   Table,
   TableBody,
@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
   TableContainer
-} from '../../../../shared/ui/Table';
+} from '@/shared/ui/Table';
 import type { SyncJob } from '../lib/types';
 import { EnvBadge } from './EnvBadge';
 

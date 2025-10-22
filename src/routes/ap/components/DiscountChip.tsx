@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 import type { DiscountInsight } from '../lib/discounts';
 
 export const DiscountChip = ({ insight }: { insight?: DiscountInsight }) => {

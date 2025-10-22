@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { resolveGeoStatus } from '../lib/geo';
 import type { DeviceInfo, Geo, Policy } from '../lib/types';
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { cn } from '@/lib/cn';
 
 const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'clear', '0', 'back'];
 

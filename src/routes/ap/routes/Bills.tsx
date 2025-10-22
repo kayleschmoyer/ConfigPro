@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Select } from '../../../shared/ui/Select';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
 import { BillTable } from '../components/BillTable';
 import { BillDrawer } from '../components/BillDrawer';
 import { useBills } from '../hooks/useBills';

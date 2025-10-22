@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Button } from '../../../../shared/ui/Button';
-import { Select } from '../../../../shared/ui/Select';
-import { cn } from '../../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { Select } from '@/shared/ui/Select';
+import { cn } from '@/lib/cn';
 import type { WebhookEndpoint } from '../lib/types';
 
 interface WebhookTestPanelProps {

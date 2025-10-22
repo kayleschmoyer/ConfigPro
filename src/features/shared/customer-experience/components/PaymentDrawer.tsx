@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Drawer } from '../../../shared/ui/Drawer';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { cn } from '../../../lib/cn';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { cn } from '@/lib/cn';
 import { formatMoney } from '../lib/format';
 import { calculateRedeemable, buildPaymentIntent } from '../lib/payments';
 import type { InvoiceRef, Loyalty, Reward } from '../lib/types';

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { cn } from '@/lib/cn';
 import { formatDate, formatDateTime, formatMoney } from '../lib/format';
 import { usePortal } from '../hooks/usePortal';
 import { useInvoices } from '../hooks/useInvoices';

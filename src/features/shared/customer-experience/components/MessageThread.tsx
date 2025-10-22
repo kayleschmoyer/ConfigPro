@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { cn } from '@/lib/cn';
 import type { Message } from '../lib/types';
 
 interface MessageThreadProps {

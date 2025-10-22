@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { heroGradient } from '../lib/format';
 import { useShortcuts } from '../lib/shortcuts';
 import { PortalProvider, usePortal } from '../hooks/usePortal';

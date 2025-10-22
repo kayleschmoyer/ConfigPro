@@ -1,5 +1,5 @@
-import { Button } from '../../../shared/ui/Button';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
+import { Button } from '@/shared/ui/Button';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { useFeedback } from '../hooks/useFeedback';
 import { useLoyalty } from '../hooks/useLoyalty';
 import { usePortal } from '../hooks/usePortal';

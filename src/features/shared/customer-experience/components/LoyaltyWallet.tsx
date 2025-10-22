@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { formatDate } from '../lib/format';
 import type { LoyaltyHistoryItem, Reward } from '../lib/types';
 

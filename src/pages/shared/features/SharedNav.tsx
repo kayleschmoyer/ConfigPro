@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import { cn } from '../../../lib/cn';
+import { cn } from '@/lib/cn';
 import { SharedFeatureRegistry } from './feature.registry';
 
 export const SharedNav = () => {

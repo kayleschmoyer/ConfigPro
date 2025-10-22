@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { useClockContext } from '../hooks/ClockProvider';
 import { ClockStatusCard } from '../components/ClockStatusCard';
 import { formatDuration } from '../lib/format';

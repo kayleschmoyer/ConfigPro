@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { baseTheme, resolveTheme } from '../../../app/config/theme';
-import { cn } from '../../../lib/cn';
-import { Input } from '../../../shared/ui/Input';
-import { Button } from '../../../shared/ui/Button';
+import { baseTheme, resolveTheme } from '@/app/config/theme';
+import { cn } from '@/lib/cn';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
 import { useShortcutSequence } from '../lib/shortcuts';
 
 const theme = resolveTheme('configpro') ?? baseTheme;

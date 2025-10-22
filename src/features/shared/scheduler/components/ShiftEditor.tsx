@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
-import { Modal } from '../../../shared/ui/Modal';
-import { Select } from '../../../shared/ui/Select';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Modal } from '@/shared/ui/Modal';
+import { Select } from '@/shared/ui/Select';
 import type { Violation } from '../lib/types';
 import type { ShiftWithMeta } from '../hooks/useSchedule';
 import type { Employee, Location, Role, Shift } from '../lib/types';

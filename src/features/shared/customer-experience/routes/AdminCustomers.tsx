@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
 import { useSegments } from '../hooks/useSegments';
 import { usePortal } from '../hooks/usePortal';
 import { maskEmail, formatDate } from '../lib/format';

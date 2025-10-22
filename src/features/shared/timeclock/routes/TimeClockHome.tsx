@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { formatClockTime, formatDuration } from '../lib/format';
 import { useClockContext } from '../hooks/ClockProvider';
 

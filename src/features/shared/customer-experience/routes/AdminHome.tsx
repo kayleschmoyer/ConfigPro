@@ -1,4 +1,4 @@
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 
 const cards = [
   { title: 'Customers', description: 'Profiles, guardians, and org hierarchies', to: '/admin/customers' },

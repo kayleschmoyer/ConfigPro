@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import {
   Table,
   TableBody,
@@ -9,8 +9,8 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '../../../shared/ui/Table';
-import { cn } from '../../../lib/cn';
+} from '@/shared/ui/Table';
+import { cn } from '@/lib/cn';
 import { badgeToneForStatus, formatDate, formatMoney } from '../lib/format';
 import type { InvoiceRef } from '../lib/types';
 

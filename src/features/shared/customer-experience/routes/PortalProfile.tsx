@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '../../../shared/ui/Button';
-import { Input } from '../../../shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 import { ConsentEditor } from '../components/ConsentEditor';
 import { usePortal } from '../hooks/usePortal';
 

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { CheckCircle2, Map, ToggleRight } from 'lucide-react';
 import { useInstaller } from './InstallerLayout';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
-import { useCurrencyFormat } from '../../../shared/hooks/useCurrencyFormat';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
+import { useCurrencyFormat } from '@/shared/hooks/useCurrencyFormat';
 
 export const StepReview = () => {
   const { draft, catalog, layoutItems, priceBreakdown, billingVisible } = useInstaller();

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { Drawer } from '../../../shared/ui/Drawer';
-import { Button } from '../../../shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Button } from '@/shared/ui/Button';
 import { formatCurrency } from '../lib/format';
 import { ReorderProposal } from '../lib/types';
 

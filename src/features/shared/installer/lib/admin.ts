@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { isAdmin, type User } from '../../../../lib/authz';
+import { isAdmin, type User } from '@/lib/authz';
 import type { FeatureCatalogItem, LayoutItem, LayoutRegion } from './types';
 import { normalizeLayout } from './layout';
 

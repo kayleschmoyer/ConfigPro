@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../shared/ui/Button';
-import { Select } from '../../../shared/ui/Select';
+import { Button } from '@/shared/ui/Button';
+import { Select } from '@/shared/ui/Select';
 import type { Survey } from '../lib/types';
 
 interface SurveyRunnerProps {

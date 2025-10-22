@@ -1,5 +1,5 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
-import { Button } from '../../../shared/ui/Button';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
+import { Button } from '@/shared/ui/Button';
 
 const reports = [
   { name: 'Aging by Vendor', description: 'Outstanding balances grouped by vendor and bucket.' },

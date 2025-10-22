@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Drawer } from '../../../shared/ui/Drawer';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../shared/ui/Tabs';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../shared/ui/Table';
-import { Button } from '../../../shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/Tabs';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/Table';
+import { Button } from '@/shared/ui/Button';
 import { DiscountChip } from './DiscountChip';
 import { MatchPanel } from './MatchPanel';
 import { ApprovalTrail } from './ApprovalTrail';

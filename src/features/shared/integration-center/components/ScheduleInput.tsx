@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { Input } from '../../../../shared/ui/Input';
-import { Select } from '../../../../shared/ui/Select';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
 import { cronPresets, formatCron } from '../lib/sync';
 
 interface ScheduleInputProps {

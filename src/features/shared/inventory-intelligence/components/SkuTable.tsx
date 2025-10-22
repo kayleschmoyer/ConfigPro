@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader } from '../../../shared/ui/Table';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeader } from '@/shared/ui/Table';
 import { StatusBadge } from './StatusBadge';
 
 export type SkuTableRow = {

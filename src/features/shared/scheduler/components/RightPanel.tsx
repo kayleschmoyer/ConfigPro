@@ -1,5 +1,5 @@
-import { Button } from '../../../shared/ui/Button';
-import { cn } from '../../../lib/cn';
+import { Button } from '@/shared/ui/Button';
+import { cn } from '@/lib/cn';
 import { formatRange } from '../lib/format';
 import { differenceInMinutes } from '../lib/time';
 import type { LaborLawProfile, Violation } from '../lib/types';
