@@ -29,6 +29,19 @@ import {
   BaseRetailPage,
 } from '../pages/industries';
 import { sharedRoutes } from '../app/routes/sharedRoutes';
+import {
+  InventoryLayout,
+  InventoryHome,
+  Forecasts as InventoryForecasts,
+  Replenishment,
+  Suppliers as InventorySuppliers,
+  Balancer,
+  Kits,
+  Exceptions as InventoryExceptions,
+  Automation as InventoryAutomation,
+  Reports as InventoryReports,
+  Settings as InventorySettings,
+} from '../features/shared/inventory-intelligence';
 
 export const AppRouter = () => (
   <Routes>
@@ -70,6 +83,18 @@ export const AppRouter = () => (
       <Route path="automation" element={<ARAutomation />} />
       <Route path="reports" element={<ARReports />} />
       <Route path="settings" element={<ARSettings />} />
+    </Route>
+    <Route path="/inventory" element={<InventoryLayout />}>
+      <Route index element={<InventoryHome />} />
+      <Route path="forecasts" element={<InventoryForecasts />} />
+      <Route path="replenishment" element={<Replenishment />} />
+      <Route path="suppliers" element={<InventorySuppliers />} />
+      <Route path="balancer" element={<Balancer />} />
+      <Route path="kits" element={<Kits />} />
+      <Route path="exceptions" element={<InventoryExceptions />} />
+      <Route path="automation" element={<InventoryAutomation />} />
+      <Route path="reports" element={<InventoryReports />} />
+      <Route path="settings" element={<InventorySettings />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
