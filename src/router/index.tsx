@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
 import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
 import { ErrorBoundaryPage, SharedFeaturesPage } from '../pages/shared/features';
 import { FeaturePlaygroundPage } from '../pages/dev/FeaturePlaygroundPage';
+import { InstallerApp } from '../features/shared/installer';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
 import { SchedulingLayout, ManagerConsole, EmployeePortal } from '../routes/scheduling';
 import {
@@ -36,6 +37,7 @@ import {
   Reports as APReports,
   Settings as APSettings,
 } from '../routes/ap';
+import {
   TimeClockLayout,
   TimeClockHome,
   Clock,
@@ -66,6 +68,7 @@ export const AppRouter = () => (
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
     <Route path="/dev/features" element={<FeaturePlaygroundPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
+    <Route path="/shared/installer" element={<InstallerApp />} />
     <Route path="/admin/features" element={<FeatureManagementPage />} />
     <Route path="/shared/error-boundary" element={<ErrorBoundaryPage />} />
     <Route path="/industries/retail" element={<BaseRetailPage />} />
