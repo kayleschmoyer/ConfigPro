@@ -69,6 +69,7 @@ import {
   BaseRetailPage,
 } from '../pages/industries';
 import { sharedRoutes } from '../app/routes/sharedRoutes';
+import { AdminGuard } from './AdminGuard';
 import {
   InventoryLayout,
   InventoryHome,
@@ -93,7 +94,14 @@ export const AppRouter = () => (
     <Route path="/dev/features" element={<FeaturePlaygroundPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
     <Route path="/shared/installer" element={<InstallerApp />} />
-    <Route path="/admin/features" element={<FeatureManagementPage />} />
+    <Route
+      path="/admin/features"
+      element={
+        <AdminGuard>
+          <FeatureManagementPage />
+        </AdminGuard>
+      }
+    />
     <Route path="/shared/error-boundary" element={<ErrorBoundaryPage />} />
     <Route path="/industries/retail" element={<BaseRetailPage />} />
     <Route path="/industries/daycare" element={<BaseDaycarePage />} />

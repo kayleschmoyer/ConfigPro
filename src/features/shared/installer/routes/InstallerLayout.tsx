@@ -13,6 +13,8 @@ import { Button } from '../../../shared/ui/Button';
 import { ToastProvider, useToast } from '../../../shared/ui/Toast';
 import { useLocalStorage } from '../../../hooks/useLocalStorage';
 import { coreRoleDefinitions } from '../../../pages/shared/features/permissions.model';
+import { useCurrentUser } from '../../../shared/state/auth';
+import { isAdmin, isConfigPro, type User as GuardUser } from '../../../lib/authz';
 import { InstallerStepper } from '../components/InstallerStepper';
 import { useInstallerCatalog } from '../lib/catalog';
 import { planDefinitions, computePricing, getPlanDefinition } from '../lib/pricing';
@@ -33,6 +35,24 @@ import { StepConfigure } from './StepConfigure';
 import { StepPricing } from './StepPricing';
 import { StepLayoutMapping } from './StepLayoutMapping';
 import { StepReview } from './StepReview';
+import { AdminToolbar } from '../components/AdminToolbar';
+import { PricingEditorDrawer } from '../components/PricingEditorDrawer';
+import { CatalogEditorDrawer } from '../components/CatalogEditorDrawer';
+import { DepsEditorModal } from '../components/DepsEditorModal';
+import { AuditDrawer } from '../components/AuditDrawer';
+import {
+  applyAdminCatalogAdjustments,
+  markFeaturePinned,
+  publishPricing,
+  resetLayoutToDefault,
+  saveCatalogOverride,
+  saveDependencyOverride,
+  savePricingDraft,
+  useAdminState,
+  type CatalogOverride,
+  type DependencyOverride,
+  type PricingSheet,
+} from '../lib/admin';
 
 const steps = [
   {
@@ -104,23 +124,79 @@ export const useInstaller = () => {
 const theme = resolveTheme('configpro') ?? baseTheme;
 
 export const InstallerLayout = () => {
-  const catalog = useInstallerCatalog();
+  const baseCatalog = useInstallerCatalog();
   const [draft, setDraft] = useState<InstallerDraft>(initialDraft);
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [searchFocus, setSearchFocus] = useState<(() => void) | null>(null);
   const [activeRole] = useLocalStorage<string>('configpro.activeRole', 'org-admin');
   const { showToast } = useToast();
+  const currentUser = useCurrentUser();
+  const guardUser = useMemo<GuardUser | null>(
+    () =>
+      currentUser
+        ? {
+            id: currentUser.id,
+            email: currentUser.email,
+            org: currentUser.org,
+            roles: currentUser.roles,
+          }
+        : null,
+    [currentUser],
+  );
+  const isInternalUser = isConfigPro(guardUser);
+  const isAdminUser = isAdmin(guardUser);
+  const [adminMode, setAdminMode] = useLocalStorage<boolean>('configpro.installer.adminMode', isAdminUser);
+  const adminState = useAdminState((state) => state);
+
+  useEffect(() => {
+    if (!isAdminUser && adminMode) {
+      setAdminMode(false);
+    }
+  }, [adminMode, isAdminUser, setAdminMode]);
+
+  const catalog = useMemo(
+    () => applyAdminCatalogAdjustments(baseCatalog, adminState, { includeHidden: isAdminUser && adminMode }),
+    [adminMode, adminState, baseCatalog, isAdminUser],
+  );
+  const pinnedFeatureIds = adminState.pinned;
 
   const billingVisible = useMemo(() => {
     const role = coreRoleDefinitions.find((definition) => definition.id === activeRole);
-    if (!role) return true;
-    return role.permissions.some((permission) => /billing|financial|revenue/i.test(permission));
-  }, [activeRole]);
+    const roleAllows = role?.permissions.some((permission) => /billing|financial|revenue/i.test(permission));
+    return Boolean(roleAllows) || (isAdminUser && adminMode);
+  }, [activeRole, adminMode, isAdminUser]);
 
   const selectedFeatureIds = useMemo(
     () => draft.selections.filter((selection) => selection.enabled).map((selection) => selection.featureId),
     [draft.selections]
   );
+
+  const [isPricingDrawerOpen, setPricingDrawerOpen] = useState(false);
+  const [isCatalogEditorOpen, setCatalogEditorOpen] = useState(false);
+  const [catalogEditorFeatureId, setCatalogEditorFeatureId] = useState<string | null>(null);
+  const [isDepsModalOpen, setDepsModalOpen] = useState(false);
+  const [isAuditDrawerOpen, setAuditDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    setDraft((current) => {
+      const pinned = new Set(pinnedFeatureIds);
+      let changed = false;
+      const selections = current.selections.map((selection) => {
+        if (pinned.has(selection.featureId) && !selection.enabled) {
+          changed = true;
+          return { ...selection, enabled: true };
+        }
+        return selection;
+      });
+      pinned.forEach((featureId) => {
+        if (!selections.some((selection) => selection.featureId === featureId)) {
+          selections.push({ featureId, enabled: true });
+          changed = true;
+        }
+      });
+      return changed ? { ...current, selections } : current;
+    });
+  }, [pinnedFeatureIds]);
 
   useEffect(() => {
     setDraft((current) => {
@@ -143,13 +219,24 @@ export const InstallerLayout = () => {
 
   const toggleFeature = useCallback(
     (featureId: string, enabled: boolean) => {
+      const pinned = new Set(pinnedFeatureIds);
+      if (!enabled && pinned.has(featureId) && (!isAdminUser || !adminMode)) {
+        showToast({
+          title: 'Pinned by ConfigPro admin',
+          description: 'This feature is locked in the bundle. Contact an admin to remove it.',
+          variant: 'warning',
+        });
+        return;
+      }
       setDraft((current) => {
         const resolution = toggleFeatureWithDependencies(catalog, current.selections, featureId, enabled);
         if (resolution.blockedBy) {
           const conflict = catalog.find((item) => item.id === resolution.blockedBy?.conflictingWith);
           showToast({
             title: 'Selection blocked',
-            description: `${catalog.find((item) => item.id === featureId)?.name ?? featureId} conflicts with ${conflict?.name ?? resolution.blockedBy?.conflictingWith}.`,
+            description: `${catalog.find((item) => item.id === featureId)?.name ?? featureId} conflicts with ${
+              conflict?.name ?? resolution.blockedBy?.conflictingWith
+            }.`,
             variant: 'warning',
           });
           return current;
@@ -174,13 +261,21 @@ export const InstallerLayout = () => {
             variant: 'warning',
           });
         }
+        const ensuredSelections = resolution.selections.map((selection) =>
+          pinned.has(selection.featureId) ? { ...selection, enabled: true } : selection,
+        );
+        pinned.forEach((id) => {
+          if (!ensuredSelections.some((selection) => selection.featureId === id)) {
+            ensuredSelections.push({ featureId: id, enabled: true });
+          }
+        });
         return {
           ...current,
-          selections: resolution.selections,
+          selections: ensuredSelections,
         };
       });
     },
-    [catalog, showToast]
+    [adminMode, catalog, isAdminUser, pinnedFeatureIds, showToast]
   );
 
   const updateFeatureOptions = useCallback(
@@ -219,6 +314,158 @@ export const InstallerLayout = () => {
   const updateLayout = useCallback((items: LayoutItem[]) => {
     setDraft((current) => ({ ...current, layout: items }));
   }, []);
+
+  const openPricingEditor = useCallback(() => {
+    if (!isAdminUser) return;
+    setPricingDrawerOpen(true);
+  }, [isAdminUser]);
+  const closePricingEditor = useCallback(() => setPricingDrawerOpen(false), []);
+  const openCatalogEditor = useCallback(
+    (featureId?: string) => {
+      if (!isAdminUser) return;
+      const targetId = featureId ?? catalog[0]?.id ?? null;
+      setCatalogEditorFeatureId(targetId);
+      setCatalogEditorOpen(true);
+    },
+    [catalog, isAdminUser]
+  );
+  const closeCatalogEditor = useCallback(() => {
+    setCatalogEditorOpen(false);
+    setCatalogEditorFeatureId(null);
+  }, []);
+  const openDependenciesModal = useCallback(() => {
+    if (!isAdminUser) return;
+    setDepsModalOpen(true);
+  }, [isAdminUser]);
+  const closeDependenciesModal = useCallback(() => setDepsModalOpen(false), []);
+  const openAuditDrawer = useCallback(() => {
+    if (!isAdminUser) return;
+    setAuditDrawerOpen(true);
+  }, [isAdminUser]);
+  const closeAuditDrawer = useCallback(() => setAuditDrawerOpen(false), []);
+
+  const handleMarkPinned = useCallback(
+    async (featureId: string, pinned: boolean) => {
+      try {
+        await markFeaturePinned(guardUser, featureId, pinned);
+        showToast({
+          title: pinned ? 'Feature pinned' : 'Feature unpinned',
+          description: pinned
+            ? 'Pinned features stay in every customer bundle until you remove the override.'
+            : 'Feature can now be removed by customers.',
+          variant: pinned ? 'info' : 'success',
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unable to update pin state.';
+        showToast({
+          title: 'Permission required',
+          description: message,
+          variant: 'warning',
+        });
+      }
+    },
+    [guardUser, showToast]
+  );
+
+  const handleResetLayout = useCallback(async () => {
+    try {
+      const resetLayout = await resetLayoutToDefault(guardUser, catalog, selectedFeatureIds);
+      setDraft((current) => ({ ...current, layout: resetLayout }));
+      showToast({
+        title: 'Layout reset',
+        description: 'Navigation placement restored to ConfigPro defaults.',
+        variant: 'info',
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Reset failed. Try again or contact an admin.';
+      showToast({
+        title: 'Unable to reset layout',
+        description: message,
+        variant: 'warning',
+      });
+    }
+  }, [catalog, guardUser, selectedFeatureIds, showToast]);
+
+  const handleSavePricing = useCallback(
+    async (next: PricingSheet) => {
+      try {
+        await savePricingDraft(guardUser, next);
+        showToast({
+          title: 'Draft pricing saved',
+          description: 'Draft pricing is ready for review before publishing.',
+          variant: 'success',
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unable to save draft pricing.';
+        showToast({
+          title: 'Save failed',
+          description: message,
+          variant: 'warning',
+        });
+      }
+    },
+    [guardUser, showToast]
+  );
+
+  const handlePublishPricing = useCallback(async () => {
+    try {
+      await publishPricing(guardUser);
+      showToast({
+        title: 'Pricing published',
+        description: 'Customers now see the updated live pricing.',
+        variant: 'info',
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unable to publish pricing.';
+      showToast({
+        title: 'Publish failed',
+        description: message,
+        variant: 'warning',
+      });
+    }
+  }, [guardUser, showToast]);
+
+  const handleSaveCatalog = useCallback(
+    async (featureId: string, override: CatalogOverride) => {
+      try {
+        await saveCatalogOverride(guardUser, featureId, override);
+        showToast({
+          title: 'Catalog updated',
+          description: 'Feature metadata saved to the shared catalog.',
+          variant: 'success',
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unable to save catalog changes.';
+        showToast({
+          title: 'Catalog update blocked',
+          description: message,
+          variant: 'warning',
+        });
+      }
+    },
+    [guardUser, showToast]
+  );
+
+  const handleSaveDependencies = useCallback(
+    async (featureId: string, override: DependencyOverride) => {
+      try {
+        await saveDependencyOverride(guardUser, featureId, override);
+        showToast({
+          title: 'Dependencies updated',
+          description: 'Dependency graph saved successfully.',
+          variant: 'success',
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unable to update dependencies.';
+        showToast({
+          title: 'Update blocked',
+          description: message,
+          variant: 'warning',
+        });
+      }
+    },
+    [guardUser, showToast]
+  );
 
   const goToStep = useCallback((key: InstallerStepKey) => {
     const index = steps.findIndex((step) => step.key === key);
@@ -316,6 +563,20 @@ export const InstallerLayout = () => {
     locationRange: { min: 1, max: 250 },
     toastRegionProps: { id: 'installer-live-region', role: 'status', 'aria-live': 'polite' },
     summaryHighlights,
+    admin: {
+      isInternal: isInternalUser,
+      isAdmin: isAdminUser,
+      adminMode,
+      setAdminMode,
+      openPricingEditor,
+      openCatalogEditor,
+      openDependenciesModal,
+      openAuditDrawer,
+      pinnedFeatureIds,
+      markPinned: handleMarkPinned,
+      lastPublishedPricingAt: adminState.pricing.lastPublishedAt,
+      resetLayout: handleResetLayout,
+    },
   };
 
   return (
@@ -325,6 +586,18 @@ export const InstallerLayout = () => {
         style={{ fontFamily: theme.font }}
       >
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-10">
+          {isAdminUser && (
+            <AdminToolbar
+              adminMode={adminMode}
+              onAdminModeChange={setAdminMode}
+              onEditPricing={openPricingEditor}
+              onEditCatalog={() => openCatalogEditor()}
+              onEditDependencies={openDependenciesModal}
+              onViewAudit={openAuditDrawer}
+              isConfigPro={isInternalUser}
+              lastPublishedAt={adminState.pricing.lastPublishedAt}
+            />
+          )}
           <InstallerStepper
             steps={steps.map((step) => ({ key: step.key, label: step.label, description: step.description }))}
             activeIndex={activeStepIndex}
@@ -388,6 +661,33 @@ export const InstallerLayout = () => {
           </div>
         </footer>
       </div>
+      <PricingEditorDrawer
+        isOpen={isPricingDrawerOpen}
+        onClose={closePricingEditor}
+        draft={adminState.pricing.draft}
+        published={adminState.pricing.published}
+        lastPublishedAt={adminState.pricing.lastPublishedAt}
+        onSaveDraft={handleSavePricing}
+        onPublish={handlePublishPricing}
+      />
+      <CatalogEditorDrawer
+        isOpen={isCatalogEditorOpen}
+        onClose={closeCatalogEditor}
+        featureId={catalogEditorFeatureId}
+        catalog={catalog}
+        onSelectFeature={setCatalogEditorFeatureId}
+        onSave={handleSaveCatalog}
+        pinnedFeatureIds={pinnedFeatureIds}
+        onTogglePinned={handleMarkPinned}
+      />
+      <DepsEditorModal
+        isOpen={isDepsModalOpen}
+        onClose={closeDependenciesModal}
+        catalog={catalog}
+        overrides={adminState.dependencyOverrides}
+        onSave={handleSaveDependencies}
+      />
+      <AuditDrawer isOpen={isAuditDrawerOpen} onClose={closeAuditDrawer} />
     </InstallerContext.Provider>
   );
 };

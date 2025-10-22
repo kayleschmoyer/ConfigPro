@@ -2,6 +2,7 @@ import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { Input } from '../../../shared/ui/Input';
+import { Button } from '../../../shared/ui/Button';
 import { Tabs, TabsList, TabsTrigger } from '../../../shared/ui/Tabs';
 import type { FeatureCatalogItem } from '../lib/types';
 import { FeatureCard } from './FeatureCard';
@@ -18,6 +19,10 @@ interface FeatureCatalogProps {
   conflictMap: Record<string, string[]>;
   selectionOptions: Record<string, Record<string, unknown> | undefined>;
   onRegisterSearchFocus?: (fn: () => void) => void;
+  isAdmin?: boolean;
+  adminMode?: boolean;
+  pinnedFeatureIds?: string[];
+  onOpenCatalogEditor?: (featureId?: string) => void;
 }
 
 const allCategory = 'ALL';
@@ -33,6 +38,10 @@ export const FeatureCatalog = ({
   conflictMap,
   selectionOptions,
   onRegisterSearchFocus,
+  isAdmin,
+  adminMode,
+  pinnedFeatureIds,
+  onOpenCatalogEditor,
 }: FeatureCatalogProps) => {
   const categories = useMemo(() => {
     const unique = new Set([allCategory]);
@@ -45,6 +54,8 @@ export const FeatureCatalog = ({
   const [drawerFeature, setDrawerFeature] = useState<FeatureCatalogItem | null>(null);
 
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+
+  const pinnedSet = useMemo(() => new Set(pinnedFeatureIds), [pinnedFeatureIds]);
 
   const filteredCatalog = useMemo(() => {
     const trimmed = search.trim().toLowerCase();
@@ -110,6 +121,16 @@ export const FeatureCatalog = ({
             ))}
           </TabsList>
         </Tabs>
+        {isAdmin && adminMode && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => onOpenCatalogEditor?.()}
+            className="whitespace-nowrap"
+          >
+            Edit catalog
+          </Button>
+        )}
       </div>
       <AnimatePresence mode="popLayout">
         {filteredCatalog.length === 0 ? (
@@ -139,6 +160,12 @@ export const FeatureCatalog = ({
                   formatCurrency={formatCurrency}
                   dependencies={dependencyMap[feature.id] ?? []}
                   conflicts={conflictMap[feature.id] ?? []}
+                  disabled={!adminMode && pinnedSet.has(feature.id)}
+                  disabledReason={!adminMode && pinnedSet.has(feature.id) ? 'Pinned by ConfigPro admin' : undefined}
+                  pinned={pinnedSet.has(feature.id)}
+                  hidden={feature.adminMeta?.hidden}
+                  onEditCatalog={isAdmin ? () => onOpenCatalogEditor?.(feature.id) : undefined}
+                  showAdminControls={Boolean(isAdmin && adminMode)}
                 />
               </motion.div>
             ))}

@@ -11,9 +11,23 @@ interface PricingSummaryProps {
   couponCode?: string;
   onCouponChange: (code: string) => void;
   billingVisible: boolean;
+  isAdmin?: boolean;
+  adminMode?: boolean;
+  onEditPricing?: () => void;
+  lastPublishedAt?: string;
 }
 
-export const PricingSummary = ({ breakdown, formatCurrency, couponCode, onCouponChange, billingVisible }: PricingSummaryProps) => {
+export const PricingSummary = ({
+  breakdown,
+  formatCurrency,
+  couponCode,
+  onCouponChange,
+  billingVisible,
+  isAdmin,
+  adminMode,
+  onEditPricing,
+  lastPublishedAt,
+}: PricingSummaryProps) => {
   const totals = useMemo(() => {
     if (!billingVisible) {
       return { monthly: 'Hidden', annual: 'Hidden' };
@@ -22,6 +36,15 @@ export const PricingSummary = ({ breakdown, formatCurrency, couponCode, onCoupon
     const annual = formatCurrency(breakdown.totalAnnual?.value ?? 0);
     return { monthly, annual };
   }, [billingVisible, breakdown.totalAnnual?.value, breakdown.totalMonthly?.value, formatCurrency]);
+
+  const publishedLabel = useMemo(() => {
+    if (!lastPublishedAt) return null;
+    try {
+      return new Date(lastPublishedAt).toLocaleString();
+    } catch (error) {
+      return lastPublishedAt;
+    }
+  }, [lastPublishedAt]);
 
   return (
     <section aria-labelledby="pricing-summary" className="space-y-6">
@@ -34,9 +57,24 @@ export const PricingSummary = ({ breakdown, formatCurrency, couponCode, onCoupon
             Review how your plan, add-ons, seats, and locations influence the subscription.
           </p>
         </div>
-        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-          <BadgeDollarSign className="h-3.5 w-3.5" aria-hidden />
-          Billing preview
+        <div className="flex flex-wrap items-center gap-2">
+          {publishedLabel && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-emerald-200">
+              Live pricing
+              <span className="font-normal normal-case tracking-normal text-emerald-100/80">
+                Published {publishedLabel}
+              </span>
+            </span>
+          )}
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+            <BadgeDollarSign className="h-3.5 w-3.5" aria-hidden />
+            Billing preview
+          </div>
+          {isAdmin && adminMode && (
+            <Button size="sm" variant="outline" onClick={onEditPricing}>
+              Edit pricing
+            </Button>
+          )}
         </div>
       </header>
       <TableContainer>
