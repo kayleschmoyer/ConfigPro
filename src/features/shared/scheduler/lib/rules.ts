@@ -1,4 +1,4 @@
-import { AvailabilityRule, Employee, LaborLawProfile, Role, Shift, Violation } from './types';
+import type { AvailabilityRule, Employee, LaborLawProfile, Role, Shift, Violation } from './types';
 import { differenceInMinutes, overlaps } from './time';
 
 export type RuleContext = {
