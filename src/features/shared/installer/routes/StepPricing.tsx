@@ -3,7 +3,7 @@ import { PricingSummary } from '../components/PricingSummary';
 import { useCurrencyFormat } from '../../../shared/hooks/useCurrencyFormat';
 
 export const StepPricing = () => {
-  const { priceBreakdown, draft, setCouponCode, billingVisible } = useInstaller();
+  const { priceBreakdown, draft, setCouponCode, billingVisible, admin } = useInstaller();
   const { formatCurrency } = useCurrencyFormat({ currency: draft.currency, locale: draft.locale });
 
   return (
@@ -13,6 +13,10 @@ export const StepPricing = () => {
       couponCode={draft.couponCode}
       onCouponChange={setCouponCode}
       billingVisible={billingVisible}
+      isAdmin={admin.isAdmin}
+      adminMode={admin.adminMode}
+      onEditPricing={admin.openPricingEditor}
+      lastPublishedAt={admin.lastPublishedPricingAt}
     />
   );
 };

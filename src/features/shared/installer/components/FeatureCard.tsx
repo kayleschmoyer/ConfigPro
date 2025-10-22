@@ -18,6 +18,11 @@ interface FeatureCardProps {
   autoEnabled?: boolean;
   dependencies?: string[];
   conflicts?: string[];
+  disabled?: boolean;
+  pinned?: boolean;
+  hidden?: boolean;
+  onEditCatalog?: () => void;
+  showAdminControls?: boolean;
 }
 
 export const FeatureCard = ({
@@ -31,6 +36,11 @@ export const FeatureCard = ({
   autoEnabled,
   dependencies = [],
   conflicts = [],
+  disabled,
+  pinned,
+  hidden,
+  onEditCatalog,
+  showAdminControls,
 }: FeatureCardProps) => {
   const priceLabel = useMemo(() => {
     if (!billingVisible) return 'Included by admin';
@@ -60,10 +70,24 @@ export const FeatureCard = ({
                 Auto-enabled
               </span>
             )}
+            {pinned && (
+              <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-200">
+                Pinned
+              </span>
+            )}
+            {hidden && (
+              <span className="rounded-full bg-slate-500/20 px-2 py-0.5 text-xs font-semibold text-slate-200">
+                Hidden
+              </span>
+            )}
           </div>
           <p className="text-sm text-muted-foreground">{feature.description}</p>
         </div>
-        <Switch checked={selected} onCheckedChange={(checked) => onToggle(feature.id, checked)} />
+        <Switch
+          checked={selected}
+          onCheckedChange={(checked) => onToggle(feature.id, checked)}
+          disabled={disabled}
+        />
       </header>
       <div className="mt-4 space-y-3 text-sm text-muted-foreground">
         <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em]">
@@ -112,6 +136,11 @@ export const FeatureCard = ({
           >
             Preview workspace
           </a>
+        )}
+        {showAdminControls && (
+          <Button variant="ghost" size="sm" onClick={onEditCatalog} className="ml-auto">
+            Edit catalog
+          </Button>
         )}
       </div>
     </article>

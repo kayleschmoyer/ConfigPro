@@ -12,12 +12,16 @@ interface LayoutMapperProps {
   catalog: FeatureCatalogItem[];
   onChange: (next: LayoutItem[]) => void;
   validationMessages: string[];
+  pinnedFeatureIds?: string[];
+  adminMode?: boolean;
+  onReset?: () => void;
 }
 
 const iconHints = ['layers', 'sparkles', 'calendar', 'credit-card', 'bar-chart-3', 'users'];
 
-export const LayoutMapper = ({ layout, catalog, onChange, validationMessages }: LayoutMapperProps) => {
+export const LayoutMapper = ({ layout, catalog, onChange, validationMessages, pinnedFeatureIds, adminMode, onReset }: LayoutMapperProps) => {
   const grouped = useMemo(() => groupLayoutByRegion(layout), [layout]);
+  const pinnedSet = useMemo(() => new Set(pinnedFeatureIds), [pinnedFeatureIds]);
 
   const handleLabelChange = useCallback(
     (featureId: string, label: string) => {
@@ -60,11 +64,18 @@ export const LayoutMapper = ({ layout, catalog, onChange, validationMessages }: 
 
   return (
     <section className="space-y-6">
-      <header className="space-y-1">
-        <h2 className="text-xl font-semibold text-foreground">Map layout</h2>
-        <p className="text-sm text-muted-foreground">
-          Drag with mouse or use Alt + ↑/↓ keys to reorder. Update labels and icons to match how the feature appears on day one.
-        </p>
+      <header className="flex flex-wrap items-center justify-between gap-3">
+        <div className="space-y-1">
+          <h2 className="text-xl font-semibold text-foreground">Map layout</h2>
+          <p className="text-sm text-muted-foreground">
+            Drag with mouse or use Alt + ↑/↓ keys to reorder. Update labels and icons to match how the feature appears on day one.
+          </p>
+        </div>
+        {adminMode && (
+          <Button variant="outline" size="sm" onClick={() => void onReset?.()}>
+            Reset layout to default
+          </Button>
+        )}
       </header>
       {validationMessages.length > 0 && (
         <div className="rounded-3xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm text-amber-100">
@@ -95,6 +106,7 @@ export const LayoutMapper = ({ layout, catalog, onChange, validationMessages }: 
                   {regionItems.map((item, index) => {
                     const feature = resolveFeature(item.featureId);
                     if (!feature) return null;
+                    const isPinned = pinnedSet.has(item.featureId);
                     return (
                       <li key={item.featureId}>
                         <article
@@ -114,6 +126,11 @@ export const LayoutMapper = ({ layout, catalog, onChange, validationMessages }: 
                             <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                               <GripVertical className="h-4 w-4 text-muted" aria-hidden />
                               {feature.name}
+                              {isPinned && (
+                                <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-amber-200">
+                                  Pinned
+                                </span>
+                              )}
                             </div>
                             <div className="flex items-center gap-2">
                               <Button

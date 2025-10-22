@@ -7,6 +7,7 @@ export type AttributeValue = string | string[];
 export interface CurrentUser extends User {
   permissions: string[];
   attributes?: Record<string, AttributeValue>;
+  org?: string;
 }
 
 const normalizeKey = (value: string) => value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -57,9 +58,10 @@ const ROLE_PERMISSION_MATRIX: Record<Role, string[]> = {
 const DEFAULT_USER: CurrentUser = {
   id: 'user-001',
   name: 'Jordan Martinez',
-  email: 'jordan.martinez@example.com',
+  email: 'jordan.martinez@configpro.com',
   orgId: 'org-001',
-  roles: ['owner'],
+  org: 'ConfigPro',
+  roles: ['owner', 'ADMIN'],
   permissions: ['policies:approve', 'systems:audit'],
   attributes: {
     regions: ['north-america', 'emea'],

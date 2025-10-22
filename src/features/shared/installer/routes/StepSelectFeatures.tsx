@@ -8,7 +8,16 @@ interface StepSelectFeaturesProps {
 }
 
 export const StepSelectFeatures = ({ onRegisterSearchFocus, selectionOptions }: StepSelectFeaturesProps) => {
-  const { catalog, selectedFeatureIds, toggleFeature, updateFeatureOptions, billingVisible, draft, validation } = useInstaller();
+  const {
+    catalog,
+    selectedFeatureIds,
+    toggleFeature,
+    updateFeatureOptions,
+    billingVisible,
+    draft,
+    validation,
+    admin,
+  } = useInstaller();
   const { formatCurrency } = useCurrencyFormat({ currency: draft.currency, locale: draft.locale });
 
   return (
@@ -23,6 +32,10 @@ export const StepSelectFeatures = ({ onRegisterSearchFocus, selectionOptions }: 
       conflictMap={validation.conflicts}
       selectionOptions={selectionOptions}
       onRegisterSearchFocus={(fn) => onRegisterSearchFocus(fn)}
+      isAdmin={admin.isAdmin}
+      adminMode={admin.adminMode}
+      pinnedFeatureIds={admin.pinnedFeatureIds}
+      onOpenCatalogEditor={admin.openCatalogEditor}
     />
   );
 };

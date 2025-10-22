@@ -39,6 +39,12 @@ export interface FeatureCatalogItem {
   tags?: string[];
   setupEstimate?: string;
   roiNote?: string;
+  adminMeta?: {
+    pinned?: boolean;
+    hidden?: boolean;
+    lastEditedAt?: string;
+    lastEditedBy?: string;
+  };
 }
 
 export interface FeatureSelection {
@@ -154,4 +160,18 @@ export type InstallerContextValue = {
     'aria-live': 'polite' | 'assertive';
   };
   summaryHighlights: ReactNode[];
+  admin: {
+    isInternal: boolean;
+    isAdmin: boolean;
+    adminMode: boolean;
+    setAdminMode: (enabled: boolean) => void;
+    openPricingEditor: () => void;
+    openCatalogEditor: (featureId?: string) => void;
+    openDependenciesModal: () => void;
+    openAuditDrawer: () => void;
+    pinnedFeatureIds: string[];
+    markPinned: (featureId: string, pinned: boolean) => Promise<void>;
+    lastPublishedPricingAt?: string;
+    resetLayout: () => Promise<void>;
+  };
 };
