@@ -1,8 +1,9 @@
 import { computeFairness, fairnessScore } from './fairness';
 import { formatRange } from './format';
-import { violationsForShift, RuleContext } from './rules';
+import { violationsForShift } from './rules';
 import { differenceInMinutes } from './time';
-import {
+import type { RuleContext } from './rules';
+import type {
   AutoScheduleRequest,
   AutoScheduleResult,
   CoverageRequirement,

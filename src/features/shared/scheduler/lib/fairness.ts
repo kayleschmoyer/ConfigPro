@@ -1,5 +1,5 @@
 import { differenceInMinutes } from './time';
-import { Employee, Shift } from './types';
+import type { Employee, Shift } from './types';
 
 type FairnessSnapshot = {
   gini: number;
