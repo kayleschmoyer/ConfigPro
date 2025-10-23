@@ -44,19 +44,20 @@ const createWallGeometry = (
 };
 
 const Preview3D = () => {
-  const { preview3D, floors, walls, openings } = useBlueprintStore((state) => ({
-    preview3D: state.preview3D,
-    floors: state.floors,
-    walls: Object.values(state.walls),
-    openings: Object.values(state.openings),
-  }));
+  const preview3D = useBlueprintStore((state) => state.preview3D);
+  const floors = useBlueprintStore((state) => state.floors);
+  const walls = useBlueprintStore((state) => state.walls);
+  const openings = useBlueprintStore((state) => state.openings);
+
+  const wallList = useMemo(() => Object.values(walls), [walls]);
+  const openingList = useMemo(() => Object.values(openings), [openings]);
 
   const meshes = useMemo(() => {
     const list: WallMeshData[] = [];
     floors.forEach((floor, index) => {
-      const wallsForFloor = walls.filter((wall) => wall.levelId === floor.id);
+      const wallsForFloor = wallList.filter((wall) => wall.levelId === floor.id);
       wallsForFloor.forEach((wall) => {
-        const openingsForWall = openings.filter((opening) => opening.wallId === wall.id);
+        const openingsForWall = openingList.filter((opening) => opening.wallId === wall.id);
         const geometry = createWallGeometry(wall, floor.height, openingsForWall);
         if (!geometry) return;
         geometry.translate(0, 0, -wall.thickness / 2);
@@ -72,7 +73,7 @@ const Preview3D = () => {
       });
     });
     return list;
-  }, [floors, walls, openings]);
+  }, [floors, wallList, openingList]);
 
   if (!preview3D) {
     return null;
