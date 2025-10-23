@@ -79,6 +79,12 @@ You’ll see something like:
 VITE v5.0  ready in 750ms
 ➜  Local: http://localhost:5173/
 
+### Dev server (local vs VM)
+
+- **Local:** `pnpm run dev:local` → browse http://localhost:5173
+- **VM / public IP:** `pnpm run dev:public` → browse http://<VM_IP>:5173
+- If HMR from another device is flaky on public IPs: `VM_HOST=<VM_IP> pnpm run dev:vm`
+
 🌐 STEP 7: View the Login Page in Your Browser
 
 Open Chrome (or Edge)

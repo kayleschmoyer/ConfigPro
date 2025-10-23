@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:local": "cross-env HOST=localhost PORT=5173 vite",
+    "dev:public": "cross-env PUBLIC=1 HOST=0.0.0.0 PORT=5173 vite",
+    "dev:vm": "cross-env PUBLIC=1 HOST=0.0.0.0 PORT=5173 HMR_HOST=$VM_HOST vite",
     "build": "tsc --noEmit && vite build",
     "lint": "eslint . --ext .ts,.tsx",
     "preview": "vite preview",
@@ -38,6 +41,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.21",
+    "cross-env": "^7.0.3",
     "eslint": "^9.37.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.23",
