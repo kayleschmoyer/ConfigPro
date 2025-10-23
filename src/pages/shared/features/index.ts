@@ -29,6 +29,7 @@ export { default as AuditLogPage } from './AuditLogPage';
 export { default as LocalizationPage } from './LocalizationPage';
 export { default as BrandingPage } from './BrandingPage';
 export { default as TimeIntelligenceHubPage } from './TimeIntelligenceHubPage';
+export { default as FuturisticBlueprintCreatorPage } from './FuturisticBlueprintCreatorPage';
 
 export * from './api.client';
 export * from './businessHours.data';
