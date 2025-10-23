@@ -6,7 +6,7 @@ import { FeatureManagementPage } from '../pages/admin/FeatureManagementPage';
 import { FeatureConstructionDashboardPage } from '../pages/free-starter-templates/configpro/FeatureConstructionDashboardPage';
 import { LoginPage } from '../pages/free-starter-templates/configpro/LoginPage';
 import { DaycareDashboardPage } from '../pages/free-starter-templates/daycare/DaycareDashboardPage';
-import { ErrorBoundaryPage, SharedFeaturesPage } from '../pages/shared/features';
+import { ErrorBoundaryPage, FuturisticBlueprintCreatorPage, SharedFeaturesPage } from '../pages/shared/features';
 import { FeaturePlaygroundPage } from '../pages/dev/FeaturePlaygroundPage';
 import { InstallerApp } from '../features/shared/installer';
 import { ForecastingLayout, DemandStudio, ScenarioWorkbench } from '../routes/forecasting';
@@ -93,6 +93,7 @@ export const AppRouter = () => (
     <Route path="/dashboard" element={<FeatureConstructionDashboardPage />} />
     <Route path="/dev/features" element={<FeaturePlaygroundPage />} />
     <Route path="/shared/features" element={<SharedFeaturesPage />} />
+    <Route path="/shared/blueprint-creator" element={<FuturisticBlueprintCreatorPage />} />
     <Route path="/shared/installer" element={<InstallerApp />} />
     <Route
       path="/admin/features"
