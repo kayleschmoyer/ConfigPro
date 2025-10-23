@@ -76,7 +76,7 @@ const Canvas2D = () => {
 
   const units = useBlueprintStore((state) => state.units);
   const activeFloorId = useBlueprintStore((state) => state.activeFloorId);
-  const walls = useBlueprintStore((state) => Object.values(state.walls));
+  const walls = useBlueprintStore((state) => state.walls);
   const openings = useBlueprintStore((state) => state.openings);
   const selection = useBlueprintStore((state) => state.selection);
   const tool = useBlueprintStore((state) => state.tool);
@@ -94,7 +94,10 @@ const Canvas2D = () => {
   const beginInteraction = useBlueprintStore((state) => state.beginInteraction);
   const commitInteraction = useBlueprintStore((state) => state.commitInteraction);
 
-  const activeWalls = useMemo(() => walls.filter((wall) => wall.levelId === activeFloorId), [walls, activeFloorId]);
+  const activeWalls = useMemo(
+    () => Object.values(walls).filter((wall) => wall.levelId === activeFloorId),
+    [walls, activeFloorId],
+  );
   const wallOpenings = useMemo(() => Object.values(openings), [openings]);
 
   useEffect(() => {
